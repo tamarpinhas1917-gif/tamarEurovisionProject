@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\\u05DE\u05D3\u05E2\u05D9 \u05D4\u05DE\u05D7\u05E9\u05D1 - \u05EA\u05DE\u05E8\\\u05D0\u05D9\u05E0\u05D8\u05E8\u05E0\u05D8\\WEBSITEproject\\tamarProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F8D445E4-87A8-49D4-8D8C-8C929C2F9741}|tamarProject\\tamarProject.csproj|E:\\\u05DE\u05D3\u05E2\u05D9 \u05D4\u05DE\u05D7\u05E9\u05D1 - \u05EA\u05DE\u05E8\\\u05D0\u05D9\u05E0\u05D8\u05E8\u05E0\u05D8\\WEBSITEproject\\tamarProject\\tamarproject\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{F8D445E4-87A8-49D4-8D8C-8C929C2F9741}|tamarProject\\tamarProject.csproj|solutionrelative:tamarproject\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8D445E4-87A8-49D4-8D8C-8C929C2F9741}|tamarProject\\tamarProject.csproj|e:\\\u05DE\u05D3\u05E2\u05D9 \u05D4\u05DE\u05D7\u05E9\u05D1 - \u05EA\u05DE\u05E8\\\u05D0\u05D9\u05E0\u05D8\u05E8\u05E0\u05D8\\websiteproject\\tamarproject\\tamarproject\\homepage.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{F8D445E4-87A8-49D4-8D8C-8C929C2F9741}|tamarProject\\tamarProject.csproj|solutionrelative:tamarproject\\homepage.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8D445E4-87A8-49D4-8D8C-8C929C2F9741}|tamarProject\\tamarProject.csproj|E:\\\u05DE\u05D3\u05E2\u05D9 \u05D4\u05DE\u05D7\u05E9\u05D1 - \u05EA\u05DE\u05E8\\\u05D0\u05D9\u05E0\u05D8\u05E8\u05E0\u05D8\\WEBSITEproject\\tamarProject\\tamarproject\\about.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{F8D445E4-87A8-49D4-8D8C-8C929C2F9741}|tamarProject\\tamarProject.csproj|solutionrelative:tamarproject\\about.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "about.aspx",
+              "DocumentMoniker": "E:\\\u05DE\u05D3\u05E2\u05D9 \u05D4\u05DE\u05D7\u05E9\u05D1 - \u05EA\u05DE\u05E8\\\u05D0\u05D9\u05E0\u05D8\u05E8\u05E0\u05D8\\WEBSITEproject\\tamarProject\\tamarProject\\about.aspx",
+              "RelativeDocumentMoniker": "tamarProject\\about.aspx",
+              "ToolTip": "E:\\\u05DE\u05D3\u05E2\u05D9 \u05D4\u05DE\u05D7\u05E9\u05D1 - \u05EA\u05DE\u05E8\\\u05D0\u05D9\u05E0\u05D8\u05E8\u05E0\u05D8\\WEBSITEproject\\tamarProject\\tamarProject\\about.aspx",
+              "RelativeToolTip": "tamarProject\\about.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2026-01-19T15:14:45.925Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "login.aspx",
+              "DocumentMoniker": "E:\\\u05DE\u05D3\u05E2\u05D9 \u05D4\u05DE\u05D7\u05E9\u05D1 - \u05EA\u05DE\u05E8\\\u05D0\u05D9\u05E0\u05D8\u05E8\u05E0\u05D8\\WEBSITEproject\\tamarProject\\tamarProject\\login.aspx",
+              "RelativeDocumentMoniker": "tamarProject\\login.aspx",
+              "ToolTip": "E:\\\u05DE\u05D3\u05E2\u05D9 \u05D4\u05DE\u05D7\u05E9\u05D1 - \u05EA\u05DE\u05E8\\\u05D0\u05D9\u05E0\u05D8\u05E8\u05E0\u05D8\\WEBSITEproject\\tamarProject\\tamarProject\\login.aspx",
+              "RelativeToolTip": "tamarProject\\login.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2026-01-19T14:41:38.708Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "homePage.aspx",
+              "DocumentMoniker": "E:\\\u05DE\u05D3\u05E2\u05D9 \u05D4\u05DE\u05D7\u05E9\u05D1 - \u05EA\u05DE\u05E8\\\u05D0\u05D9\u05E0\u05D8\u05E8\u05E0\u05D8\\WEBSITEproject\\tamarProject\\tamarProject\\homePage.aspx",
+              "RelativeDocumentMoniker": "tamarProject\\homePage.aspx",
+              "ToolTip": "E:\\\u05DE\u05D3\u05E2\u05D9 \u05D4\u05DE\u05D7\u05E9\u05D1 - \u05EA\u05DE\u05E8\\\u05D0\u05D9\u05E0\u05D8\u05E8\u05E0\u05D8\\WEBSITEproject\\tamarProject\\tamarProject\\homePage.aspx",
+              "RelativeToolTip": "tamarProject\\homePage.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2026-01-19T14:16:48.545Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

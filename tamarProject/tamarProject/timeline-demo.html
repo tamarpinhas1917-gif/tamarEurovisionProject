@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ציר הזמן של ישראל באירוויזיון - הדגמה</title>
+    <style>
+        /* Eurovision Color Palette */
+        :root {
+            --euro-purple: #14052d;
+            --euro-pink: #ff0085;
+            --euro-blue: #00b1ea;
+            --euro-yellow: #fdf200;
+            --deep-navy: #050514;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--euro-purple) 100%);
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating Eurovision Heart/Circle Shapes */
+        .floating-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--euro-pink), var(--euro-blue));
+            top: 10%;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--euro-blue), var(--euro-purple));
+            top: 50%;
+            right: -150px;
+            animation-delay: 5s;
+        }
+
+        .shape3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--euro-pink), rgba(255, 0, 133, 0.5));
+            bottom: 20%;
+            left: 10%;
+            animation-delay: 10s;
+        }
+
+        .shape4 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--euro-blue), var(--euro-yellow));
+            top: 30%;
+            right: 20%;
+            animation-delay: 7s;
+        }
+
+        .shape5 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(0, 177, 234, 0.6), rgba(255, 0, 133, 0.6));
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            50% {
+                transform: translate(-30px, -100px) scale(0.9);
+            }
+            75% {
+                transform: translate(30px, -50px) scale(1.05);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        h1 .white-text {
+            color: white;
+            display: block;
+        }
+
+        h1 .pink-text {
+            color: var(--euro-pink);
+            display: block;
+        }
+
+        .subtitle {
+            color: var(--euro-blue);
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* Timeline Slider Section */
+        .timeline-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+
+        .year-display {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--euro-pink);
+            text-shadow: 0 0 30px rgba(255, 0, 133, 0.5);
+            margin-bottom: 30px;
+        }
+
+        /* Custom Range Slider */
+        .slider-container {
+            padding: 20px 0;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, var(--euro-purple), var(--euro-pink), var(--euro-blue));
+            border-radius: 10px;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 30px;
+            height: 30px;
+            background: var(--euro-pink);
+            border: 3px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 0, 133, 0.8);
+            transition: transform 0.2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 30px;
+            height: 30px;
+            background: var(--euro-pink);
+            border: 3px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 0, 133, 0.8);
+        }
+
+        .year-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        /* Content Display Cards */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .main-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            grid-column: 1 / -1;
+        }
+
+        .song-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--euro-yellow);
+            margin-bottom: 10px;
+        }
+
+        .artist-name {
+            font-size: 1.8rem;
+            color: var(--euro-blue);
+            margin-bottom: 15px;
+        }
+
+        .rank-badge {
+            display: inline-block;
+            background: var(--euro-pink);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .info-card h3 {
+            color: var(--euro-pink);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-card p {
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+
+        /* Navigation Button */
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .back-btn:hover {
+            background: var(--euro-pink);
+            border-color: var(--euro-pink);
+            box-shadow: 0 0 20px rgba(255, 0, 133, 0.5);
+        }
+
+        /* Demo Badge */
+        .demo-badge {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--euro-pink);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            z-index: 1000;
+        }
+
+        /* Eurovision 70 Logo */
+        .euro-logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 150px;
+            height: auto;
+            z-index: 1000;
+            filter: drop-shadow(0 0 20px rgba(255, 0, 133, 0.3));
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .year-display { font-size: 3rem; }
+            .content-grid { grid-template-columns: 1fr; }
+            .song-title { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Eurovision Gradient Shapes -->
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+    <div class="floating-shape shape4"></div>
+    <div class="floating-shape shape5"></div>
+    
+    <div class="demo-badge">✨ גרסת הדגמה</div>
+    <img src="https://www.eurovision.com/static/images/70-logo.ba56318cd52f.webp" alt="Eurovision 70" class="euro-logo">
+    
+    <div class="container">
+        <header>
+            <h1>
+                <span class="white-text">המסע של ישראל</span>
+                <span class="pink-text">באירוויזיון</span>
+            </h1>
+            <p class="subtitle">1973 - היום</p>
+        </header>
+
+        <div class="timeline-section">
+            <div class="year-display" id="yearDisplay">1978</div>
+            
+            <div class="slider-container">
+                <input type="range" id="yearSlider" min="1973" max="2025" value="1978" step="1">
+                <div class="year-labels">
+                    <span>1973</span>
+                    <span>1990</span>
+                    <span>2025</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-card">
+                <div class="song-title" id="songTitle">A-Ba-Ni-Bi</div>
+                <div class="artist-name" id="artistName">Izhar Cohen & Alphabeta</div>
+                <div class="rank-badge" id="rankBadge">🏆 1st Place - WINNER!</div>
+                <p id="songHebrew" style="font-size: 1.3rem; color: #ccc; margin-top: 10px;">א-בה-ני-בי</p>
+            </div>
+
+            <div class="info-card">
+                <h3>🎵 צליל</h3>
+                <p id="soundInfo">פופ-דיסקו קצבי עם הברות עבריות שהפכו לאייקוניות בעולם.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>👗 אופנה</h3>
+                <p id="fashionInfo">חולצות צבעוניות ומכנסיים מתרחבים - סגנון דיסקו קלאסי של שנות ה-70 המאוחרות.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>🗣️ שפה</h3>
+                <p id="languageInfo">עברית - שיר משחק ילדים שובב שכבש את אירופה.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>💃 כוריאוגרפיה</h3>
+                <p id="choreographyInfo">תנועות קבוצתיות פשוטות ושמחות עם מחיאות כפיים - נגיש ומהנה.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="homePage.aspx" class="back-btn">→ חזרה לעמוד הבית</a>
+        </div>
+    </div>
+
+    <script>
+        // Eurovision data - all of Israel's entries
+        const eurovisionData = [
+            {
+                Year: 1973,
+                Artist: "אילנית",
+                Song: "איי שם",
+                SongHebrew: "Ey Sham",
+                Rank: 4,
+                RankDisplay: "מקום 4",
+                Sound: "בלדה עממית רכה עם עיבוד תזמורתי, המשקפת את סגנון האירוויזיון של תחילת שנות ה-70.",
+                Fashion: "שמלה ארוכה אלגנטית עם שרוולים זורמים - שיק בוהמייני.",
+                Language: "עברית - מילים מסורתיות ופואטיות.",
+                Choreography: "תנועה מינימלית, דגש על ביצוע ווקאלי - אופייני לאירוויזיון המוקדם."
+            },
+            {
+                Year: 1978,
+                Artist: "יזהר כהן והאלפבית",
+                Song: "א-בה-ני-בי",
+                SongHebrew: "A-Ba-Ni-Bi",
+                Rank: 1,
+                RankDisplay: "🏆 מקום 1 - ניצחון!",
+                Sound: "פופ-דיסקו קצבי עם הברות עבריות שהפכו לאייקוניות בעולם.",
+                Fashion: "חולצות צבעוניות ומכנסיים מתרחבים - סגנון דיסקו קלאסי של שנות ה-70 המאוחרות.",
+                Language: "עברית - שיר משחק ילדים שובב שכבש את אירופה.",
+                Choreography: "תנועות קבוצתיות פשוטות ושמחות עם מחיאות כפיים - נגיש ומהנה."
+            },
+            {
+                Year: 1979,
+                Artist: "גלי עטרי, חלב ודבש",
+                Song: "הללויה",
+                SongHebrew: "Hallelujah",
+                Rank: 1,
+                RankDisplay: "🏆 מקום 1 - ניצחון!",
+                Sound: "פולק-פופ הרמוני עם גוון רוחני - מרומם ובלתי נשכח.",
+                Fashion: "תלבושות לבנות זורמות וטבעיות המסמלות שלום ואחדות.",
+                Language: "עברית - מסר אוניברסלי של חגיגה ושבח.",
+                Choreography: "תנועות נדנוד עדינות ודינמיקה קבוצתית הרמונית - דגש על מיזוג ווקאלי."
+            },
+            {
+                Year: 1983,
+                Artist: "עפרה חזה",
+                Song: "חי",
+                SongHebrew: "Chai",
+                Rank: 2,
+                RankDisplay: "מקום 2",
+                Sound: "פיוז'ן אתני עוצמתי המשלב ווקאל תימני מסורתי עם פופ מודרני.",
+                Fashion: "תלבושת בהשראה מזרח תיכונית מסורתית עם נגיעות מודרניות.",
+                Language: "עברית - סגנון ביצוע דרמטי ותיאטרלי.",
+                Choreography: "אלמנטים של ריקוד עממי מסורתי משולבים עם במה עכשווית."
+            },
+            {
+                Year: 1998,
+                Artist: "דנה אינטרנשיונל",
+                Song: "דיווה",
+                SongHebrew: "Diva",
+                Rank: 1,
+                RankDisplay: "🏆 מקום 1 - ניצחון!",
+                Sound: "טכנו-פופ אנרגטי עם השפעות מזרח תיכוניות - פורץ דרך ונועז.",
+                Fashion: "שמלת ערב נוצצת - אנרגיה וביטחון של דיווה אמיתית.",
+                Language: "עברית עם המילה האנגלית 'דיווה' - מגשרת על תרבויות ושוברת גבולות.",
+                Choreography: "כוריאוגרפיה פופ מודרנית עם תנועות בטוחות ומעצימות - רגע AFTERSHOCK!"
+            },
+            {
+                Year: 2005,
+                Artist: "שירי מימון",
+                Song: "השקט שנשאר",
+                SongHebrew: "HaSheket SheNishar",
+                Rank: 4,
+                RankDisplay: "מקום 4",
+                Sound: "בלדה רגשית עם עיבוד דרמטי - ביצוע ווקאלי עוצמתי.",
+                Fashion: "שמלת ערב אדומה אלגנטית - מתוחכמת ומודרנית.",
+                Language: "עברית - מילים רגשיות ואינטרוספקטיביות עמוקות.",
+                Choreography: "תנועה מינימלית עם דגש על חיבור רגשי וביצוע ווקאלי."
+            },
+            {
+                Year: 2015,
+                Artist: "נדב גדג'",
+                Song: "גולדן בוי",
+                SongHebrew: "Golden Boy",
+                Rank: 9,
+                RankDisplay: "מקום 9",
+                Sound: "פופ קצבי עם אווירה ים-תיכונית - המנון קיץ מרגיש טוב.",
+                Fashion: "לוק טרנדי קז'ואל עם ג'קט ג'ינס - צעיר ורענן.",
+                Language: "אנגלית - מכוון לקהל אירופי רחב יותר.",
+                Choreography: "תנועות פופ מודרניות אנרגטיות עם רקדני רקע - סגנון אירוויזיון עכשווי."
+            },
+            {
+                Year: 2018,
+                Artist: "נטע ברזילי",
+                Song: "טוי",
+                SongHebrew: "Toy",
+                Rank: 1,
+                RankDisplay: "🏆 מקום 1 - ניצחון!",
+                Sound: "אלקטרו-פופ מוזר עם קולות תרנגולת ולופינג - ויראלי ובלתי נשכח.",
+                Fashion: "קימונו צבעוני נועז עם אביזרים בולטים - אכזרי וייחודי.",
+                Language: "אנגלית - המנון העצמה עם גישה שובבת.",
+                Choreography: "תנועות 'ריקוד התרנגולת' המיתולוגיות שהפכו ויראליות בעולם - AFTERSHOCK טהור!"
+            },
+            {
+                Year: 2024,
+                Artist: "עדן גולן",
+                Song: "הוריקן",
+                SongHebrew: "Hurricane",
+                Rank: 5,
+                RankDisplay: "מקום 5",
+                Sound: "בלדת כוח דרמטית עם אלמנטים אלקטרוניים - רגשית ואינטנסיבית.",
+                Fashion: "שמלה אלגנטית מודרנית עם אלמנטים זורמים - במה מתוחכמת.",
+                Language: "אנגלית - ביצוע ווקאלי עוצמתי עם מסירה דרמטית.",
+                Choreography: "מחול עכשווי עם דימויים סמליים - משלב רגש עם דיוק טכני."
+            }
+        ];
+
+        const slider = document.getElementById('yearSlider');
+        const yearDisplay = document.getElementById('yearDisplay');
+        const songTitle = document.getElementById('songTitle');
+        const artistName = document.getElementById('artistName');
+        const rankBadge = document.getElementById('rankBadge');
+        const songHebrew = document.getElementById('songHebrew');
+        const soundInfo = document.getElementById('soundInfo');
+        const fashionInfo = document.getElementById('fashionInfo');
+        const languageInfo = document.getElementById('languageInfo');
+        const choreographyInfo = document.getElementById('choreographyInfo');
+
+        // Update display when slider moves
+        slider.addEventListener('input', function() {
+            const year = parseInt(this.value);
+            updateDisplay(year);
+        });
+
+        function updateDisplay(year) {
+            yearDisplay.textContent = year;
+            
+            // Find data for this year
+            const yearData = eurovisionData.find(d => d.Year === year);
+            
+            if (yearData) {
+                songTitle.textContent = yearData.Song;
+                artistName.textContent = yearData.Artist;
+                rankBadge.textContent = yearData.RankDisplay;
+                songHebrew.textContent = yearData.SongHebrew || '';
+                soundInfo.textContent = yearData.Sound;
+                fashionInfo.textContent = yearData.Fashion;
+                languageInfo.textContent = yearData.Language;
+                choreographyInfo.textContent = yearData.Choreography;
+                
+                // Change rank badge color based on performance
+                if (yearData.Rank === 1) {
+                    rankBadge.style.background = 'linear-gradient(135deg, #FFD700, #FFA500)';
+                } else if (yearData.Rank <= 5) {
+                    rankBadge.style.background = 'var(--euro-blue)';
+                } else if (yearData.Rank === null) {
+                    rankBadge.style.background = '#666';
+                } else {
+                    rankBadge.style.background = 'var(--euro-pink)';
+                }
+            } else {
+                // No data for this year
+                songTitle.textContent = 'אין כניסה';
+                artistName.textContent = 'ישראל לא השתתפה';
+                rankBadge.textContent = 'לא רלוונטי';
+                songHebrew.textContent = '';
+                soundInfo.textContent = 'ישראל לא הייתה בתחרות השנה.';
+                fashionInfo.textContent = '-';
+                languageInfo.textContent = '-';
+                choreographyInfo.textContent = '-';
+                rankBadge.style.background = '#444';
+            }
+        }
+
+        // Initialize with default year
+        updateDisplay(1978);
+    </script>
+</body>
+</html>
