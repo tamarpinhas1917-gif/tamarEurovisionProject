@@ -210,6 +210,84 @@
             color: #ccc;
         }
 
+        /* Year Markers on Timeline */
+        .year-markers {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            height: 0;
+            pointer-events: none;
+        }
+
+        .year-marker {
+            position: absolute;
+            transform: translateX(50%) translateY(-35px);
+            background: linear-gradient(135deg, var(--euro-pink), var(--euro-blue));
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            pointer-events: all;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 0, 133, 0.4);
+            white-space: nowrap;
+            z-index: 100;
+        }
+
+        .year-marker:hover {
+            transform: translateX(50%) translateY(-40px) scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 0, 133, 0.6);
+        }
+
+        .year-marker.winner-year {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #14052d;
+        }
+
+        .year-marker.first-year {
+            background: linear-gradient(135deg, var(--euro-pink), #ff4d94);
+        }
+
+        .year-marker.iconic-year {
+            background: linear-gradient(135deg, var(--euro-blue), #4dd4ff);
+        }
+
+        .year-marker:active {
+            transform: translateX(50%) translateY(-37px) scale(1.05);
+        }
+
+        .year-marker::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid currentColor;
+        }
+
+        .marker-top {
+            transform: translateX(50%) translateY(-50px) !important;
+        }
+
+        .marker-top:hover {
+            transform: translateX(50%) translateY(-55px) scale(1.1) !important;
+        }
+
+        .marker-bottom {
+            transform: translateX(50%) translateY(-20px) !important;
+        }
+
+        .marker-bottom:hover {
+            transform: translateX(50%) translateY(-25px) scale(1.1) !important;
+        }
+
         /* Artist Image Container */
         .artist-image-container {
             width: 100%;
@@ -402,6 +480,15 @@
                 <div class="year-display" id="yearDisplay">1978</div>
                 
                 <div class="slider-container">
+                    <div class="year-markers">
+                        <span class="year-marker first-year" style="right: 0%;" title="First participation">&#x1F6A9; 1973</span>
+                        <span class="year-marker winner-year marker-top" style="right: 9.4%;" title="First Win - A-Ba-Ni-Bi">&#x1F3C6; 1978</span>
+                        <span class="year-marker winner-year marker-bottom" style="right: 11.3%;" title="Second Win - Hallelujah">&#x1F3C6; 1979</span>
+                        <span class="year-marker iconic-year" style="right: 18.9%;" title="2nd Place - Ofra Haza">&#x1F3C6; 1983</span>
+                        <span class="year-marker winner-year" style="right: 47.2%;" title="Third Win - Diva">&#x1F3C6; 1998</span>
+                        <span class="year-marker winner-year" style="right: 84.9%;" title="Fourth Win - Toy">&#x1F3C6; 2018</span>
+                        <span class="year-marker iconic-year" style="right: 94.3%;" title="3rd Place - Noa Kirel">&#x1F3C6; 2023</span>
+                    </div>
                     <input type="range" id="yearSlider" min="1973" max="2025" value="1978" step="1">
                     <div class="year-labels">
                         <span>1973</span>
@@ -543,6 +630,16 @@
         slider.addEventListener('input', function() {
             const year = parseInt(this.value);
             updateDisplay(year);
+        });
+
+        // Add click event listeners to year markers
+        document.querySelectorAll('.year-marker').forEach(marker => {
+            marker.addEventListener('click', function() {
+                const yearText = this.textContent.trim();
+                const year = parseInt(yearText.match(/\d{4}/)[0]);
+                slider.value = year;
+                updateDisplay(year);
+            });
         });
 
         function updateDisplay(year) {
