@@ -1,8 +1,9 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="timeline.aspx.cs" Inherits="tamarProject.timeline" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="timeline.aspx.cs" Inherits="tamarProject.timeline" ContentType="text/html; charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ציר הזמן של ישראל באירוויזיון</title>

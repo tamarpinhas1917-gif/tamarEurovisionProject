@@ -1,8 +1,9 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="data-manager.aspx.cs" Inherits="tamarProject.data_manager" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="data-manager.aspx.cs" Inherits="tamarProject.data_manager" ContentType="text/html; charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>מנהל נתוני אירוויזיון - Tamar's Project</title>

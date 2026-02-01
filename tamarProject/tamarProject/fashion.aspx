@@ -1,8 +1,9 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="fashion.aspx.cs" Inherits="tamarProject.fashion" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="fashion.aspx.cs" Inherits="tamarProject.fashion" ContentType="text/html; charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Look of Israel - Eurovision Fashion Journey</title>

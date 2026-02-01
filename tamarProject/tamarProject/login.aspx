@@ -1,8 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="tamarProject.login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="tamarProject.login" ContentType="text/html; charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta charset="UTF-8">
     <title>Eurovision | Login</title>
     <style>

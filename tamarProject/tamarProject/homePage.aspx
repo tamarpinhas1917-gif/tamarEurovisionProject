@@ -1,8 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="homePage.aspx.cs" Inherits="tamarProject.homePage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="homePage.aspx.cs" Inherits="tamarProject.homePage" ContentType="text/html; charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eurovision Song Contest | Israel</title>
