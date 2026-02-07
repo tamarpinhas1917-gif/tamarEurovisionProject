@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ציר הזמן של ישראל באירוויזיון - Split View Preview</title>
+    <style>
+        /* Eurovision Color Palette */
+        :root {
+            --euro-purple: #14052d;
+            --euro-pink: #ff0085;
+            --euro-blue: #00b1ea;
+            --euro-yellow: #fdf200;
+            --deep-navy: #050514;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--euro-purple) 100%);
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Navigation */
+        .nav-menu {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--euro-pink);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-button:hover {
+            background: var(--euro-pink);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,0,133,0.4);
+        }
+
+        .nav-button span {
+            font-size: 1.2em;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .white-text {
+            color: white;
+            display: block;
+        }
+
+        .pink-text {
+            color: var(--euro-pink);
+            display: block;
+        }
+
+        .year-display {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--euro-pink);
+            margin-bottom: 30px;
+        }
+
+        /* Image and Timeline Side by Side Container */
+        .image-timeline-container {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+
+        /* Image Display */
+        .image-container {
+            flex: 0 0 400px;
+            text-align: center;
+        }
+
+        .year-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 40px rgba(255, 0, 133, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .year-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Timeline Slider Styles */
+        .timeline-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .timeline-header h2 {
+            color: var(--euro-yellow);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .slider-container {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .year-slider {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: linear-gradient(90deg, var(--euro-pink), var(--euro-blue), var(--euro-yellow));
+            outline: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+        }
+
+        .year-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 3px solid var(--euro-pink);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 0, 133, 0.8);
+            transition: transform 0.2s;
+        }
+
+        .year-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.3);
+        }
+
+        .year-slider::-moz-range-thumb {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 3px solid var(--euro-pink);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 0, 133, 0.8);
+            transition: transform 0.2s;
+        }
+
+        .year-slider::-moz-range-thumb:hover {
+            transform: scale(1.3);
+        }
+
+        .year-icons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding: 0 5px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .year-marker {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+            flex: 0 0 auto;
+        }
+
+        .year-marker:hover {
+            transform: scale(1.2);
+        }
+
+        .year-icon {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+        }
+
+        .year-label {
+            font-size: 0.75rem;
+            color: #ccc;
+            font-weight: 600;
+        }
+
+        .year-marker.active .year-label {
+            color: var(--euro-pink);
+            font-weight: 900;
+        }
+
+        .year-marker.active .year-icon {
+            filter: drop-shadow(0 0 15px var(--euro-pink));
+            transform: scale(1.3);
+        }
+
+        /* Split View Layout */
+        .split-view-container {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 30px;
+            flex-direction: row-reverse; /* RTL: Sidebar on right */
+        }
+
+        .quick-facts-sidebar {
+            flex: 0 0 300px;
+            background: linear-gradient(135deg, rgba(255,0,133,0.15), rgba(0,177,234,0.15));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(255, 0, 133, 0.3);
+        }
+
+        .sidebar-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--euro-yellow);
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .fact-item {
+            margin-bottom: 20px;
+        }
+
+        .fact-label {
+            font-size: 0.85rem;
+            color: var(--euro-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .fact-value {
+            font-size: 1.2rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .rank-badge {
+            display: inline-block;
+            background: var(--euro-pink);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            width: 100%;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .main-content-area {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .info-card-large {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .info-card-large:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 133, 0.3);
+        }
+
+        .info-card-large h3 {
+            color: var(--euro-pink);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-card-large p {
+            line-height: 1.8;
+            color: #e0e0e0;
+            font-size: 1.05rem;
+        }
+
+        /* Fifth card (Mood) spans full width */
+        .info-card-large:nth-child(5) {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(255,0,133,0.1), rgba(0,177,234,0.1));
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .image-timeline-container {
+                flex-direction: column;
+            }
+
+            .image-container {
+                flex: 1 1 auto;
+                max-width: 100%;
+            }
+
+            .timeline-section {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .split-view-container {
+                flex-direction: column;
+            }
+
+            .quick-facts-sidebar {
+                flex: 1 1 auto;
+                order: 1;
+            }
+
+            .main-content-area {
+                order: 2;
+                grid-template-columns: 1fr;
+            }
+
+            .info-card-large:nth-child(5) {
+                grid-column: 1;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .year-display {
+                font-size: 2.5rem;
+            }
+
+            .year-icons {
+                gap: 5px;
+            }
+
+            .year-icon {
+                font-size: 1.3rem;
+            }
+
+            .year-label {
+                font-size: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <a href="home-preview.html" class="nav-button">
+            <span>🏠</span>
+            <span>HOME</span>
+        </a>
+    </nav>
+
+    <script>
+        // Eurovision data with complete information for each year
+        const eurovisionData = [
+            { Year: 1973, Rank: 4, ImageExt: 'png', Artist: 'אילנית', Song: 'אי שם', SongEnglish: 'Ey-Sham', Sound: 'בלדה אירופאית עם תזמורת חיה', Fashion: 'שמלה רקומה במשי', Language: 'עברית תקנית', Choreography: 'סטטי, תנועות ידיים עדינות', Mood: 'ישראל היפה והמאופקת' },
+            { Year: 1974, Rank: 7, ImageExt: 'png', Artist: 'פוגי ותהילים', Song: 'נתתי לה חיי', SongEnglish: 'Natati La Hayay', Sound: 'פופ רוק קצבי', Fashion: 'בגדים צבעוניים בסגנון שנות ה-70', Language: 'עברית', Choreography: 'דינמי וקבוצתי', Mood: 'אנרגיה צעירה' },
+            { Year: 1975, Rank: 11, ImageExt: 'png', Artist: 'שלמה ארצי', Song: 'את ורק את', SongEnglish: 'At Ve-Rak At', Sound: 'בלדת אהבה רומנטית', Fashion: 'חליפה קלאסית', Language: 'עברית', Choreography: 'מינימלי', Mood: 'רומנטיקה ישראלית' },
+            { Year: 1976, Rank: 6, ImageExt: 'png', Artist: 'שוקולד מנטה מסטיק', Song: 'אמור שלום', SongEnglish: 'Emor Shalom', Sound: 'פופ מזרחי', Fashion: 'צבעוני ועליז', Language: 'עברית', Choreography: 'קבוצתי ושמח', Mood: 'שלום ותקווה' },
+            { Year: 1977, Rank: 4, ImageExt: 'png', Artist: 'אילנית', Song: 'הבה נגילה', SongEnglish: 'Hava Nagila', Sound: 'מסורתי-מודרני', Fashion: 'שמלה לבנה אלגנטית', Language: 'עברית', Choreography: 'ריקודי עם', Mood: 'גאווה יהודית' },
+            { Year: 1978, Rank: 1, Icon: '🥇', ImageExt: 'png', Artist: 'יזהר כהן והאלפבטית', Song: 'א-בה-ני-בי', SongEnglish: 'A-Ba-Ni-Bi', Sound: 'דיסקו-פופ עם הברות עבריות', Fashion: 'חליפות לבנות, אפרו, פדלפונים', Language: 'עברית - משחק ילדים', Choreography: 'תנועות קבוצתיות שמחות', Mood: 'אופוריה - הניצחון הראשון!' },
+            { Year: 1979, Rank: 1, Icon: '🥇', ImageExt: 'png', Artist: 'גלי עטרי ומילק אנד האני', Song: 'הללויה', SongEnglish: 'Hallelujah', Sound: 'פופ-רוק עם מסר רוחני', Fashion: 'לבן טהור וזוהר', Language: 'עברית וקצת אנגלית', Choreography: 'קליל ומרומם', Mood: 'ניצחון כפול - היסטוריה!' },
+            { Year: 1980, Rank: 7, Artist: 'שמרית אור ולהקת רוקיזם', Song: 'פתח תקווה', SongEnglish: 'Petach Tikva', Sound: 'רוק ישראלי', Fashion: 'ג\'ינס ועור', Language: 'עברית', Choreography: 'רוקיסטי', Mood: 'מזדהה עם אנשים פשוטים' },
+            { Year: 1981, Rank: 4, ImageExt: 'png', Artist: 'חביבה רחבי', Song: 'הבה', SongEnglish: 'Hava', Sound: 'בלדה מזרחית', Fashion: 'שמלה מסורתית', Language: 'עברית', Choreography: 'מזרחי', Mood: 'נוסטלגיה' },
+            { Year: 1982, Rank: 2, Icon: '🥈', ImageExt: 'png', Artist: 'אבי טולדנו', Song: 'הורה', SongEnglish: 'Hora', Sound: 'שילוב מזרחי-מערבי', Fashion: 'אלגנטי ומסורתי', Language: 'עברית', Choreography: 'ריקודי עם', Mood: 'גאווה בזהות' },
+            { Year: 1983, Rank: 2, Icon: '🥈', ImageExt: 'png', Artist: 'עפרה חזה', Song: 'חי', SongEnglish: 'Hi', Sound: 'בלדה עוצמתית', Fashion: 'שמלת ערב שחורה', Language: 'עברית', Choreography: 'דרמטי', Mood: 'חיים למרות הכל' },
+            { Year: 1984, Rank: 5, Artist: 'אבי טולדנו', Song: 'אולי תבוא השלום', SongEnglish: 'Olé Olé', Sound: 'פופ אופטימי', Fashion: 'צבעוני', Language: 'עברית', Choreography: 'קליל', Mood: 'תקווה לשלום' },
+            { Year: 1985, Rank: 5, ImageExt: 'png', Artist: 'יזהר כהן', Song: 'אולי תחזור הלבבה', SongEnglish: 'Ole Ole', Sound: 'פופ מזרחי', Fashion: 'אלגנטי', Language: 'עברית', Choreography: 'קבוצתי', Mood: 'געגועים' },
+            { Year: 1986, Rank: 2, Icon: '🥈', ImageExt: 'png', Artist: 'מושיק עפיה', Song: 'יום הולדת ל\'20', SongEnglish: 'Yom Huledet (Birthday)', Sound: 'פופ צעיר ועליז', Fashion: 'צעיר ומודרני', Language: 'עברית', Choreography: 'דינמי', Mood: 'חגיגת נעורים' },
+            { Year: 1987, Rank: 8, ImageExt: 'png', Artist: 'אומן ולהקת דצל', Song: 'שיר חבר\'ה', SongEnglish: 'Shir Habrerbe', Sound: 'פופ רוק', Fashion: 'רוק קז\'ואל', Language: 'עברית', Choreography: 'קבוצתי', Mood: 'ידידות' },
+            { Year: 1988, Rank: 6, ImageExt: 'jpeg', Artist: 'ירדנה ארזי', Song: 'בן אדם', SongEnglish: 'Ben Adam', Sound: 'פופ מלודי', Fashion: 'אלגנטי-מינימליסטי', Language: 'עברית', Choreography: 'רגוע', Mood: 'הומניזם' },
+            { Year: 1989, Rank: 12, ImageExt: 'jpg', Artist: 'גילי ויגאלי', Song: 'דרך הכוכבים', SongEnglish: 'Derekh HaKochavim', Sound: 'פופ דואט', Fashion: 'זוהר וכוכבי', Language: 'עברית', Choreography: 'זוגי', Mood: 'חלומות' },
+            { Year: 1990, Rank: 7, ImageExt: 'png', Artist: 'ריטה ואלכסנדר ברנובסקי', Song: 'שרי חביבי', SongEnglish: 'Shara Barkhovot', Sound: 'מזרחי-אתני', Fashion: 'מזרחי מסורתי', Language: 'עברית וערבית', Choreography: 'מזרחי', Mood: 'דו-קיום' },
+            { Year: 1991, Rank: 3, Icon: '🥉', ImageExt: 'png', Artist: 'דואט דץ\'', Song: 'כאן', SongEnglish: 'Kan', Sound: 'פופ קליט', Fashion: 'צבעוני ומודרני', Language: 'עברית', Choreography: 'אנרגטי', Mood: 'שייכות למקום' },
+            { Year: 1992, Rank: 6, ImageExt: 'jpg', Artist: 'דפנה', Song: 'זה בא', SongEnglish: 'Ze Rak Sport', Sound: 'פופ דאנס', Fashion: 'ספורטיבי', Language: 'עברית', Choreography: 'ריקוד אנרגטי', Mood: 'כיף וספורט' },
+            { Year: 1993, Rank: 24, ImageExt: 'jpg', Artist: 'להקת שירו', Song: 'שירו', SongEnglish: 'Shiru', Sound: 'קאנטרי-פופ', Fashion: 'קז\'ואל', Language: 'עברית', Choreography: 'קבוצתי', Mood: 'שירה ביחד' },
+            { Year: 1994, Rank: 7, Artist: 'מירית שם-אור', Song: 'אילן בגן', SongEnglish: 'Amen', Sound: 'בלדה', Fashion: 'שמלת ערב', Language: 'עברית', Choreography: 'מינימלי', Mood: 'רוחניות' },
+            { Year: 1995, Rank: 8, ImageExt: 'jpg', Artist: 'ליאורה', Song: 'לו יהי', SongEnglish: 'Amen', Sound: 'בלדת שלום', Fashion: 'לבן טהור', Language: 'עברית', Choreography: 'עדין', Mood: 'תפילה לשלום' },
+            { Year: 1996, Rank: 6, ImageExt: 'jpg', Artist: 'גלית בל', Song: 'אסתר', SongEnglish: 'Shalom Olam', Sound: 'פופ מזרחי', Fashion: 'מזרחי מודרני', Language: 'עברית', Choreography: 'מזרחי', Mood: 'גאווה נשית' },
+            { Year: 1997, Rank: 5, Artist: 'מירטל פרץ', Song: 'עד אנה', SongEnglish: 'Time', Sound: 'בלדה עוצמתית', Fashion: 'שמלת ערב שחורה', Language: 'עברית', Choreography: 'דרמטי', Mood: 'זמן עובר' },
+            { Year: 1998, Rank: 1, Icon: '🥇', ImageExt: 'webp', Artist: 'דנה אינטרנשיונל', Song: 'דיווה', SongEnglish: 'Diva', Sound: 'טכנו-פופ מודרני', Fashion: 'פוטוריסטי וזוהר', Language: 'עברית, אנגלית, צרפתית', Choreography: 'אנרגטי ומרהיב', Mood: 'דיווה עולמית - ניצחון שלישי!' },
+            { Year: 1999, Rank: 5, ImageExt: 'png', Artist: 'עדן', Song: 'יום הולדת (הפי ברת\'דיי)', SongEnglish: 'Happy Birthday', Sound: 'פופ צעיר', Fashion: 'צעיר ומודרני', Language: 'עברית ואנגלית', Choreography: 'מסיבתי', Mood: 'חגיגה' },
+            { Year: 2000, Rank: 9, ImageExt: 'png', Artist: 'פינגווין', Song: 'שלום ושלום', SongEnglish: 'Sameach', Sound: 'פופ קליל', Fashion: 'צבעוני', Language: 'עברית', Choreography: 'שמח', Mood: 'שמחה ושלום' },
+            { Year: 2001, Rank: 16, ImageExt: 'png', Artist: 'טל סונדק', Song: 'אל תצאי מהר', SongEnglish: 'En Davar', Sound: 'פופ בלדה', Fashion: 'אלגנטי', Language: 'עברית', Choreography: 'רגוע', Mood: 'רגעי אמת' },
+            { Year: 2002, Rank: 12, ImageExt: 'jpg', Artist: 'שירי מימון', Song: 'לייט אאוט', SongEnglish: 'Light a Candle', Sound: 'פופ מלודי', Fashion: 'מודרני', Language: 'אנגלית', Choreography: 'קליל', Mood: 'תקווה' },
+            { Year: 2003, Rank: 7, ImageExt: 'jpg', Artist: 'לירן דנדיקר', Song: 'על חוף הנהר', SongEnglish: 'Words for Love', Sound: 'פופ-רוק', Fashion: 'רוק אלגנטי', Language: 'עברית ואנגלית', Choreography: 'אנרגטי', Mood: 'אהבה ותקווה' },
+            { Year: 2004, Rank: 4, ImageExt: 'JPG', Artist: 'דוד ד\'אור', Song: 'לאהוב אותך', SongEnglish: 'To Love You', Sound: 'פופ רומנטי', Fashion: 'חליפה אלגנטית', Language: 'עברית ואנגלית', Choreography: 'רומנטי', Mood: 'אהבה טהורה' },
+            { Year: 2005, Rank: 4, ImageExt: 'jpg', Artist: 'שירי מימון', Song: 'השיקט שאחרי הסערה', SongEnglish: 'HaSheket SheAcharey HaSe\'ara', Sound: 'בלדה עמוקה', Fashion: 'שמלת ערב', Language: 'עברית', Choreography: 'עדין', Mood: 'רוגע אחרי סערה' },
+            { Year: 2006, Rank: 23, ImageExt: 'jpg', Artist: 'אדי באטלר', Song: 'יחד נגיע', SongEnglish: 'Together We Are One', Sound: 'פופ אופטימי', Fashion: 'מודרני צבעוני', Language: 'עברית ואנגלית', Choreography: 'קבוצתי', Mood: 'אחדות' },
+            { Year: 2007, Rank: 9, ImageExt: 'jpg', Artist: 'תרזה', Song: 'פוש באטון', SongEnglish: 'Push The Button', Sound: 'אלקטרו-פופ', Fashion: 'פוטוריסטי', Language: 'אנגלית', Choreography: 'טכנולוגי', Mood: 'טכנולוגיה ושלום' },
+            { Year: 2008, Rank: 9, ImageExt: 'jpg', Artist: 'בועז מעודה', Song: 'הים שקט', SongEnglish: 'The Fire In Your Eyes', Sound: 'פופ-רוק מלודי', Fashion: 'רוק אלגנטי', Language: 'עברית ואנגלית', Choreography: 'אנרגטי', Mood: 'אש פנימית' },
+            { Year: 2009, Rank: 16, ImageExt: 'jpg', Artist: 'נועה', Song: 'יש לך יד לתפוס', SongEnglish: 'There Must Be Another Way', Sound: 'פופ עם מסר', Fashion: 'פשוט ואלגנטי', Language: 'עברית, ערבית, אנגלית', Choreography: 'שלווה', Mood: 'דו-קיום ושלום' },
+            { Year: 2010, Rank: 14, ImageExt: 'jpg', Artist: 'הראל סקעת', Song: 'מילים לשיר', SongEnglish: 'Milim', Sound: 'פופ מלודי', Fashion: 'קז\'ואל אלגנטי', Language: 'עברית', Choreography: 'פשוט', Mood: 'חיפוש מילים' },
+            { Year: 2011, Rank: 7, ImageExt: 'jpg', Artist: 'דנה אינטרנשיונל', Song: 'דינג דונג', SongEnglish: 'Ding Dong', Sound: 'אלקטרו-פופ שובב', Fashion: 'זוהר וצבעוני', Language: 'עברית ואנגלית', Choreography: 'משחקי', Mood: 'כיף והומור' },
+            { Year: 2012, Rank: 10, ImageExt: 'jpg', Artist: 'אירנה דובצבה', Song: 'זמן', SongEnglish: 'Time', Sound: 'בלדה אוניברסלית', Fashion: 'שמלת ערב לבנה', Language: 'אנגלית', Choreography: 'דרמטי', Mood: 'זמן מרפא' },
+            { Year: 2013, Rank: 22, ImageExt: 'jpg', Artist: 'מירן בורג\'ל', Song: 'שיר של חן', SongEnglish: 'Rak Bishvilo', Sound: 'בלדה רגשית', Fashion: 'שמלת ערב', Language: 'עברית', Choreography: 'עדין', Mood: 'אהבה אמיתית' },
+            { Year: 2014, Rank: 11, ImageExt: 'jpg', Artist: 'מיי פייניגולד', Song: 'סיימי היום', SongEnglish: 'Same Heart', Sound: 'פופ אופטימי', Fashion: 'מודרני צבעוני', Language: 'עברית ואנגלית', Choreography: 'אנרגטי', Mood: 'לב אחד' },
+            { Year: 2015, Rank: 9, ImageExt: 'jpg', Artist: 'נדב גדג\'', Song: 'זמן הזהב', SongEnglish: 'Golden Boy', Sound: 'פופ מודרני', Fashion: 'אופנתי', Language: 'אנגלית', Choreography: 'דינמי', Mood: 'נער הזהב' },
+            { Year: 2016, Rank: 14, ImageExt: 'png', Artist: 'הוי והראל סקעת', Song: 'מחזיק מעמד', SongEnglish: 'Made of Stars', Sound: 'אלקטרו-פופ', Fashion: 'פוטוריסטי', Language: 'אנגלית', Choreography: 'מודרני', Mood: 'עשוי כוכבים' },
+            { Year: 2017, Rank: 23, ImageExt: 'webp', Artist: 'עמיר דדון', Song: 'אני לא מוותר עליך', SongEnglish: 'I Feel Alive', Sound: 'פופ רומנטי', Fashion: 'אלגנטי', Language: 'אנגלית', Choreography: 'רומנטי', Mood: 'חיים באהבה' },
+            { Year: 2018, Rank: 1, Icon: '🥇', ImageExt: 'avif', Artist: 'נטע ברזילי', Song: 'טוי', SongEnglish: 'Toy', Sound: 'פופ יפני-אסייתי', Fashion: 'קימונו צבעוני', Language: 'עברית ואנגלית', Choreography: 'תנועת עוף', Mood: 'נשיות חזקה - ניצחון רביעי!' },
+            { Year: 2019, Rank: 23, ImageExt: 'jpg', Artist: 'כוורת', Song: 'הביתה', SongEnglish: 'Home', Sound: 'פופ אלקטרוני', Fashion: 'שחור-לבן מודרני', Language: 'עברית ואנגלית', Choreography: 'מינימליסטי', Mood: 'געגועים הביתה' },
+            { Year: 2020, Rank: null, Icon: '❌', ImageExt: 'jpg', Artist: 'אדם בן עזרא', Song: 'פילה', SongEnglish: 'Feker Libi', Sound: 'אתנו-אלקטרוני', Fashion: 'מסורתי-מודרני', Language: 'אמהרית', Choreography: 'אתיופי', Mood: 'ביטול בגלל קורונה' },
+            { Year: 2021, Rank: 17, ImageExt: 'jpeg', Artist: 'עדן אלנה', Song: 'סט מי פרי', SongEnglish: 'Set Me Free', Sound: 'פופ אלקטרוני', Fashion: 'מודרני זוהר', Language: 'אנגלית', Choreography: 'אנרגטי', Mood: 'שחרור והתחדשות' },
+            { Year: 2022, Rank: 3, Icon: '🥉', ImageExt: 'webp', Artist: 'מייקל בן דוד', Song: 'אני מרקיד בלעדיך', SongEnglish: 'I.M', Sound: 'פופ דראמטי', Fashion: 'אלגנטי שחור', Language: 'עברית ואנגלית', Choreography: 'דרמטי', Mood: 'כוח ועצמאות - מקום 3!' },
+            { Year: 2023, Rank: 3, Icon: '🥉', ImageExt: 'jpg', Artist: 'נועה קירל', Song: 'יוניקורן', SongEnglish: 'Unicorn', Sound: 'פופ אלקטרוני מודרני', Fashion: 'פנטזיה צבעונית', Language: 'עברית ואנגלית', Choreography: 'פנטסטי', Mood: 'חד-קרן מיוחדת - מקום 3!' },
+            { Year: 2024, Rank: 5, ImageExt: 'jpg', Artist: 'עדן גולן', Song: 'הורקן', SongEnglish: 'Hurricane', Sound: 'פופ דראמטי', Fashion: 'אלגנטי מודרני', Language: 'אנגלית', Choreography: 'עוצמתי', Mood: 'סערה רגשית' },
+            { Year: 2025, Rank: 12, ImageExt: 'webp', Artist: 'יובל רפאל', Song: 'ועוד איך', SongEnglish: 'Veod Eich', Sound: 'פופ מודרני', Fashion: 'מודרני', Language: 'עברית', Choreography: 'אנרגטי', Mood: 'תקווה לעתיד' },
+            { Year: 2026, Rank: null, ImageExt: 'webp', Artist: 'טרם נבחר', Song: 'טרם נבחר', SongEnglish: 'TBD', Sound: 'ממתינים לבחירה...', Fashion: 'ממתינים...', Language: 'ממתינים...', Choreography: 'ממתינים...', Mood: 'ציפייה לעתיד' }
+        ];
+
+        // Generate year markers (only for winning positions)
+        function generateYearMarkers() {
+            const container = document.getElementById('yearIcons');
+            container.innerHTML = '';
+            
+            eurovisionData.forEach(year => {
+                // Only create markers for years with icons (1st, 2nd, 3rd place + cancelled)
+                if (year.Icon) {
+                    const marker = document.createElement('div');
+                    marker.className = 'year-marker';
+                    marker.dataset.year = year.Year;
+                    
+                    if (year.Year === 1978) {
+                        marker.classList.add('active');
+                    }
+                    
+                    marker.innerHTML = `
+                        <div class="year-icon">${year.Icon}</div>
+                        <div class="year-label">${year.Year}</div>
+                    `;
+                    
+                    marker.addEventListener('click', () => {
+                        document.getElementById('yearSlider').value = year.Year;
+                        updateYear(year.Year);
+                    });
+                    
+                    container.appendChild(marker);
+                }
+            });
+        }
+
+        // Update display when year changes
+        function updateYear(year) {
+            document.getElementById('yearDisplay').textContent = year;
+            
+            // Find year data
+            const yearData = eurovisionData.find(y => y.Year === parseInt(year));
+            
+            if (yearData) {
+                // Update image
+                const imgElement = document.getElementById('yearImage');
+                if (yearData.ImageExt) {
+                    imgElement.src = `images/eurovision/${year}.${yearData.ImageExt}`;
+                    imgElement.alt = `Eurovision ${year}`;
+                    imgElement.style.display = 'block';
+                } else {
+                    imgElement.style.display = 'none';
+                }
+                
+                // Update sidebar quick facts
+                document.getElementById('sidebarYear').textContent = yearData.Year;
+                document.getElementById('sidebarArtist').textContent = yearData.Artist || 'לא ידוע';
+                document.getElementById('sidebarSong').textContent = yearData.Song || 'לא ידוע';
+                document.getElementById('sidebarSongEnglish').textContent = yearData.SongEnglish || 'N/A';
+                
+                // Update rank badge
+                const rankBadge = document.getElementById('rankBadge');
+                if (yearData.Rank === 1) {
+                    rankBadge.style.background = 'linear-gradient(135deg, #FFD700, #FFA500)';
+                    rankBadge.textContent = '🥇 מקום 1';
+                } else if (yearData.Rank === 2) {
+                    rankBadge.style.background = 'linear-gradient(135deg, #C0C0C0, #A8A8A8)';
+                    rankBadge.textContent = '🥈 מקום 2';
+                } else if (yearData.Rank === 3) {
+                    rankBadge.style.background = 'linear-gradient(135deg, #CD7F32, #B87333)';
+                    rankBadge.textContent = '🥉 מקום 3';
+                } else if (yearData.Rank === null) {
+                    rankBadge.style.background = 'linear-gradient(135deg, #666, #444)';
+                    rankBadge.textContent = '❌ לא השתתף';
+                } else {
+                    rankBadge.style.background = 'linear-gradient(135deg, var(--euro-pink), var(--euro-blue))';
+                    rankBadge.textContent = `מקום ${yearData.Rank}`;
+                }
+                
+                // Update info cards
+                document.getElementById('soundInfo').textContent = yearData.Sound || 'אין מידע';
+                document.getElementById('fashionInfo').textContent = yearData.Fashion || 'אין מידע';
+                document.getElementById('languageInfo').textContent = yearData.Language || 'אין מידע';
+                document.getElementById('choreographyInfo').textContent = yearData.Choreography || 'אין מידע';
+                document.getElementById('moodInfo').textContent = yearData.Mood || 'אין מידע';
+            }
+            
+            // Update active marker
+            document.querySelectorAll('.year-marker').forEach(marker => {
+                marker.classList.remove('active');
+                if (parseInt(marker.dataset.year) === parseInt(year)) {
+                    marker.classList.add('active');
+                }
+            });
+        }
+
+        // Slider event listener
+        document.addEventListener('DOMContentLoaded', () => {
+            generateYearMarkers();
+            
+            const slider = document.getElementById('yearSlider');
+            slider.addEventListener('input', (e) => {
+                updateYear(e.target.value);
+            });
+        });
+    </script>
+    <div class="container">
+        <header>
+            <h1>
+                <span class="white-text">המסע של ישראל</span>
+                <span class="pink-text">באירוויזיון</span>
+            </h1>
+        </header>
+
+        <div class="year-display" id="yearDisplay">1978</div>
+
+        <!-- Image and Timeline Side by Side -->
+        <div class="image-timeline-container">
+            <!-- Image Display (Left Side in LTR, Right in RTL) -->
+            <div class="image-container">
+                <img id="yearImage" 
+                     src="images/eurovision/1978.png" 
+                     alt="Eurovision 1978" 
+                     class="year-image"
+                     onerror="this.style.display='none'">
+            </div>
+
+            <!-- Timeline Section (Right Side in LTR, Left in RTL) -->
+            <div class="timeline-section">
+                <div class="timeline-container">
+                    <div class="timeline-header">
+                        <h2>בחר שנה</h2>
+                    </div>
+                    
+                    <div class="slider-container">
+                        <input type="range" 
+                               id="yearSlider" 
+                               min="1973" 
+                               max="2026" 
+                               value="1978" 
+                               class="year-slider">
+                        
+                        <div class="year-icons" id="yearIcons">
+                            <!-- Year markers will be generated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Split View Layout: Sidebar + Main Content -->
+        <div class="split-view-container">
+            <!-- Right Sidebar (Quick Facts) -->
+            <div class="quick-facts-sidebar">
+                <div class="sidebar-header">פרטים מהירים</div>
+                
+                <div class="fact-item">
+                    <div class="fact-label">שנה</div>
+                    <div class="fact-value" id="sidebarYear">1978</div>
+                </div>
+                
+                <div class="fact-item">
+                    <div class="fact-label">נציג</div>
+                    <div class="fact-value" id="sidebarArtist">יזהר כהן והאלפבטית</div>
+                </div>
+                
+                <div class="fact-item">
+                    <div class="fact-label">שיר</div>
+                    <div class="fact-value" id="sidebarSong">א-בה-ני-בי</div>
+                </div>
+                
+                <div class="fact-item">
+                    <div class="fact-label">שם באנגלית</div>
+                    <div class="fact-value" id="sidebarSongEnglish">A-Ba-Ni-Bi</div>
+                </div>
+                
+                <div class="fact-item">
+                    <div class="fact-label">מיקום</div>
+                    <div class="rank-badge" id="rankBadge" style="background: linear-gradient(135deg, #FFD700, #FFA500);">🏆 מקום 1</div>
+                </div>
+            </div>
+
+            <!-- Main Content Area (Detailed Info Cards) -->
+            <div class="main-content-area">
+                <div class="info-card-large">
+                    <h3>🎵 צליל</h3>
+                    <p id="soundInfo">דיסקו-פופ עם הברות עבריות שהפכו לאייקוניות בעולם</p>
+                </div>
+
+                <div class="info-card-large">
+                    <h3>👗 אופנה</h3>
+                    <p id="fashionInfo">חליפות לבנות, פדלפונים ואפרו - סגנון דיסקו קלאסי של שנות ה-70</p>
+                </div>
+
+                <div class="info-card-large">
+                    <h3>🗣️ שפה</h3>
+                    <p id="languageInfo">עברית - שיר משחק ילדים שובב שכבש את אירופה</p>
+                </div>
+
+                <div class="info-card-large">
+                    <h3>💃 כוריאוגרפיה</h3>
+                    <p id="choreographyInfo">תנועות קבוצתיות שמחות עם מחיאות כפיים - נגיש ומהנה</p>
+                </div>
+
+                <div class="info-card-large">
+                    <h3>🌍 הלך רוח לאומי</h3>
+                    <p id="moodInfo">אופוריה וגאווה לאומית - הניצחון הראשון של ישראל באירוויזיון</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: var(--euro-yellow);">
+            <strong>✨ Split View Design Preview ✨</strong><br>
+            <small style="color: #ccc;">This shows the new layout with sidebar + 5 info cards (including Mood)</small>
+        </div>
+    </div>
+</body>
+</html>

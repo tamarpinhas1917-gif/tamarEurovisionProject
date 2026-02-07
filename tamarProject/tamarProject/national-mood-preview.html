@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 הלך רוח לאומי - ישראל באירוויזיון</title>
+    <style>
+        :root {
+            --euro-purple: #14052d;
+            --euro-pink: #ff0085;
+            --euro-blue: #00b1ea;
+            --euro-yellow: #fdf200;
+            --deep-navy: #050514;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--euro-purple) 100%);
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav-menu {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-button {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--euro-pink);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-button:hover {
+            background: var(--euro-pink);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,0,133,0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 40px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(253, 242, 0, 0.2) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--euro-yellow), var(--euro-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #e0e0e0;
+            margin-bottom: 40px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Mood Categories */
+        .mood-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .mood-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 40px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .mood-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(253, 242, 0, 0.4);
+            border-color: var(--euro-yellow);
+        }
+
+        .mood-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .mood-title {
+            font-size: 2rem;
+            color: var(--euro-yellow);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .mood-description {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .mood-years {
+            font-size: 1rem;
+            color: var(--euro-pink);
+            font-weight: 600;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            margin-top: 60px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            color: var(--euro-blue);
+            margin-bottom: 40px;
+        }
+
+        .decades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .decade-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .decade-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--euro-yellow);
+            box-shadow: 0 15px 40px rgba(253, 242, 0, 0.3);
+        }
+
+        .decade-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--euro-yellow);
+            margin-bottom: 20px;
+        }
+
+        .decade-mood {
+            font-size: 1.3rem;
+            color: var(--euro-pink);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .decade-description {
+            font-size: 1rem;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .year-list {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .year-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            font-size: 0.95rem;
+        }
+
+        .year-number {
+            color: var(--euro-pink);
+            font-weight: 700;
+        }
+
+        /* Stats */
+        .stats-section {
+            margin: 60px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--euro-yellow);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .mood-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .decades-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <a href="home-preview.html" class="nav-button">
+            <span>🏠</span>
+            <span>HOME</span>
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🌍 הלך רוח לאומי</h1>
+            <p class="subtitle">איך ישראל ביטאה את עצמה דרך השירים - ממלחמות לשלום, מאופטימיות לנוסטלגיה</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stat-box">
+                <div class="stat-number" id="optimisticCount">0</div>
+                <div class="stat-label">שירי תקווה ואופטימיות</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="nostalgicCount">0</div>
+                <div class="stat-label">נוסטלגיה וזיכרונות</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="celebrationCount">0</div>
+                <div class="stat-label">חגיגה וגאווה</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="peaceCount">0</div>
+                <div class="stat-label">שירי שלום</div>
+            </div>
+        </div>
+
+        <!-- Mood Categories -->
+        <div class="mood-categories">
+            <div class="mood-card" onclick="filterByMood('אופטימי')">
+                <div class="mood-icon">🌅</div>
+                <div class="mood-title">תקווה ואופטימיות</div>
+                <div class="mood-description">
+                    שירים המביעים תקווה לעתיד, אמונה בשלום ואופטימיות
+                </div>
+                <div class="mood-years">שנות ה-70 וה-80</div>
+            </div>
+
+            <div class="mood-card" onclick="filterByMood('נוסטלגי')">
+                <div class="mood-icon">🕰️</div>
+                <div class="mood-title">נוסטלגיה וגעגועים</div>
+                <div class="mood-description">
+                    שירים על זיכרונות, געגועים והשתקפות על העבר
+                </div>
+                <div class="mood-years">שנות ה-90</div>
+            </div>
+
+            <div class="mood-card" onclick="filterByMood('חגיגי')">
+                <div class="mood-icon">🎉</div>
+                <div class="mood-title">חגיגה וגאווה לאומית</div>
+                <div class="mood-description">
+                    שירי חגיגה, ניצחון וביטוי של גאווה ישראלית
+                </div>
+                <div class="mood-years">1978, 1979, 2018</div>
+            </div>
+
+            <div class="mood-card" onclick="filterByMood('שלום')">
+                <div class="mood-icon">☮️</div>
+                <div class="mood-title">מסרי שלום</div>
+                <div class="mood-description">
+                    שירים הקוראים לשלום, אחווה ודו-קיום
+                </div>
+                <div class="mood-years">שנות ה-80</div>
+            </div>
+
+            <div class="mood-card" onclick="filterByMood('מחאה')">
+                <div class="mood-icon">✊</div>
+                <div class="mood-title">מחאה חברתית</div>
+                <div class="mood-description">
+                    שירים עם מסרים חברתיים, פוליטיים או מחאתיים
+                </div>
+                <div class="mood-years">2000 ואילך</div>
+            </div>
+
+            <div class="mood-card" onclick="filterByMood('אהבה')">
+                <div class="mood-icon">❤️</div>
+                <div class="mood-title">אהבה ורומנטיקה</div>
+                <div class="mood-description">
+                    שירי אהבה אוניברסליים, רגשיים ורומנטיים
+                </div>
+                <div class="mood-years">כל התקופות</div>
+            </div>
+        </div>
+
+        <!-- Decades Timeline -->
+        <div class="timeline-section">
+            <h2 class="section-title">הלך הרוח לפי עשורים</h2>
+            <div class="decades-grid">
+                <div class="decade-card">
+                    <div class="decade-title">שנות ה-70</div>
+                    <div class="decade-mood">🌱 התחלות ותקווה</div>
+                    <div class="decade-description">
+                        העשור הראשון - מציגה את ישראל החדשה, השפה העברית והתרבות המקומית. שירים פשוטים, חגיגיים ומלאי אופטימיות.
+                    </div>
+                    <div class="year-list">
+                        <div class="year-item"><span class="year-number">1973</span> - אילנית - "אי שם"</div>
+                        <div class="year-item"><span class="year-number">1978</span> - 🥇 יזהר כהן - "א-בה-ני-בי"</div>
+                        <div class="year-item"><span class="year-number">1979</span> - 🥇 גלי עטרי - "הללויה"</div>
+                    </div>
+                </div>
+
+                <div class="decade-card">
+                    <div class="decade-title">שנות ה-80</div>
+                    <div class="decade-mood">☮️ שלום ודו-קיום</div>
+                    <div class="decade-description">
+                        עשור של מסרי שלום, אחרי הסכם השלום עם מצרים. שירים עם מסרים חברתיים ותקווה לעתיד טוב יותר.
+                    </div>
+                    <div class="year-list">
+                        <div class="year-item"><span class="year-number">1982</span> - 🥈 אבי טולדנו - "הורה"</div>
+                        <div class="year-item"><span class="year-number">1983</span> - 🥈 עפרה חזה - "חי"</div>
+                        <div class="year-item"><span class="year-number">1986</span> - 🥈 מושיק עפיה - "יום הולדת ל-20"</div>
+                    </div>
+                </div>
+
+                <div class="decade-card">
+                    <div class="decade-title">שנות ה-90</div>
+                    <div class="decade-mood">🌐 פתיחות עולמית</div>
+                    <div class="decade-description">
+                        ישראל נפתחת לעולם - מעבר לשירים באנגלית, מוזיקת פופ בינלאומית, וניצחון דנה שמסמל קבלה ושוני.
+                    </div>
+                    <div class="year-list">
+                        <div class="year-item"><span class="year-number">1991</span> - 🥉 דואט דץ - "כאן"</div>
+                        <div class="year-item"><span class="year-number">1998</span> - 🥇 דנה אינטרנשיונל - "דיווה"</div>
+                    </div>
+                </div>
+
+                <div class="decade-card">
+                    <div class="decade-title">שנות ה-2000</div>
+                    <div class="decade-mood">🎭 גיווני זהויות</div>
+                    <div class="decade-description">
+                        עשור של ניסויים - שפות שונות, סגנונות מגוונים, ביטוי של זהויות שונות בחברה הישראלית.
+                    </div>
+                    <div class="year-list">
+                        <div class="year-item"><span class="year-number">2000</span> - פינגווין - "שלום עולם"</div>
+                        <div class="year-item"><span class="year-number">2009</span> - נועה - "יש לך דודה"</div>
+                    </div>
+                </div>
+
+                <div class="decade-card">
+                    <div class="decade-title">שנות ה-2010</div>
+                    <div class="decade-mood">💪 כוח ואמפאוורמנט</div>
+                    <div class="decade-description">
+                        עשור של התחזקות - שירים על העצמה אישית, חוזק נשי, גאווה והצלחה בינלאומית.
+                    </div>
+                    <div class="year-list">
+                        <div class="year-item"><span class="year-number">2018</span> - 🥇 נטע ברזילי - "טוי"</div>
+                        <div class="year-item"><span class="year-number">2019</span> - כוכבי - "הביתה"</div>
+                    </div>
+                </div>
+
+                <div class="decade-card">
+                    <div class="decade-title">שנות ה-2020</div>
+                    <div class="decade-mood">🌟 עכשווי ועתידני</div>
+                    <div class="decade-description">
+                        העשור הנוכחי - שילוב של מסורת ומודרניות, מסרים חברתיים ומוזיקה עכשווית בינלאומית.
+                    </div>
+                    <div class="year-list">
+                        <div class="year-item"><span class="year-number">2022</span> - 🥉 מייקל בן דוד - "I.M"</div>
+                        <div class="year-item"><span class="year-number">2023</span> - 🥉 נועה קירל - "unicorn"</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample mood data
+        const moodData = {
+            optimistic: 15,
+            nostalgic: 8,
+            celebration: 12,
+            peace: 10
+        };
+
+        // Update stats
+        document.getElementById('optimisticCount').textContent = moodData.optimistic;
+        document.getElementById('nostalgicCount').textContent = moodData.nostalgic;
+        document.getElementById('celebrationCount').textContent = moodData.celebration;
+        document.getElementById('peaceCount').textContent = moodData.peace;
+
+        // Filter functionality
+        function filterByMood(mood) {
+            alert(`מסנן לפי הלך רוח: ${mood}\n\nבגרסה המלאה תוכלי לראות את כל השירים מהקטגוריה הזו.`);
+        }
+    </script>
+</body>
+</html>

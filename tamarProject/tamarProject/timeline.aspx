@@ -408,6 +408,100 @@
             color: #e0e0e0;
         }
 
+        /* Split View Layout */
+        .split-view-container {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 30px;
+            flex-direction: row-reverse; /* RTL: Sidebar on right */
+        }
+
+        .quick-facts-sidebar {
+            flex: 0 0 300px;
+            background: linear-gradient(135deg, rgba(255,0,133,0.15), rgba(0,177,234,0.15));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(255, 0, 133, 0.3);
+        }
+
+        .sidebar-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--euro-yellow);
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .fact-item {
+            margin-bottom: 20px;
+        }
+
+        .fact-label {
+            font-size: 0.85rem;
+            color: var(--euro-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .fact-value {
+            font-size: 1.2rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .fact-item .rank-badge {
+            width: 100%;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .main-content-area {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .info-card-large {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .info-card-large:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 133, 0.3);
+        }
+
+        .info-card-large h3 {
+            color: var(--euro-pink);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-card-large p {
+            line-height: 1.8;
+            color: #e0e0e0;
+            font-size: 1.05rem;
+        }
+
+        /* Fifth card (Mood) spans full width */
+        .info-card-large:nth-child(5) {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, rgba(255,0,133,0.1), rgba(0,177,234,0.1));
+        }
+
         /* Navigation Button */
         .back-btn {
             background: rgba(255, 255, 255, 0.1);
@@ -452,6 +546,25 @@
             
             .image-placeholder .euro-star {
                 font-size: 3rem;
+            }
+
+            /* Split View Responsive */
+            .split-view-container {
+                flex-direction: column;
+            }
+
+            .quick-facts-sidebar {
+                flex: 1 1 auto;
+                order: 1;
+            }
+
+            .main-content-area {
+                order: 2;
+                grid-template-columns: 1fr;
+            }
+
+            .info-card-large:nth-child(5) {
+                grid-column: 1;
             }
         }
     </style>
@@ -511,32 +624,64 @@
                 </div>
             </div>
 
-            <div class="content-grid">
-                <div class="main-card">
-                <div class="song-title" id="songTitle">א-בה-ני-בי</div>
-                <div class="artist-name" id="artistName">יזהר כהן והאלפבטית</div>
-                <div class="rank-badge" id="rankBadge">🏆 מקום 1 - ניצחון!</div>
-                <p id="songHebrew" style="font-size: 1.3rem; color: #ccc; margin-top: 10px;">A-Ba-Ni-Bi</p>
+            <!-- Split View Layout: Sidebar + Main Content -->
+            <div class="split-view-container">
+                <!-- Right Sidebar (Quick Facts) -->
+                <div class="quick-facts-sidebar">
+                    <div class="sidebar-header">פרטים מהירים</div>
+                    
+                    <div class="fact-item">
+                        <div class="fact-label">שנה</div>
+                        <div class="fact-value" id="sidebarYear">1978</div>
+                    </div>
+                    
+                    <div class="fact-item">
+                        <div class="fact-label">נציג</div>
+                        <div class="fact-value" id="sidebarArtist">יזהר כהן</div>
+                    </div>
+                    
+                    <div class="fact-item">
+                        <div class="fact-label">שיר</div>
+                        <div class="fact-value" id="sidebarSong">א-בה-ני-בי</div>
+                    </div>
+                    
+                    <div class="fact-item">
+                        <div class="fact-label">שם באנגלית</div>
+                        <div class="fact-value" id="sidebarSongEnglish">A-Ba-Ni-Bi</div>
+                    </div>
+                    
+                    <div class="fact-item">
+                        <div class="fact-label">מיקום</div>
+                        <div class="rank-badge" id="rankBadge">🏆 מקום 1</div>
+                    </div>
                 </div>
 
-                <div class="info-card">
-                    <h3>🎵 צליל</h3>
-                    <p id="soundInfo">פופ-דיסקו קצבי עם הברות עבריות שהפכו לאייקוניות בעולם.</p>
-                </div>
+                <!-- Main Content Area (Detailed Info Cards) -->
+                <div class="main-content-area">
+                    <div class="info-card-large">
+                        <h3>🎵 צליל</h3>
+                        <p id="soundInfo">פופ-דיסקו קצבי עם הברות עבריות שהפכו לאייקוניות בעולם.</p>
+                    </div>
 
-                <div class="info-card">
-                    <h3>👗 אופנה</h3>
-                    <p id="fashionInfo">חולצות צבעוניות ומכנסיים מתרחבים - סגנון דיסקו קלאסי של שנות ה-70 המאוחרות.</p>
-                </div>
+                    <div class="info-card-large">
+                        <h3>👗 אופנה</h3>
+                        <p id="fashionInfo">חולצות צבעוניות ומכנסיים מתרחבים - סגנון דיסקו קלאסי של שנות ה-70 המאוחרות.</p>
+                    </div>
 
-                <div class="info-card">
-                    <h3>🗣️ שפה</h3>
-                    <p id="languageInfo">עברית - שיר משחק ילדים שובב שכבש את אירופה.</p>
-                </div>
+                    <div class="info-card-large">
+                        <h3>🗣️ שפה</h3>
+                        <p id="languageInfo">עברית - שיר משחק ילדים שובב שכבש את אירופה.</p>
+                    </div>
 
-                <div class="info-card">
-                    <h3>💃 כוריאוגרפיה</h3>
-                    <p id="choreographyInfo">תנועות קבוצתיות פשוטות ושמחות עם מחיאות כפיים - נגיש ומהנה.</p>
+                    <div class="info-card-large">
+                        <h3>💃 כוריאוגרפיה</h3>
+                        <p id="choreographyInfo">תנועות קבוצתיות פשוטות ושמחות עם מחיאות כפיים - נגיש ומהנה.</p>
+                    </div>
+
+                    <div class="info-card-large">
+                        <h3>🌍 הלך רוח לאומי</h3>
+                        <p id="moodInfo">אופוריה וגאווה לאומית - הניצחון הראשון של ישראל.</p>
+                    </div>
                 </div>
             </div>
 
@@ -649,21 +794,32 @@
             const yearData = eurovisionData.find(d => d.Year === year);
             
             if (yearData) {
-                songTitle.textContent = yearData.Song;
-                artistName.textContent = yearData.Artist;
+                // Sidebar Quick Facts
+                document.getElementById('sidebarYear').textContent = year;
+                document.getElementById('sidebarArtist').textContent = yearData.Artist;
+                document.getElementById('sidebarSong').textContent = yearData.Song;
+                document.getElementById('sidebarSongEnglish').textContent = yearData.SongEnglish || yearData.Song;
+                
+                // Rank Badge (both locations now)
                 rankBadge.textContent = yearData.RankDisplay;
-                songHebrew.textContent = yearData.SongEnglish || '';
+                
+                // Main Content Cards
                 soundInfo.textContent = yearData.Sound;
                 fashionInfo.textContent = yearData.Fashion;
                 languageInfo.textContent = yearData.Language;
                 choreographyInfo.textContent = yearData.Choreography;
+                
+                // NEW: Mood/National Spirit
+                const moodElement = document.getElementById('moodInfo');
+                if (moodElement) {
+                    moodElement.textContent = yearData.Mood || yearData.HalachRuach || 'מידע לא זמין';
+                }
                 
                 // Update image overlay text
                 imageYearText.textContent = year;
                 imageArtistText.textContent = yearData.Artist;
                 
                 // Update artist image with fade effect
-                // Try to load from local images folder first
                 artistImage.style.opacity = '0';
                 
                 setTimeout(() => {
@@ -728,11 +884,12 @@
                 }
             } else {
                 // No data for this year
-                songTitle.textContent = 'No Entry';
-                artistName.textContent = 'Israel did not participate';
+                document.getElementById('sidebarYear').textContent = year;
+                document.getElementById('sidebarArtist').textContent = 'לא השתתף';
+                document.getElementById('sidebarSong').textContent = 'N/A';
+                document.getElementById('sidebarSongEnglish').textContent = 'N/A';
                 rankBadge.textContent = 'N/A';
-                songHebrew.textContent = '';
-                soundInfo.textContent = 'Israel was not in the contest this year.';
+                soundInfo.textContent = 'Israel did not participate this year.';
                 fashionInfo.textContent = '-';
                 languageInfo.textContent = '-';
                 choreographyInfo.textContent = '-';
