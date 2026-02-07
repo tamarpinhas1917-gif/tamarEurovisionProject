@@ -663,52 +663,58 @@
                 imageArtistText.textContent = yearData.Artist;
                 
                 // Update artist image with fade effect
-                if (yearData.ImageUrl && yearData.ImageUrl !== '') {
-                    // Real image provided - use it
-                    artistImage.style.opacity = '0';
+                // Try to load from local images folder first
+                artistImage.style.opacity = '0';
+                
+                setTimeout(() => {
+                    // Try multiple image formats (png, jpg, jpeg, JPG, webp, avif)
+                    const year = yearData.Year;
+                    const imageFormats = ['.png', '.jpg', '.jpeg', '.JPG', '.webp', '.avif'];
+                    let imageFound = false;
+                    let formatIndex = 0;
                     
-                    setTimeout(() => {
-                        artistImage.src = yearData.ImageUrl;
-                        artistImage.style.display = 'block';
-                        imagePlaceholder.style.display = 'none';
+                    const tryNextFormat = () => {
+                        if (formatIndex >= imageFormats.length) {
+                            // No image found, check for DNP
+                            const dnpYears = [1980, 1984, 1994, 1997];
+                            if (dnpYears.includes(year)) {
+                                artistImage.src = 'images/eurovision/Not Participated.png';
+                                artistImage.style.display = 'block';
+                                imagePlaceholder.style.display = 'none';
+                                setTimeout(() => { artistImage.style.opacity = '1'; }, 50);
+                            } else {
+                                // Use placeholder for missing images
+                                const placeholderUrl = generateEurovisionPlaceholder(
+                                    year, 
+                                    yearData.ArtistEnglish || yearData.Artist, 
+                                    yearData.Rank || 99
+                                );
+                                artistImage.src = placeholderUrl;
+                                artistImage.style.display = 'block';
+                                imagePlaceholder.style.display = 'none';
+                                setTimeout(() => { artistImage.style.opacity = '1'; }, 50);
+                            }
+                            return;
+                        }
                         
-                        setTimeout(() => {
-                            artistImage.style.opacity = '1';
-                        }, 50);
-                    }, 300);
-                    
-                    artistImage.onerror = function() {
-                        // If real image fails, use placeholder
-                        const placeholderUrl = generateEurovisionPlaceholder(
-                            yearData.Year, 
-                            yearData.ArtistEnglish || yearData.Artist, 
-                            yearData.Rank || 99
-                        );
-                        artistImage.src = placeholderUrl;
+                        const testImage = new Image();
+                        testImage.onload = function() {
+                            // Image found!
+                            artistImage.src = 'images/eurovision/' + year + imageFormats[formatIndex];
+                            artistImage.style.display = 'block';
+                            imagePlaceholder.style.display = 'none';
+                            setTimeout(() => { artistImage.style.opacity = '1'; }, 50);
+                        };
+                        testImage.onerror = function() {
+                            // Try next format
+                            formatIndex++;
+                            tryNextFormat();
+                        };
+                        testImage.src = 'images/eurovision/' + year + imageFormats[formatIndex];
                     };
-                } else {
-                    // No image URL - generate Eurovision placeholder
-                    artistImage.style.opacity = '0';
                     
-                    setTimeout(() => {
-                        const placeholderUrl = generateEurovisionPlaceholder(
-                            yearData.Year, 
-                            yearData.ArtistEnglish || yearData.Artist, 
-                            yearData.Rank || 99
-                        );
-                        
-                        artistImage.src = placeholderUrl;
-                        artistImage.style.display = 'block';
-                        imagePlaceholder.style.display = 'none';
-                        
-                        setTimeout(() => {
-                            artistImage.style.opacity = '1';
-                        }, 50);
-                    }, 300);
-                    
-                    // No error handler needed for placeholders
-                    artistImage.onerror = null;
-                }
+                    tryNextFormat();
+                }, 300);
                 
                 // Change rank badge color based on performance
                 if (yearData.Rank === 1) {
