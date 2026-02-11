@@ -521,17 +521,29 @@
         }
 
         /* Eurovision 70 Logo */
-        
+        .euro-logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 150px;
+            height: auto;
+            z-index: 1000;
+            filter: drop-shadow(0 0 20px rgba(255, 0, 133, 0.3));
+        }
 
         /* User Display */
         .user-display {
             position: fixed;
-            top: 25px;
-            right: 20px;
+            top: 200px;
+            right: 30px;
             color: #fdf200;
             font-weight: 600;
             z-index: 1001;
             font-size: 0.9rem;
+            background: rgba(20, 5, 45, 0.7);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(253, 242, 0, 0.3);
         }
 
         .user-display a {
@@ -545,48 +557,28 @@
             text-shadow: 0 0 8px #fdf200;
         }
 
-        .user-display a {
-            color: #fdf200;
-            text-decoration: none;
-        }
-
-        .user-display a:hover {
-            text-decoration: underline;
-        }
-
         /* Navigation Menu */
-                header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        .top-nav {
             position: fixed;
-            width: 100%;
-            top: 0;
+            top: 20px;
+            left: 20px;
             z-index: 1000;
-            box-sizing: border-box;
+            background: rgba(20, 5, 45, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-container img {
-            height: 60px;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
-        }
-
-        nav ul {
+        .top-nav ul {
             list-style: none;
             display: flex;
             gap: 40px;
             margin: 0;
+            padding: 0;
         }
 
-        nav ul li a {
+        .top-nav ul li a {
             text-decoration: none;
             color: white;
             font-weight: 700;
@@ -596,9 +588,9 @@
             transition: 0.3s;
         }
 
-        nav ul li a:hover {
-            color: var(--euro-pink);
-            text-shadow: 0 0 8px var(--euro-pink);
+        .top-nav ul li a:hover {
+            color: #ff0085;
+            text-shadow: 0 0 8px #ff0085;
         }
 
         /* Responsive */
@@ -651,13 +643,11 @@
             <a href="login-preview.html">הרשמה / התחברות</a>
         </div>
         
-        <header>
-            <div class="logo-container">
-                <a href="home-preview.html">
-                    <img src="https://www.eurovision.com/static/images/70-logo.ba56318cd52f.webp" alt="Eurovision 70">
-                </a>
-            </div>
-            <nav>
+        <a href="home-preview.html" style="text-decoration: none;">
+        <img src="https://www.eurovision.com/static/images/70-logo.ba56318cd52f.webp" alt="Eurovision 70" class="euro-logo">
+        </a>
+        
+        <nav class="top-nav">
             <ul>
                 <li><a href="home-preview.html">דף הבית</a></li>
                 <li><a href="timeline-preview.html">ציר הזמן</a></li>
@@ -668,7 +658,6 @@
                 <li><a href="login-preview.html">הרשמה</a></li>
             </ul>
         </nav>
-        </header>
         
         <div class="container">
             <header>
@@ -684,19 +673,19 @@
                 
                 <div class="slider-container">
                     <div class="year-markers">
-                        <span class="year-marker first-year" style="right: 0%;" title="First participation">&#x1F6A9; 1973</span>
-                        <span class="year-marker winner-year marker-top" style="right: 9.4%;" title="First Win - A-Ba-Ni-Bi">&#x1F3C6; 1978</span>
-                        <span class="year-marker winner-year marker-bottom" style="right: 11.3%;" title="Second Win - Hallelujah">&#x1F3C6; 1979</span>
-                        <span class="year-marker iconic-year" style="right: 18.9%;" title="2nd Place - Ofra Haza">&#x1F3C6; 1983</span>
-                        <span class="year-marker winner-year" style="right: 47.2%;" title="Third Win - Diva">&#x1F3C6; 1998</span>
-                        <span class="year-marker winner-year" style="right: 84.9%;" title="Fourth Win - Toy">&#x1F3C6; 2018</span>
-                        <span class="year-marker iconic-year" style="right: 94.3%;" title="3rd Place - Noa Kirel">&#x1F3C6; 2023</span>
+                        <span class="year-marker first-year" style="right: 6%;" title="First participation">&#x1F6A9; 1973</span>
+                        <span class="year-marker winner-year marker-top" style="right: 14%;" title="First Win - A-Ba-Ni-Bi">&#x1F3C6; 1978</span>
+                        <span class="year-marker winner-year marker-bottom" style="right: 16%;" title="Second Win - Hallelujah">&#x1F3C6; 1979</span>
+                        <span class="year-marker iconic-year" style="right: 22.5%;" title="2nd Place - Ofra Haza">&#x1F3C6; 1983</span>
+                        <span class="year-marker winner-year" style="right: 48%;" title="Third Win - Diva">&#x1F3C6; 1998</span>
+                        <span class="year-marker winner-year" style="right: 82%;" title="Fourth Win - Toy">&#x1F3C6; 2018</span>
+                        <span class="year-marker iconic-year" style="right: 91%;" title="3rd Place - Noa Kirel">&#x1F3C6; 2023</span>
                     </div>
                     <input type="range" id="yearSlider" min="1973" max="2025" value="1978" step="1">
                     <div class="year-labels">
-                        <span>1973</span>
-                        <span>1990</span>
                         <span>2025</span>
+                        <span>1990</span>
+                        <span>1973</span>
                     </div>
                 </div>
             </div>
