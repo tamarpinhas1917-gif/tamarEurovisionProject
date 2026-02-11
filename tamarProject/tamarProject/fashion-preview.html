@@ -28,40 +28,38 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
-        .nav-menu {
+        /* Eurovision 70 Logo */
+        
+
+        /* User Display */
+        .user-display {
             position: fixed;
-            top: 30px;
-            right: 30px;
-            z-index: 1000;
-            display: flex;
-            gap: 15px;
-        }
-
-        .nav-button {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--euro-pink);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 1em;
+            top: 25px;
+            right: 20px;
+            color: #fdf200;
             font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            z-index: 1001;
+            font-size: 0.9rem;
         }
 
-        .nav-button:hover {
-            background: var(--euro-pink);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255,0,133,0.4);
+        .user-display a {
+            color: #fdf200;
+            text-decoration: none;
+            transition: 0.3s;
         }
 
-        .nav-button span {
-            font-size: 1.2em;
+        .user-display a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px #fdf200;
+        }
+
+        .user-display a {
+            color: #fdf200;
+            text-decoration: none;
+        }
+
+        .user-display a:hover {
+            text-decoration: underline;
         }
 
         /* Hero Section */
@@ -79,6 +77,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            padding-top: 100px;
         }
 
         .hero::before {
@@ -475,20 +474,80 @@
                 padding-right: 20px;
             }
         }
+
+        /* Navigation Menu */
+                header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container img {
+            height: 60px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--euro-pink);
+            text-shadow: 0 0 8px var(--euro-pink);
+        }
+
     </style>
 </head>
 <body>
-    <!-- Navigation Menu -->
-    <nav class="nav-menu">
-        <a href="home-preview.html" class="nav-button">
-            <span>🏠</span>
-            דף הבית
-        </a>
-        <a href="timeline-preview.html" class="nav-button" style="margin-right: 10px;">
-            <span>⏱️</span>
-            ציר הזמן
-        </a>
-    </nav>
+            
+        <div class="user-display" id="userDisplay">
+            <a href="login-preview.html">הרשמה / התחברות</a>
+        </div>
+        
+        <header>
+            <div class="logo-container">
+                <a href="home-preview.html">
+                    <img src="https://www.eurovision.com/static/images/70-logo.ba56318cd52f.webp" alt="Eurovision 70">
+                </a>
+            </div>
+            <nav>
+            <ul>
+                <li><a href="home-preview.html">דף הבית</a></li>
+                <li><a href="timeline-preview.html">ציר הזמן</a></li>
+                <li><a href="fashion-preview.html">אופנה</a></li>
+                <li><a href="data-manager-preview.html">ניהול נתונים</a></li>
+                <li><a href="latest-news-preview.html">חדשות אחרונות</a></li>
+                <li><a href="the-show-preview.html">המופע</a></li>
+                <li><a href="login-preview.html">הרשמה</a></li>
+            </ul>
+        </nav>
+        </header>
 
     <!-- Hero Section -->
     <section class="hero">

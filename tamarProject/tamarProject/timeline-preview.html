@@ -108,6 +108,7 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
+            padding-top: 100px;
         }
 
         header {
@@ -520,24 +521,28 @@
         }
 
         /* Eurovision 70 Logo */
-        .euro-logo {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 150px;
-            height: auto;
-            z-index: 1000;
-            filter: drop-shadow(0 0 20px rgba(255, 0, 133, 0.3));
-        }
+        
 
+        /* User Display */
         .user-display {
             position: fixed;
             top: 25px;
-            right: 180px;
-            font-size: 0.9rem;
+            right: 20px;
             color: #fdf200;
-            font-weight: 500;
-            z-index: 1000;
+            font-weight: 600;
+            z-index: 1001;
+            font-size: 0.9rem;
+        }
+
+        .user-display a {
+            color: #fdf200;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .user-display a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px #fdf200;
         }
 
         .user-display a {
@@ -547,6 +552,53 @@
 
         .user-display a:hover {
             text-decoration: underline;
+        }
+
+        /* Navigation Menu */
+                header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container img {
+            height: 60px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--euro-pink);
+            text-shadow: 0 0 8px var(--euro-pink);
         }
 
         /* Responsive */
@@ -595,10 +647,28 @@
         <div class="floating-shape shape4"></div>
         <div class="floating-shape shape5"></div>
         
-        <img src="https://www.eurovision.com/static/images/70-logo.ba56318cd52f.webp" alt="Eurovision 70" class="euro-logo">
         <div class="user-display" id="userDisplay">
             <a href="login-preview.html">הרשמה / התחברות</a>
         </div>
+        
+        <header>
+            <div class="logo-container">
+                <a href="home-preview.html">
+                    <img src="https://www.eurovision.com/static/images/70-logo.ba56318cd52f.webp" alt="Eurovision 70">
+                </a>
+            </div>
+            <nav>
+            <ul>
+                <li><a href="home-preview.html">דף הבית</a></li>
+                <li><a href="timeline-preview.html">ציר הזמן</a></li>
+                <li><a href="fashion-preview.html">אופנה</a></li>
+                <li><a href="data-manager-preview.html">ניהול נתונים</a></li>
+                <li><a href="latest-news-preview.html">חדשות אחרונות</a></li>
+                <li><a href="the-show-preview.html">המופע</a></li>
+                <li><a href="login-preview.html">הרשמה</a></li>
+            </ul>
+        </nav>
+        </header>
         
         <div class="container">
             <header>
@@ -703,11 +773,6 @@
                         <p id="moodInfo">אופוריה וגאווה לאומית - הניצחון הראשון של ישראל.</p>
                     </div>
                 </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 30px;">
-                <a href="home-preview.html" class="back-btn" style="margin-left: 15px;">→ חזרה לעמוד הבית</a>
-                <a href="fashion-preview.html" class="back-btn" style="background: linear-gradient(135deg, #ff0085, #00b1ea);">👗 לדף האופנה</a>
             </div>
 
             <!-- Attribution Notice -->
@@ -1686,7 +1751,9 @@
 
         // Initialize with default year
         updateDisplay(1978);
+    </script>
 
+    <script>
         // Display logged-in user
         window.addEventListener('DOMContentLoaded', function() {
             const currentUser = JSON.parse(localStorage.getItem('euroUser') || 'null');
