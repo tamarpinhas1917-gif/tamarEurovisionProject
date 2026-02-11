@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PREVIEW - חדשות אחרונות</title>
+    <style>
+                body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--euro-purple) 100%);
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+            padding-top: 120px;
+            overflow-x: hidden;
+            position: relative;
+        }
+        header {
+            background-color: #000066;
+            padding: 10px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        .news-container {
+            padding: 20px;
+        }
+        .news-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .news-item h2 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+        }
+        .news-item p {
+            margin: 0;
+        }
+    
+        /* סרגל ניווט שקוף ומודרני */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container img {
+            height: 60px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--euro-pink);
+            text-shadow: 0 0 8px var(--euro-pink);
+        }
+
+        /* Floating Eurovision Heart/Circle Shapes */
+        .floating-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--euro-pink), var(--euro-blue));
+            top: 10%;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--euro-blue), var(--euro-purple));
+            top: 50%;
+            right: -150px;
+            animation-delay: 5s;
+        }
+
+        .shape3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--euro-pink), rgba(255, 0, 133, 0.5));
+            bottom: 20%;
+            left: 10%;
+            animation-delay: 10s;
+        }
+
+        .shape4 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--euro-blue), var(--euro-yellow));
+            top: 30%;
+            right: 20%;
+            animation-delay: 7s;
+        }
+
+        .shape5 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(0, 177, 234, 0.6), rgba(255, 0, 133, 0.6));
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            50% {
+                transform: translate(-30px, -100px) scale(0.9);
+            }
+            75% {
+                transform: translate(30px, -50px) scale(1.05);
+            }
+        }
+
+        /* Eurovision Heart Decoration */
+        .euro-heart-decoration {
+            position: fixed;
+            top: 15%;
+            right: 10%;
+            width: 200px;
+            opacity: 0.4;
+            filter: blur(3px);
+            pointer-events: none;
+            z-index: 0;
+            animation: heartPulse 4s infinite ease-in-out;
+        }
+
+        
+        /* Second Heart Decoration (bottom left) */
+        .euro-heart-decoration-2 {
+            position: fixed;
+            bottom: 25%;
+            left: 10%;
+            width: 150px;
+            opacity: 0.3;
+            filter: blur(2px);
+            pointer-events: none;
+            z-index: 0;
+            animation: heartPulse 5s infinite ease-in-out;
+            animation-delay: 1s;
+        }
+
+        /* Israel Flag in Eurovision Heart */
+        .carousel-winner-flag {
+            position: fixed;
+            bottom: 15%;
+            right: 8%;
+            width: 80px;
+            height: 80px;
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 0;
+            animation: flagFloat 6s infinite ease-in-out;
+            filter: drop-shadow(0 0 10px rgba(0, 177, 234, 0.5));
+        }
+
+        @keyframes flagFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        @keyframes heartPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Eurovision Gradient Shapes -->
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+    <div class="floating-shape shape4"></div>
+    <div class="floating-shape shape5"></div>
+
+    <!-- Eurovision Heart Decoration (like official site) -->
+    <img class="euro-heart-decoration" src="https://www.eurovision.com/static/images/70-heart.f6c629bcf5dd.webp" 
+         srcset="https://www.eurovision.com/static/images/70-heart.f6c629bcf5dd.webp, https://www.eurovision.com/static/images/70-heart@2x.0fe89b9ce3a9.webp 2x" 
+         alt="Eurovision Heart">
+
+    
+                <header>
+            <div class="logo-container">
+                <a href="home-preview.html" style="text-decoration: none;">
+                    <img src="https://www.eurovision.com/static/images/70-logo.ba56318cd52f.webp" alt="Eurovision 70" class="euro-logo">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home-preview.html">דף הבית</a></li>
+                    <li><a href="timeline-preview.html">ציר הזמן</a></li>
+                    <li><a href="fashion-preview.html">אופנה</a></li>
+                    <li><a href="data-manager-preview.html">ניהול נתונים</a></li>
+                    <li><a href="latest-news-preview.html">חדשות אחרונות</a></li>
+                    <li><a href="the-show-preview.html">המופע</a></li>
+                    <li><a href="login-preview.html">הרשמה</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="news-container">
+            <div class="news-item">
+                <h2>כותרת חדשות 1</h2>
+                <p>תוכן חדשות 1...</p>
+            </div>
+            <div class="news-item">
+                <h2>כותרת חדשות 2</h2>
+                <p>תוכן חדשות 2...</p>
+            </div>
+        </div>
+    
+</body>
+</html>

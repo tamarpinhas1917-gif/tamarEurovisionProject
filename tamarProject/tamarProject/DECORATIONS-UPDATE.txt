@@ -1,0 +1,51 @@
+🎨 EUROVISION DECORATIONS UPDATE
+================================
+
+Date: February 11, 2026
+Status: ✅ ALL 10 PREVIEW PAGES UPDATED
+
+NEW DECORATIONS ADDED:
+----------------------
+
+1. ✅ Second Heart Decoration (bottom left):
+   - Position: Fixed at bottom 25%, left 10%
+   - Size: 150px width
+   - Opacity: 0.3 with blur(2px)
+   - Animation: 5s heartPulse (delayed 1s)
+   - Using official Eurovision 70 heart image
+   - Retina display support
+
+2. ✅ Israel Flag in Eurovision Heart:
+   - Position: Fixed at bottom 15%, right 8%
+   - Size: 80px x 80px
+   - Opacity: 0.6
+   - Animation: 6s flagFloat (up/down with rotation)
+   - Drop shadow in blue for emphasis
+   - SVG from official Eurovision storage
+
+3. ✅ New Animations:
+   - flagFloat: Smooth vertical movement with subtle rotation
+   - Enhanced heartPulse: Coordinated timing for multiple hearts
+
+PAGES UPDATED:
+--------------
+✅ home-preview.html              - 2 hearts + Israel flag
+✅ login-preview.html             - 2 hearts + Israel flag
+✅ timeline-preview.html          - 2 hearts + Israel flag
+✅ fashion-preview.html           - 2 hearts + Israel flag
+✅ data-manager-preview.html      - 2 hearts + Israel flag
+✅ about-preview.html             - 2 hearts + Israel flag
+✅ latest-news-preview.html       - 2 hearts + Israel flag
+✅ the-show-preview.html          - 2 hearts + Israel flag
+✅ choreography-preview.html      - 2 hearts + Israel flag
+✅ national-mood-preview.html     - 2 hearts + Israel flag
+
+TOTAL DECORATIVE ELEMENTS PER PAGE:
+-----------------------------------
+- 5 floating gradient shapes (animated blurred circles)
+- 2 Eurovision heart images (top-right & bottom-left)
+- 1 Israel flag in Eurovision heart (bottom-right)
+- Deep navy to purple gradient background
+- All with smooth, coordinated animations
+
+The site now has rich, layered decorations matching the official Eurovision.com design! 🎉🇮🇱

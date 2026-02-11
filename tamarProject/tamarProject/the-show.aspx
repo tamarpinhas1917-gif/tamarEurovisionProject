@@ -1,0 +1,62 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="the-show.aspx.cs" Inherits="tamarProject.the_show" ContentType="text/html; charset=utf-8" %>
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>המופע</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #14052d;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #000066;
+            padding: 10px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        .show-container {
+            padding: 20px;
+        }
+        .show-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .show-item h2 {
+            margin: 0 0 10px;
+            font-size: 1.5rem;
+        }
+        .show-item p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header>
+            <h1>המופע</h1>
+        </header>
+        <div class="show-container">
+            <div class="show-item">
+                <h2>פרטי מופע 1</h2>
+                <p>תיאור מופע 1...</p>
+            </div>
+            <div class="show-item">
+                <h2>פרטי מופע 2</h2>
+                <p>תיאור מופע 2...</p>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

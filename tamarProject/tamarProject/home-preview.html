@@ -1,325 +1,295 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ישראל באירוויזיון - דף הבית</title>
+    <title>PREVIEW - Eurovision Song Contest | Israel</title>
     <style>
+        /* הגדרות צבעים ופונטים של האירוויזיון */
         :root {
+            --deep-navy: #050514;
             --euro-purple: #14052d;
             --euro-pink: #ff0085;
-            --euro-blue: #00b1ea;
             --euro-yellow: #fdf200;
-            --deep-navy: #050514;
+            --euro-blue: #00b1ea;
+            --glass: rgba(255, 255, 255, 0.1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
+                body {
             font-family: 'Segoe UI', 'Arial', sans-serif;
             background: linear-gradient(135deg, var(--deep-navy) 0%, var(--euro-purple) 100%);
             background-attachment: fixed;
             color: white;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            padding: 20px;
+            padding-top: 120px;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Navigation */
-        .nav-menu {
+                /* סרגל ניווט שקוף ומודרני */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
             position: fixed;
-            top: 20px;
-            right: 20px;
+            width: 100%;
+            top: 0;
             z-index: 1000;
+            box-sizing: border-box;
         }
 
-        .nav-button {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--euro-pink);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 0.9em;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 15px;
         }
 
-        .nav-button:hover {
-            background: var(--euro-pink);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255,0,133,0.4);
+        .logo-container img {
+            height: 60px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-container img:hover {
+            transform: scale(1.05);
         }
 
-        .nav-button.active {
-            background: var(--euro-pink);
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin: 0;
         }
 
-        /* Main Container - Full Screen */
-        .main-container {
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--euro-pink);
+            text-shadow: 0 0 8px var(--euro-pink);
+        }
+
+        /* אזור Hero עם רקע עוצמתי */
+        .hero {
+            position: relative;
             height: 100vh;
+            width: 100%;
+            background: linear-gradient(rgba(20, 5, 45, 0.4), var(--euro-purple)), 
+                        url('https://static.eurovision.tv/hb-main/default/0001/05/ad7ca63546a362947d3419363065a396a804975e.jpeg') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            position: relative;
-        }
-
-        .main-container::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,0,133,0.15) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.05); }
-        }
-
-        /* Hero Section - Compact */
-        .hero {
             text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 2;
         }
 
-        h1 {
-            font-size: 3.5rem;
+        /* טקסט United By Music בסגנון המקורי */
+        .hero h1 {
+            font-size: 7vw;
             font-weight: 900;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, var(--euro-pink), var(--euro-blue), var(--euro-yellow));
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: -2px;
+            line-height: 0.9;
+            background: linear-gradient(to bottom, #fff, #ccc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInDown 0.8s ease-out;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero p {
+            font-size: 1.8rem;
+            margin-top: 10px;
+            font-weight: 300;
+            color: var(--euro-yellow);
+            letter-spacing: 4px;
+            text-transform: uppercase;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: #e0e0e0;
-            margin-bottom: 20px;
-        }
-
-        /* Stats - Compact Inline */
-        .stats-inline {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--euro-pink);
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: #ccc;
-            margin-top: 5px;
-        }
-
-        /* Pages Grid - Compact */
-        .pages-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 20px;
-            max-width: 1200px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .page-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            border: 2px solid rgba(255, 255, 255, 0.15);
-            border-radius: 15px;
-            padding: 25px 15px;
-            text-decoration: none;
+        /* כפתור הרשמה "וואו" */
+        .btn-main {
+            margin-top: 40px;
+            padding: 20px 60px;
+            background: var(--euro-pink);
             color: white;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 900;
+            border-radius: 100px;
+            box-shadow: 0 0 30px rgba(255, 0, 133, 0.6);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            text-transform: uppercase;
         }
 
-        .page-card:hover {
-            transform: translateY(-8px);
+        .btn-main:hover {
+            transform: scale(1.1);
+            background: transparent;
             border-color: var(--euro-pink);
-            box-shadow: 0 10px 30px rgba(255, 0, 133, 0.4);
+            box-shadow: 0 0 50px rgba(255, 0, 133, 0.8);
         }
 
-        .page-icon {
-            font-size: 2.5rem;
+        /* אלמנטים צפים של ניאון */
+        .neon-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--euro-blue), var(--euro-pink), var(--euro-yellow));
+            box-shadow: 0 -5px 20px rgba(255, 0, 133, 0.5);
         }
 
-        .page-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--euro-pink);
-            text-align: center;
+    
+        /* Floating Eurovision Heart/Circle Shapes */
+        .floating-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .page-description {
-            font-size: 0.85rem;
-            text-align: center;
-            color: #ccc;
-            line-height: 1.3;
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--euro-pink), var(--euro-blue));
+            top: 10%;
+            left: -100px;
+            animation-delay: 0s;
         }
 
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .pages-grid {
-                grid-template-columns: repeat(3, 1fr);
+        .shape2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--euro-blue), var(--euro-purple));
+            top: 50%;
+            right: -150px;
+            animation-delay: 5s;
+        }
+
+        .shape3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--euro-pink), rgba(255, 0, 133, 0.5));
+            bottom: 20%;
+            left: 10%;
+            animation-delay: 10s;
+        }
+
+        .shape4 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--euro-blue), var(--euro-yellow));
+            top: 30%;
+            right: 20%;
+            animation-delay: 7s;
+        }
+
+        .shape5 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(0, 177, 234, 0.6), rgba(255, 0, 133, 0.6));
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            50% {
+                transform: translate(-30px, -100px) scale(0.9);
+            }
+            75% {
+                transform: translate(30px, -50px) scale(1.05);
             }
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
+        /* Eurovision Heart Decoration */
+        .euro-heart-decoration {
+            position: fixed;
+            top: 15%;
+            right: 10%;
+            width: 200px;
+            opacity: 0.4;
+            filter: blur(3px);
+            pointer-events: none;
+            z-index: 0;
+            animation: heartPulse 4s infinite ease-in-out;
+        }
 
-            .subtitle {
-                font-size: 1rem;
+        @keyframes heartPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.4;
             }
-
-            .stats-inline {
-                gap: 20px;
-                flex-wrap: wrap;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .stat-label {
-                font-size: 0.8rem;
-            }
-
-            .pages-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-
-            .page-card {
-                padding: 20px 10px;
-            }
-
-            .page-icon {
-                font-size: 2rem;
-            }
-
-            .page-name {
-                font-size: 1rem;
-            }
-
-            .page-description {
-                font-size: 0.75rem;
+            50% {
+                transform: scale(1.05);
+                opacity: 0.5;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Menu -->
-    <nav class="nav-menu">
-        <a href="home-preview.html" class="nav-button active">
-            <span>🏠</span>
-            <span>HOME</span>
-        </a>
-    </nav>
+    <!-- Floating Eurovision Gradient Shapes -->
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+    <div class="floating-shape shape4"></div>
+    <div class="floating-shape shape5"></div>
 
-    <!-- Main Container - Everything in One Screen -->
-    <div class="main-container">
-        <!-- Hero Section -->
-        <div class="hero">
-            <h1>ישראל באירוויזיון</h1>
-            <p class="subtitle">מסע מוזיקלי, תרבותי ואופנתי מ-1973 ועד היום</p>
-        </div>
+    <!-- Eurovision Heart Decoration (like official site) -->
+    <img class="euro-heart-decoration" src="https://www.eurovision.com/static/images/70-heart.f6c629bcf5dd.webp" 
+         srcset="https://www.eurovision.com/static/images/70-heart.f6c629bcf5dd.webp, https://www.eurovision.com/static/images/70-heart@2x.0fe89b9ce3a9.webp 2x" 
+         alt="Eurovision Heart">
 
-        <!-- Statistics Inline -->
-        <div class="stats-inline">
-            <div class="stat-item">
-                <div class="stat-number">54</div>
-                <div class="stat-label">שנים</div>
+    
+                <header>
+            <div class="logo-container">
+                <a href="home-preview.html" style="text-decoration: none;">
+                    <img src="https://www.eurovision.com/static/images/70-logo.ba56318cd52f.webp" alt="Eurovision 70" class="euro-logo">
+                </a>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">4</div>
-                <div class="stat-label">ניצחונות</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">1973</div>
-                <div class="stat-label">שנה ראשונה</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">2018</div>
-                <div class="stat-label">ניצחון אחרון</div>
-            </div>
-        </div>
+            <nav>
+                <ul>
+                    <li><a href="home-preview.html">דף הבית</a></li>
+                    <li><a href="timeline-preview.html">ציר הזמן</a></li>
+                    <li><a href="fashion-preview.html">אופנה</a></li>
+                    <li><a href="data-manager-preview.html">ניהול נתונים</a></li>
+                    <li><a href="latest-news-preview.html">חדשות אחרונות</a></li>
+                    <li><a href="the-show-preview.html">המופע</a></li>
+                    <li><a href="login-preview.html">הרשמה</a></li>
+                </ul>
+            </nav>
+        </header>
 
-        <!-- Pages Grid -->
-        <div class="pages-grid">
-            <a href="timeline-preview-splitview.html" class="page-card">
-                <div class="page-icon">⏰</div>
-                <div class="page-name">ציר הזמן</div>
-                <div class="page-description">כל השנים אינטראקטיבי</div>
-            </a>
+        <section class="hero">
+            <h1>מאוחדים על ידי מוזיקה</h1>
+            <p>ישראל 2026</p>
+            
+            <a href="login-preview.html" class="btn-main">הצטרפו לחגיגה</a>
 
-            <a href="fashion-preview.html" class="page-card">
-                <div class="page-icon">👗</div>
-                <div class="page-name">אופנה</div>
-                <div class="page-description">סגנון לאורך השנים</div>
-            </a>
-
-            <a href="choreography-preview.html" class="page-card">
-                <div class="page-icon">💃</div>
-                <div class="page-name">כוריאוגרפיה</div>
-                <div class="page-description">ריקוד וביצוע במה</div>
-            </a>
-
-            <a href="national-mood-preview.html" class="page-card">
-                <div class="page-icon">🌍</div>
-                <div class="page-name">הלך רוח לאומי</div>
-                <div class="page-description">ביטוי דרך השירים</div>
-            </a>
-
-            <a href="data-manager-preview.html" class="page-card">
-                <div class="page-icon">📊</div>
-                <div class="page-name">ניהול נתונים</div>
-                <div class="page-description">עריכת מידע</div>
-            </a>
-        </div>
-    </div>
+            <div class="neon-line"></div>
+        </section>
+    
 </body>
 </html>

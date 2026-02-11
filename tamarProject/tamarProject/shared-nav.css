@@ -1,0 +1,91 @@
+/* Eurovision Navigation Bar - Shared Styles */
+/* Use this in all preview pages */
+
+/* סרגל ניווט שקוף ומודרני */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-container a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-container img {
+    height: 60px;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+    transition: transform 0.3s;
+}
+
+.logo-container img:hover {
+    transform: scale(1.1);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--euro-pink);
+    text-shadow: 0 0 8px var(--euro-pink);
+}
+
+.user-display {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--euro-blue);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.user-display a {
+    color: var(--euro-yellow);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.user-display a:hover {
+    color: var(--euro-pink);
+}
+
+.user-display .logout-btn {
+    color: var(--euro-pink);
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 0.7rem;
+}
+
+.user-display .logout-btn:hover {
+    color: var(--euro-yellow);
+}

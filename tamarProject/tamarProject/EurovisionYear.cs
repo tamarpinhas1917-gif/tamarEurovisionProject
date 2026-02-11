@@ -24,6 +24,9 @@ namespace tamarProject
         public List<string> Tags { get; set; }
         public string ImageUrl { get; set; }
 
+        // New property to represent the mood of the song
+        public string Mood { get; set; }
+
         // Helper property to display rank nicely
         public string RankDisplay
         {

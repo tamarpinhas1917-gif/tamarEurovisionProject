@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>PREVIEW - </title>
+
+    <link rel="stylesheet" type="text/css" href="StyleMenu.css" />
+    <style>
+        :root {
+            --euro-purple: #14052d;
+            --euro-pink: #ff0085;
+            --euro-blue: #00b1ea;
+            --euro-yellow: #fdf200;
+            --deep-navy: #050514;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--euro-purple) 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .floating-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 1;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--euro-pink), transparent);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        
+        .shape2 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, var(--euro-blue), transparent);
+            top: 60%;
+            right: 10%;
+            animation-delay: 4s;
+        }
+        
+        .shape3 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--euro-yellow), transparent);
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 8s;
+        }
+        
+        .shape4 {
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, var(--euro-purple), transparent);
+            top: 40%;
+            left: 40%;
+            animation-delay: 12s;
+        }
+        
+        .shape5 {
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, var(--euro-pink), transparent);
+            bottom: 30%;
+            right: 25%;
+            animation-delay: 16s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+        
+        .euro-heart-decoration {
+            position: fixed;
+            top: 80px;
+            right: 40px;
+            width: 120px;
+            height: auto;
+            z-index: 10;
+            opacity: 0.9;
+            pointer-events: none;
+            animation: gentleFloat 6s ease-in-out infinite;
+        }
+        
+        .euro-heart-decoration-2 {
+            position: fixed;
+            bottom: 40px;
+            left: 40px;
+            width: 100px;
+            height: auto;
+            z-index: 10;
+            opacity: 0.8;
+            pointer-events: none;
+            animation: gentleFloat 8s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        
+        .carousel-winner-flag {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 80px;
+            height: auto;
+            z-index: 10;
+            opacity: 0.9;
+            pointer-events: none;
+            animation: gentleFloat 7s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        
+        @keyframes gentleFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* סרגל ניווט שקוף ומודרני */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container img {
+            height: 60px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--euro-pink);
+            text-shadow: 0 0 8px var(--euro-pink);
+        }
+    </style>
+</head>
+<body>
+            <header>
+            <div class="logo-container">
+                <a href="home-preview.html" style="text-decoration: none;">
+                    <img src="https://www.eurovision.com/static/images/70-logo.ba56318cd52f.webp" alt="Eurovision 70" class="euro-logo">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home-preview.html">דף הבית</a></li>
+                    <li><a href="timeline-preview.html">ציר הזמן</a></li>
+                    <li><a href="fashion-preview.html">אופנה</a></li>
+                    <li><a href="data-manager-preview.html">ניהול נתונים</a></li>
+                    <li><a href="latest-news-preview.html">חדשות אחרונות</a></li>
+                    <li><a href="the-show-preview.html">המופע</a></li>
+                    <li><a href="login-preview.html">הרשמה</a></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Floating Eurovision Gradient Shapes -->
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+    <div class="floating-shape shape4"></div>
+    <div class="floating-shape shape5"></div>
+
+    <!-- Eurovision Heart Decoration (like official site) -->
+    <img class="euro-heart-decoration" src="https://www.eurovision.com/static/images/70-heart.f6c629bcf5dd.webp" 
+         srcset="https://www.eurovision.com/static/images/70-heart.f6c629bcf5dd.webp, https://www.eurovision.com/static/images/70-heart@2x.0fe89b9ce3a9.webp 2x" 
+         alt="Eurovision Heart">
+
+
+    
+    <!-- Second Heart Decoration (bottom left) -->
+    <img class="euro-heart-decoration-2" src="https://www.eurovision.com/static/images/70-heart.f6c629bcf5dd.webp" 
+         srcset="https://www.eurovision.com/static/images/70-heart.f6c629bcf5dd.webp, https://www.eurovision.com/static/images/70-heart@2x.0fe89b9ce3a9.webp 2x" 
+         alt="Eurovision Heart">
+
+    <!-- Israel Flag in Eurovision Heart -->
+    <img class="carousel-winner-flag" src="https://storage.googleapis.com/eurovision-com.appspot.com/public/core_data/flag_il.svg" 
+         alt="Israel flag in a eurovision heart" width="80">
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="home-preview.html">Home Page</a>
+  <a href="timeline-preview.html">Timeline</a>
+  <a href="about-preview.html">About</a>
+   <a href="page1.aspx">Page 1</a>
+ <a href="page2.aspx">Page 2</a>
+ <a href="page3.aspx">Page 3</a>
+ <a href="signUp.aspx">Sign Up</a>
+ <a href="logIn.aspx">Log In</a>
+</div>
+
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+   <h1>About</h1>
+</body>
+</html>
