@@ -578,6 +578,10 @@
          srcset="https://www.eurovision.com/static/images/70-heart.f6c629bcf5dd.webp, https://www.eurovision.com/static/images/70-heart@2x.0fe89b9ce3a9.webp 2x" 
          alt="Eurovision Heart">
 
+    <!-- Israel Flag in Eurovision Heart -->
+    <img class="carousel-winner-flag" src="https://storage.googleapis.com/eurovision-com.appspot.com/public/core_data/flag_il.svg" 
+         alt="Israel flag in a eurovision heart" width="50">
+
     <!-- Navigation Header -->
     <header class="nav-header">
         <div class="logo-container">
@@ -741,5 +745,24 @@
 
     <!-- User Authentication Script -->
     <script src="euro-auth.js"></script>
+
+    <script>
+        // Display logged-in user
+        window.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('euroUser') || 'null');
+            const userDisplay = document.getElementById('userDisplay');
+            
+            if (currentUser && userDisplay) {
+                userDisplay.innerHTML = `<span>שלום ${currentUser.name}!</span> | <a href="#" onclick="logout(); return false;">התנתק</a>`;
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('euroUser');
+            alert('התנתקת בהצלחה / Successfully logged out');
+            window.location.reload();
+        }
+    </script>
+
 </body>
 </html>
