@@ -11,6 +11,7 @@
             --euro-pink: #ff0085;
             --euro-blue: #00b1ea;
             --euro-yellow: #fdf200;
+            --deep-navy: #050514;
             --gold: #ffd700;
             --black: #000000;
         }
@@ -23,9 +24,75 @@
 
         body {
             font-family: 'Segoe UI', 'Hebrew', Arial, sans-serif;
-            background: var(--black);
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--euro-purple) 100%);
+            background-attachment: fixed;
             color: white;
+            min-height: 100vh;
+            padding: 20px;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating Eurovision Heart/Circle Shapes */
+        .floating-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--euro-pink), var(--euro-blue));
+            top: 10%;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--euro-blue), var(--euro-purple));
+            top: 50%;
+            right: -150px;
+            animation-delay: 5s;
+        }
+
+        .shape3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--euro-pink), rgba(255, 0, 133, 0.5));
+            bottom: 20%;
+            left: 10%;
+            animation-delay: 10s;
+        }
+
+        .shape4 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--euro-blue), var(--euro-yellow));
+            top: 30%;
+            right: 20%;
+            animation-delay: 7s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            50% {
+                transform: translate(-30px, -100px) scale(0.9);
+            }
+            75% {
+                transform: translate(30px, -50px) scale(1.05);
+            }
         }
 
         /* Eurovision 70 Logo */
@@ -455,7 +522,7 @@
         /* User Display */
         .user-display {
             position: fixed;
-            top: 200px;
+            top: 115px;
             right: 30px;
             color: #fdf200;
             font-weight: 600;
@@ -518,13 +585,19 @@
 </head>
 <body>
     
+    <!-- Floating Shapes -->
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+    <div class="floating-shape shape4"></div>
+    
     <!-- User Display -->
     <div class="user-display" id="userDisplay">
         <a href="login-preview.html">הרשמה / התחברות</a>
     </div>
             
         <a href="home-preview.html" style="text-decoration: none;">
-            <img src="https://www.eurovision.com/static/images/70-logo.ba56318cd52f.webp" alt="Eurovision 70" class="euro-logo">
+            <img src="images/eurovision/eurovision-70-logo.png" alt="Eurovision 70" class="euro-logo">
         </a>
         
         <nav class="top-nav">
