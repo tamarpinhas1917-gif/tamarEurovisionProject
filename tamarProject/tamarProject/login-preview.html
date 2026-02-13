@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta charset="UTF-8">
-    <title>PREVIEW - Eurovision | הרשמה / התחברות</title>
+    <title>PREVIEW - Eurovision | Sign Up / Login</title>
     <style>
         :root {
             --euro-purple: #14052d;
@@ -380,21 +380,21 @@
     <header>
         <div class="logo-container">
             <a href="home-preview.html" style="text-decoration: none;">
-                <img src="https://www.eurovision.com/static/images/70-logo.ba56318cd52f.webp" alt="Eurovision 70" class="euro-logo">
+                <img src="images/eurovision/eurovision-70-logo.png" alt="Eurovision 70" class="euro-logo">
             </a>
             <div class="user-display" id="userDisplay">
-                <a href="login-preview.html">הרשמה / התחברות</a>
+                <a href="login-preview.html">Sign Up / Login</a>
             </div>
         </div>
         <nav>
             <ul>
-                <li><a href="home-preview.html">דף הבית</a></li>
-                <li><a href="timeline-preview.html">ציר הזמן</a></li>
-                <li><a href="fashion-preview.html">אופנה</a></li>
-                <li><a href="data-manager-preview.html">ניהול נתונים</a></li>
-                <li><a href="latest-news-preview.html">חדשות אחרונות</a></li>
-                <li><a href="the-show-preview.html">המופע</a></li>
-                <li><a href="login-preview.html">הרשמה</a></li>
+                <li><a href="home-preview.html">Home</a></li>
+                <li><a href="timeline-preview.html">Timeline</a></li>
+                <li><a href="fashion-preview.html">Fashion</a></li>
+                <li><a href="data-manager-preview.html">Data Manager</a></li>
+                <li><a href="latest-news-preview.html">Latest News</a></li>
+                <li><a href="the-show-preview.html">The Show</a></li>
+                <li><a href="login-preview.html">Sign Up</a></li>
             </ul>
         </nav>
     </header>
@@ -403,13 +403,13 @@
         <div class="auth-box" id="authBox">
             <!-- Tab Buttons -->
             <div class="auth-tabs">
-                <button class="tab-button active" onclick="switchTab('signup')">הרשמה / Sign Up</button>
-                <button class="tab-button" onclick="switchTab('signin')">התחברות / Sign In</button>
+                <button class="tab-button active" onclick="switchTab('signup')">Sign Up / Sign Up</button>
+                <button class="tab-button" onclick="switchTab('signin')">Login / Sign In</button>
             </div>
 
             <!-- Sign Up Tab -->
             <div class="tab-content active" id="signupTab">
-                <h2>הצטרפו לחגיגה</h2>
+                <h2>Join the Celebration</h2>
                 <p class="subtitle">UNITED BY MUSIC</p>
                 
                 <form onsubmit="handleSignup(event)">
@@ -424,14 +424,14 @@
                     </div>
 
                     <div class="input-group">
-                        <label>סיסמה / Password</label>
+                        <label>Password / Password</label>
                         <input type="password" id="signupPassword" placeholder="********" required>
                     </div>
 
                     <button type="submit" class="btn">הצטרפו עכשיו / Join Now</button>
                 </form>
                 
-                <a href="home-preview.html" class="back-link">← חזרה לדף הבית / Back to Home</a>
+                <a href="home-preview.html" class="back-link">← חזרה לHome / Back to Home</a>
             </div>
 
             <!-- Sign In Tab -->
@@ -446,14 +446,14 @@
                     </div>
 
                     <div class="input-group">
-                        <label>סיסמה / Password</label>
+                        <label>Password / Password</label>
                         <input type="password" id="signinPassword" placeholder="********" required>
                     </div>
 
-                    <button type="submit" class="btn">התחברות / Sign In</button>
+                    <button type="submit" class="btn">Login / Sign In</button>
                 </form>
                 
-                <a href="home-preview.html" class="back-link">← חזרה לדף הבית / Back to Home</a>
+                <a href="home-preview.html" class="back-link">← חזרה לHome / Back to Home</a>
             </div>
         </div>
     </div>
@@ -466,16 +466,16 @@
             
             if (currentUser) {
                 // Update user display in header
-                userDisplay.innerHTML = `<span>שלום ${currentUser.name}!</span> | <a href="#" onclick="logout()">התנתק / Logout</a>`;
+                userDisplay.innerHTML = `<span>Hello ${currentUser.name}!</span> | <a href="#" onclick="logout()">Logout / Logout</a>`;
                 
                 // Show "already signed in" message
                 document.getElementById('authBox').innerHTML = `
                     <div class="already-signed-in">
                         <h3>✨ כבר מחובר! / Already Signed In ✨</h3>
-                        <p>שלום ${currentUser.name}!</p>
-                        <p>אתם כבר חלק ממשפחת האירוויזיון!<br>You're already part of the Eurovision family!</p>
-                        <button class="btn" onclick="window.location.href='home-preview.html'">חזרה לדף הבית / Back to Home</button>
-                        <button class="btn btn-secondary" onclick="logout()" style="margin-top: 15px;">התנתקות / Logout</button>
+                        <p>Hello ${currentUser.name}!</p>
+                        <p>אתם כבר חלק ממשפחת הEurovision!<br>You're already part of the Eurovision family!</p>
+                        <button class="btn" onclick="window.location.href='home-preview.html'">חזרה לHome / Back to Home</button>
+                        <button class="btn btn-secondary" onclick="logout()" style="margin-top: 15px;">Logoutות / Logout</button>
                     </div>
                 `;
             }
@@ -515,7 +515,7 @@
             const userExists = existingUsers.find(u => u.email === email);
 
             if (userExists) {
-                alert('משתמש זה כבר רשום! עבור להתחברות / User already registered! Please sign in');
+                alert('משתמש זה כבר רשום! עבור לLogin / User already registered! Please sign in');
                 switchTab('signin');
                 document.getElementById('signinEmail').value = email;
                 return;
@@ -528,7 +528,7 @@
             localStorage.setItem('euroUser', JSON.stringify(newUser));
 
             // Redirect to home
-            alert(`ברוך הבא ${name}! Welcome to Eurovision!`);
+            alert(`Welcome ${name}! Welcome to Eurovision!`);
             window.location.href = 'home-preview.html';
         }
 
@@ -548,7 +548,7 @@
             const user = existingUsers.find(u => u.email === email && u.password === password);
 
             if (!user) {
-                alert('אימייל או סיסמה שגויים / Invalid email or password');
+                alert('אימייל או Password שגויים / Invalid email or password');
                 return;
             }
 
@@ -562,7 +562,7 @@
 
         function logout() {
             localStorage.removeItem('euroUser');
-            alert('התנתקת בהצלחה / Successfully logged out');
+            alert('Logoutת בהצלחה / Successfully logged out');
             window.location.reload();
         }
     </script>
