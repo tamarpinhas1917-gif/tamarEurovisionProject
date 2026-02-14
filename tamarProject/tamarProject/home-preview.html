@@ -108,8 +108,8 @@
             }
         }
 
-        /* Video Background */
-        .video-background {
+        /* GIF Background */
+        .gif-background {
             position: fixed;
             top: 0;
             left: 0;
@@ -119,7 +119,7 @@
             z-index: 0;
         }
 
-        .video-background video {
+        .gif-background img {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -293,13 +293,9 @@
     <!-- Israel Flag -->
     <img class="carousel-winner-flag" src="https://storage.googleapis.com/eurovision-com.appspot.com/public/core_data/flag_il.svg" alt="Israel flag" width="50">
     
-    <!-- Video Background -->
-    <div class="video-background">
-        <video id="bgVideo" autoplay muted loop playsinline preload="auto">
-            <source src="images/eurovision/eurovision-background.mov" type="video/mp4">
-            <source src="images/eurovision/eurovision-background.mov" type="video/quicktime">
-            Your browser does not support the video tag.
-        </video>
+    <!-- GIF Background -->
+    <div class="gif-background">
+        <img src="images/eurovision/יובל רפאלי_קצר.gif" alt="Eurovision Background">
     </div>
     <div class="video-overlay"></div>
     
@@ -353,18 +349,6 @@
                     ctaButton.href = 'timeline-preview.html';
                     ctaButton.textContent = `Welcome ${currentUser.name}! Discover Our Journey`;
                 }
-            }
-
-            // Force video to play
-            const bgVideo = document.getElementById('bgVideo');
-            if (bgVideo) {
-                bgVideo.play().catch(err => {
-                    console.log('Video autoplay failed:', err);
-                    // If autoplay fails, try to play on user interaction
-                    document.addEventListener('click', () => {
-                        bgVideo.play();
-                    }, { once: true });
-                });
             }
         });
 
