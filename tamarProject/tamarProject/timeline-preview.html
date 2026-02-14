@@ -221,7 +221,7 @@
 
         .year-marker {
             position: absolute;
-            transform: translateX(50%) translateY(-35px);
+            transform: translateX(-50%) translateY(-35px);
             background: linear-gradient(135deg, var(--euro-pink), var(--euro-blue));
             color: white;
             padding: 8px 12px;
@@ -237,7 +237,7 @@
         }
 
         .year-marker:hover {
-            transform: translateX(50%) translateY(-40px) scale(1.1);
+            transform: translateX(-50%) translateY(-40px) scale(1.1);
             box-shadow: 0 6px 20px rgba(255, 0, 133, 0.6);
         }
 
@@ -255,7 +255,7 @@
         }
 
         .year-marker:active {
-            transform: translateX(50%) translateY(-37px) scale(1.05);
+            transform: translateX(-50%) translateY(-37px) scale(1.05);
         }
 
         .year-marker::before {
@@ -695,19 +695,19 @@
                 
                 <div class="slider-container">
                     <div class="year-markers">
-                        <span class="year-marker first-year" style="right: 6%;" title="First participation">&#x1F6A9; 1973</span>
-                        <span class="year-marker winner-year marker-top" style="right: 14%;" title="First Win - A-Ba-Ni-Bi">&#x1F3C6; 1978</span>
-                        <span class="year-marker winner-year marker-bottom" style="right: 16%;" title="Second Win - Hallelujah">&#x1F3C6; 1979</span>
-                        <span class="year-marker iconic-year" style="right: 22.5%;" title="2nd Place - Ofra Haza">&#x1F3C6; 1983</span>
-                        <span class="year-marker winner-year" style="right: 48%;" title="Third Win - Diva">&#x1F3C6; 1998</span>
-                        <span class="year-marker winner-year" style="right: 82%;" title="Fourth Win - Toy">&#x1F3C6; 2018</span>
-                        <span class="year-marker iconic-year" style="right: 91%;" title="3rd Place - Noa Kirel">&#x1F3C6; 2023</span>
+                        <span class="year-marker first-year" style="left: 4%;" title="First participation">&#x1F6A9; 1973</span>
+                        <span class="year-marker winner-year marker-top" style="left: 7%;" title="First Win - A-Ba-Ni-Bi">&#x1F3C6; 1978</span>
+                        <span class="year-marker winner-year marker-bottom" style="left: 8.5%;" title="Second Win - Hallelujah">&#x1F3C6; 1979</span>
+                        <span class="year-marker iconic-year" style="left: 21.5%;" title="2nd Place - Ofra Haza">&#x1F3C6; 1983</span>
+                        <span class="year-marker winner-year" style="left: 48%;" title="Third Win - Diva">&#x1F3C6; 1998</span>
+                        <span class="year-marker winner-year" style="left: 84%;" title="Fourth Win - Toy">&#x1F3C6; 2018</span>
+                        <span class="year-marker iconic-year" style="left: 92.5%;" title="3rd Place - Noa Kirel">&#x1F3C6; 2023</span>
                     </div>
                     <input type="range" id="yearSlider" min="1973" max="2025" value="1978" step="1">
                     <div class="year-labels">
-                        <span>2025</span>
-                        <span>1990</span>
                         <span>1973</span>
+                        <span>1990</span>
+                        <span>2026</span>
                     </div>
                 </div>
             </div>
