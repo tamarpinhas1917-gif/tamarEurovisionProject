@@ -359,6 +359,9 @@
 
         .card-front {
             background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -628,7 +631,7 @@
                 <li><a href="timeline-preview.html">Timeline</a></li>
                 <li><a href="fashion-preview.html">Fashion</a></li>
                 <li><a href="data-manager-preview.html">Data Manager</a></li>
-                <li><a href="latest-news-preview.html">Latest News</a></li>
+                <li><a href="latest-news-preview.html">Gallery</a></li>
                 <li><a href="the-show-preview.html">The Show</a></li>
                 <li><a href="login-preview.html">Sign Up</a></li>
             </ul>
@@ -1552,7 +1555,7 @@
 
         // Filter to iconic fashion moments
         const fashionHighlights = [
-            1973, 1978, 1979, 1983, 1985, 1998, 2015, 2018, 2023, 2024
+            1973, 1978, 1979, 1983, 1985, 1998, 2015, 2016, 2018, 2020, 2023, 2024
         ];
 
         const galleryGrid = document.getElementById('galleryGrid');
@@ -1561,11 +1564,15 @@
             const entry = eurovisionData.find(e => e.Year === year);
             if (!entry) return;
 
+            // Determine image extension (most are .png, except 1978 which is .jpg)
+            const imageExt = year === 1978 ? 'jpg' : 'png';
+            const imagePath = `images/eurovision/${year}_FSH.${imageExt}`;
+
             const card = document.createElement('div');
             card.className = 'fashion-card';
             card.innerHTML = `
                 <div class="card-inner">
-                    <div class="card-front">
+                    <div class="card-front" style="background-image: url('${imagePath}');">
                         <div class="card-content">
                             <div class="card-year">${entry.Year}</div>
                             <div class="card-artist">${entry.Artist}</div>

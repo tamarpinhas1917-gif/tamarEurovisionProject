@@ -28,67 +28,81 @@
             position: relative;
         }
 
-        /* סרגל ניווט שקוף ומודרני */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        /* Navigation Menu - LEFT SIDE */
+        .top-nav {
             position: fixed;
-            width: 100%;
-            top: 0;
+            top: 20px;
+            left: 20px;
             z-index: 1000;
-            box-sizing: border-box;
+            background: rgba(20, 5, 45, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .logo-container {
+        .top-nav ul {
+            list-style: none;
             display: flex;
-            align-items: center;
-            gap: 15px;
+            gap: 40px;
+            margin: 0;
+            padding: 0;
         }
 
+        .top-nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .top-nav ul li a:hover {
+            color: var(--euro-pink);
+            text-shadow: 0 0 8px var(--euro-pink);
+        }
+
+        /* Eurovision 70 Logo - RIGHT SIDE */
         .euro-logo {
-            height: 60px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 150px;
+            height: auto;
+            z-index: 1000;
+            filter: drop-shadow(0 0 20px rgba(255, 0, 133, 0.3));
         }
 
         .euro-logo:hover {
             transform: scale(1.05);
         }
 
+        /* User Display - BELOW LOGO ON RIGHT */
         .user-display {
-            font-size: 0.9rem;
+            position: fixed;
+            top: 115px;
+            right: 30px;
             color: var(--euro-yellow);
-            font-weight: 500;
+            font-weight: 600;
+            z-index: 1001;
+            font-size: 0.9rem;
+            background: rgba(20, 5, 45, 0.7);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .user-display a {
             color: var(--euro-yellow);
             text-decoration: none;
+            transition: 0.3s;
         }
 
         .user-display a:hover {
-            text-decoration: underline;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            font-size: 1rem;
-        }
-
-        nav a:hover {
-            color: var(--euro-pink);
+            color: #fff;
+            text-shadow: 0 0 8px var(--euro-yellow);
         }
 
         /* Floating gradient shapes (matching HOME) */
@@ -361,6 +375,10 @@
     </style>
 </head>
 <body>
+    <!-- Israel Flag -->
+    <img class="carousel-winner-flag" src="https://storage.googleapis.com/eurovision-com.appspot.com/public/core_data/flag_il.svg" 
+         alt="Israel flag" width="50">
+
     <!-- Floating Eurovision Gradient Shapes -->
     <div class="floating-shape shape1"></div>
     <div class="floating-shape shape2"></div>
@@ -373,31 +391,28 @@
          srcset="https://www.eurovision.com/static/images/70-heart.f6c629bcf5dd.webp, https://www.eurovision.com/static/images/70-heart@2x.0fe89b9ce3a9.webp 2x" 
          alt="Eurovision Heart">
 
-    <!-- Israel Flag -->
-    <img class="carousel-winner-flag" src="https://storage.googleapis.com/eurovision-com.appspot.com/public/core_data/flag_il.svg" 
-         alt="Israel flag in a eurovision heart" width="50">
+    <!-- User Display -->
+    <div class="user-display" id="userDisplay">
+        <a href="login-preview.html">Sign Up / Login</a>
+    </div>
 
-    <header>
-        <div class="logo-container">
-            <a href="home-preview.html" style="text-decoration: none;">
-                <img src="images/eurovision/eurovision-70-logo.png" alt="Eurovision 70" class="euro-logo">
-            </a>
-            <div class="user-display" id="userDisplay">
-                <a href="login-preview.html">Sign Up / Login</a>
-            </div>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="home-preview.html">Home</a></li>
-                <li><a href="timeline-preview.html">Timeline</a></li>
-                <li><a href="fashion-preview.html">Fashion</a></li>
-                <li><a href="data-manager-preview.html">Data Manager</a></li>
-                <li><a href="latest-news-preview.html">Latest News</a></li>
-                <li><a href="the-show-preview.html">The Show</a></li>
-                <li><a href="login-preview.html">Sign Up</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Eurovision 70 Logo - RIGHT SIDE -->
+    <a href="home-preview.html" style="text-decoration: none;">
+        <img src="images/eurovision/eurovision-70-logo.png" alt="Eurovision 70" class="euro-logo">
+    </a>
+
+    <!-- Navigation Menu - LEFT SIDE -->
+    <nav class="top-nav">
+        <ul>
+            <li><a href="home-preview.html">Home</a></li>
+            <li><a href="timeline-preview.html">Timeline</a></li>
+            <li><a href="fashion-preview.html">Fashion</a></li>
+            <li><a href="data-manager-preview.html">Data Manager</a></li>
+            <li><a href="latest-news-preview.html">Gallery</a></li>
+            <li><a href="the-show-preview.html">The Show</a></li>
+            <li><a href="login-preview.html">Sign Up</a></li>
+        </ul>
+    </nav>
 
     <div class="auth-container">
         <div class="auth-box" id="authBox">
