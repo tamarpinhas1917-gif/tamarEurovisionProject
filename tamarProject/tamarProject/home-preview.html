@@ -231,16 +231,26 @@
 
         /* טקסט United By Music בסגנון המקורי */
         .hero h1 {
-            font-size: 7vw;
-            font-weight: 900;
+            font-size: 4.5rem;
+            font-weight: 800;
             text-transform: uppercase;
             margin: 0;
-            letter-spacing: -2px;
-            line-height: 0.9;
-            background: linear-gradient(to bottom, #fff, #ccc);
+            margin-top: -1rem;
+            padding: 0 1rem;
+            letter-spacing: 1px;
+            line-height: 1.1;
+            background: linear-gradient(to bottom, #fff, #e0e0e0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6));
+        }
+
+        .hero h1 .subtitle {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            letter-spacing: 2px;
         }
 
         .hero p {
@@ -329,7 +339,8 @@
     </nav>
 
     <section class="hero">
-        <h1>מאוחדים על ידי מוזיקה</h1>
+        <h1 style="font-size: 3rem; font-weight: bold; text-transform: uppercase;">Voices of Israel</h1>
+        <p style="font-size: 1.5rem; font-style: italic; color: #fdf200;">The Eurovision Journey</p>
         <p>Israel 2026</p>
         
         <a href="login-preview.html" class="btn-main" id="ctaButton">Join the Celebration</a>
