@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="latest-news.aspx" Inherits="tamarProject.latest_news" ContentType="text/html; charset=utf-8" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="gallery.aspx.cs" Inherits="tamarProject.gallery" ContentType="text/html; charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">

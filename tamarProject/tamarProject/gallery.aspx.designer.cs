@@ -11,7 +11,7 @@ namespace tamarProject
 {
 
 
-    public partial class latest_news
+    public partial class gallery
     {
 
         /// <summary>

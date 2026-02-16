@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace tamarProject
 {
-    public partial class latest_news : System.Web.UI.Page
+    public partial class gallery : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

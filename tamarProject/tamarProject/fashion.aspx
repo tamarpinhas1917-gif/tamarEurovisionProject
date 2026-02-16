@@ -633,7 +633,7 @@
                 <li><a href="timeline.aspx">Timeline</a></li>
                 <li><a href="fashion.aspx">Fashion</a></li>
                 <li><a href="data-manager.aspx">Data Manager</a></li>
-                <li><a href="latest-news.aspx">Gallery</a></li>
+                <li><a href="gallery.aspx">Gallery</a></li>
                 <li><a href="trivia.aspx">Trivia</a></li>
                 <li><a href="login.aspx">Sign Up</a></li>
             </ul>
