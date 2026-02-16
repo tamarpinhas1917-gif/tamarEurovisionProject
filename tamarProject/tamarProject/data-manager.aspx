@@ -249,6 +249,13 @@
     </style>
 </head>
 <body>
+    
+    <!-- Floating Shapes -->
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+    <div class="floating-shape shape4"></div>
+    
     <form id="form1" runat="server">
         <div class="container">
             <h1>🎵 מנהל נתוני אירוויזיון 🇮🇱</h1>

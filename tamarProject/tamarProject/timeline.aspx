@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="timeline.aspx.cs" Inherits="tamarProject.timeline" ContentType="text/html; charset=utf-8" %>
 
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta charset="UTF-8">
@@ -28,6 +28,82 @@
             background: linear-gradient(135deg, var(--deep-navy) 0%, var(--euro-purple) 100%);
             background-attachment: fixed;
             color: white;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating Eurovision Heart/Circle Shapes */
+        .floating-shape {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--euro-pink), var(--euro-blue));
+            top: 10%;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--euro-blue), var(--euro-purple));
+            top: 50%;
+            right: -150px;
+            animation-delay: 5s;
+        }
+
+        .shape3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--euro-pink), rgba(255, 0, 133, 0.5));
+            bottom: 20%;
+            left: 10%;
+            animation-delay: 10s;
+        }
+
+        .shape4 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--euro-blue), var(--euro-yellow));
+            top: 30%;
+            right: 20%;
+            animation-delay: 7s;
+        }
+
+        .shape5 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(0, 177, 234, 0.6), rgba(255, 0, 133, 0.6));
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            50% {
+                transform: translate(-30px, -100px) scale(0.9);
+            }
+            75% {
+                transform: translate(30px, -50px) scale(1.05);
+            }
+        }
             min-height: 100vh;
             padding: 20px;
             overflow-x: hidden;
