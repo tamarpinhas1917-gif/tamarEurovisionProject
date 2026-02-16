@@ -3,8 +3,15 @@ tamarProject/tamarProject/images/eurovision/*.mov
 tamarProject/tamarProject/images/eurovision/*.mp4
 tamarProject/tamarProject/images/eurovision/*.avi
 
-# Ignore build outputs
-tamarProject/tamarProject/bin/
+# Ignore build outputs EXCEPT Roslyn compiler
+tamarProject/tamarProject/bin/*.dll
+tamarProject/tamarProject/bin/*.pdb
+tamarProject/tamarProject/bin/*.xml
+!tamarProject/tamarProject/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+!tamarProject/tamarProject/bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+!tamarProject/tamarProject/bin/tamarProject.dll.config
+!tamarProject/tamarProject/bin/roslyn/
+
 tamarProject/tamarProject/obj/
 
 # Ignore packages
