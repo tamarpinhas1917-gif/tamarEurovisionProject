@@ -155,13 +155,11 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="homePage.aspx">דף הבית</a></li>
-                    <li><a href="timeline.aspx">ציר הזמן</a></li>
-                    <li><a href="fashion.aspx">אופנה</a></li>
-                    <li><a href="data-manager.aspx">ניהול נתונים</a></li>
-                    <li><a href="login.aspx">הרשמה</a></li>
-                    <li><a href="latest-news.aspx">חדשות אחרונות</a></li>
-                    <li><a href="the-show.aspx">המופע</a></li>
+                    <li><a href="homePage.aspx">Home</a></li>
+                    <li><a href="timeline.aspx">Timeline</a></li>
+                    <li><a href="fashion.aspx">Fashion</a></li>
+                    <li><a href="data-manager.aspx">Data Manager</a></li>
+                    <li><a href="login.aspx">Login</a></li>
                 </ul>
             </nav>
         </header>

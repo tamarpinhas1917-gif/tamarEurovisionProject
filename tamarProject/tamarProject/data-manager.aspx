@@ -288,13 +288,13 @@
                     <input type="text" id="searchInput" placeholder="🔍 חיפוש לפי שנה, אמן, שיר..." onkeyup="filterTable()">
                 </div>
                 <button type="button" class="btn btn-success" onclick="window.location.href='timeline.aspx'">
-                    📊 צפייה בציר הזמן
+                    📊 View Timeline
                 </button>
                 <button type="button" class="btn btn-warning" onclick="exportToExcel()">
-                    📥 ייצוא ל-Excel
+                    📥 Export to Excel
                 </button>
                 <button type="button" class="btn btn-primary" onclick="window.location.href='homePage.aspx'">
-                    🏠 חזרה לדף הבית
+                    🏠 Back to Home
                 </button>
             </div>
 

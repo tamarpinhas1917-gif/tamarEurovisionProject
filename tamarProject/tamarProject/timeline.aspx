@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ציר הזמן של ישראל באירוויזיון</title>
+    <title>Israel's Eurovision Timeline</title>
     <style>
         /* Eurovision Color Palette */
         :root {
@@ -664,7 +664,7 @@
                     </div>
 
                     <div class="info-card-large">
-                        <h3>👗 אופנה</h3>
+                        <h3>👗 Fashion</h3>
                         <p id="fashionInfo">חולצות צבעוניות ומכנסיים מתרחבים - סגנון דיסקו קלאסי של שנות ה-70 המאוחרות.</p>
                     </div>
 
@@ -686,8 +686,8 @@
             </div>
 
             <div style="text-align: center; margin-top: 30px;">
-                <a href="homePage.aspx" class="back-btn" style="margin-left: 15px;">→ חזרה לעמוד הבית</a>
-                <a href="fashion.aspx" class="back-btn" style="background: linear-gradient(135deg, #ff0085, #00b1ea);">👗 לדף האופנה</a>
+                <a href="homePage.aspx" class="back-btn" style="margin-left: 15px;">→ Back to Home</a>
+                <a href="fashion.aspx" class="back-btn" style="background: linear-gradient(135deg, #ff0085, #00b1ea);">👗 Fashion Page</a>
             </div>
 
             <!-- Attribution Notice -->

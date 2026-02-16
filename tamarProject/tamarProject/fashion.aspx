@@ -484,11 +484,11 @@
     <nav class="nav-menu">
         <a href="homePage.aspx" class="nav-button">
             <span>🏠</span>
-            דף הבית
+            Home
         </a>
         <a href="timeline.aspx" class="nav-button" style="margin-right: 10px;">
             <span>⏱️</span>
-            ציר הזמן
+            Timeline
         </a>
     </nav>
 
