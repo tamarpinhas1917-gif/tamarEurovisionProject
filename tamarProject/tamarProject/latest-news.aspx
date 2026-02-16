@@ -1,62 +1,659 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="latest-news.aspx.cs" Inherits="tamarProject.latest_news" ContentType="text/html; charset=utf-8" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="latest-news.aspx" Inherits="tamarProject.latest_news" ContentType="text/html; charset=utf-8" %>
 
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head runat="server">
+<html lang="en" dir="ltr">
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>חדשות אחרונות</title>
+    <title>Gallery - Israel at Eurovision</title>
     <style>
+        :root {
+            --euro-purple: #14052d;
+            --euro-pink: #ff0085;
+            --euro-blue: #00b1ea;
+            --euro-yellow: #fdf200;
+            --deep-navy: #050514;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #14052d;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--euro-purple) 100%);
             color: white;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Floating Shapes Background */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--euro-pink), transparent);
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--euro-blue), transparent);
+            animation-delay: 7s;
+        }
+
+        .shape:nth-child(3) {
+            bottom: 10%;
+            left: 50%;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, var(--euro-yellow), transparent);
+            animation-delay: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -50px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+
+        /* Navigation Menu - LEFT SIDE */
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(20, 5, 45, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .top-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
             margin: 0;
             padding: 0;
         }
-        header {
-            background-color: #000066;
-            padding: 10px;
+
+        .top-nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .top-nav ul li a:hover {
+            color: var(--euro-pink);
+            text-shadow: 0 0 8px var(--euro-pink);
+        }
+
+        /* Eurovision 70 Logo - RIGHT SIDE */
+        .euro-logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 150px;
+            height: auto;
+            z-index: 1000;
+            filter: drop-shadow(0 0 20px rgba(255, 0, 133, 0.3));
+        }
+
+        /* User Display - BELOW LOGO ON RIGHT */
+        .user-display {
+            position: fixed;
+            top: 115px;
+            right: 30px;
+            color: var(--euro-yellow);
+            font-weight: 600;
+            z-index: 1001;
+            font-size: 0.9rem;
+            background: rgba(20, 5, 45, 0.7);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .user-display a {
+            color: var(--euro-yellow);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .user-display a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px var(--euro-yellow);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            position: relative;
+            z-index: 10;
+            padding: 100px 5% 80px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .gallery-header {
             text-align: center;
+            margin-bottom: 60px;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2rem;
+
+        .gallery-header h1 {
+            font-size: 4em;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, white, var(--euro-pink), var(--euro-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInDown 1s ease;
         }
-        .news-container {
+
+        .gallery-header p {
+            font-size: 1.3em;
+            color: rgba(255,255,255,0.8);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid var(--euro-pink);
+            border-radius: 25px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--euro-pink);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(255,0,133,0.4);
+        }
+
+        /* Gallery Grid - Masonry Style */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            grid-auto-rows: 250px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            background: #1a1a1a;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255,0,133,0.4);
+        }
+
+        /* Vary item sizes for masonry effect */
+        .gallery-item:nth-child(3n + 1) {
+            grid-row: span 2;
+        }
+
+        .gallery-item:nth-child(5n + 2) {
+            grid-row: span 1;
+        }
+
+        .gallery-item:nth-child(7n + 3) {
+            grid-column: span 2;
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img,
+        .gallery-item:hover video {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
             padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        .news-item {
-            margin-bottom: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay h3 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            color: var(--euro-yellow);
+        }
+
+        .gallery-overlay p {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Video Play Icon */
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(255,0,133,0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover .play-icon {
+            transform: translate(-50%, -50%) scale(1.2);
+            background: var(--euro-pink);
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img,
+        .lightbox-content video {
+            max-width: 100%;
+            max-height: 90vh;
             border-radius: 10px;
         }
-        .news-item h2 {
-            margin: 0 0 10px;
-            font-size: 1.5rem;
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3em;
+            color: white;
+            cursor: pointer;
+            z-index: 2001;
+            background: var(--euro-pink);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
         }
-        .news-item p {
-            margin: 0;
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+            background: white;
+            color: var(--euro-pink);
+        }
+
+        /* Israel Flag */
+        .carousel-winner-flag {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            animation: flagFloat 6s infinite ease-in-out;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        @keyframes flagFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+            }
+
+            .gallery-item:nth-child(7n + 3) {
+                grid-column: span 1;
+            }
+
+            .gallery-header h1 {
+                font-size: 2.5em;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            nav ul li a {
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <header>
-            <h1>חדשות אחרונות</h1>
-        </header>
-        <div class="news-container">
-            <div class="news-item">
-                <h2>כותרת חדשות 1</h2>
-                <p>תוכן חדשות 1...</p>
-            </div>
-            <div class="news-item">
-                <h2>כותרת חדשות 2</h2>
-                <p>תוכן חדשות 2...</p>
-            </div>
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    </style>
+</head>
+<body>
+    <!-- Israel Flag -->
+    <img class="carousel-winner-flag" src="https://storage.googleapis.com/eurovision-com.appspot.com/public/core_data/flag_il.svg" alt="Israel flag" width="50">
+
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- User Display -->
+    <div class="user-display" id="userDisplay">
+        <a href="login-preview.html">Sign Up / Login</a>
+    </div>
+
+    <!-- Eurovision 70 Logo - RIGHT SIDE -->
+    <a href="home-preview.html" style="text-decoration: none;">
+        <img src="images/eurovision/eurovision-70-logo.png" alt="Eurovision 70" class="euro-logo">
+    </a>
+
+    <!-- Navigation Menu - LEFT SIDE -->
+    <nav class="top-nav">
+        <ul>
+            <li><a href="home-preview.html">Home</a></li>
+            <li><a href="timeline-preview.html">Timeline</a></li>
+            <li><a href="fashion-preview.html">Fashion</a></li>
+            <li><a href="data-manager-preview.html">Data Manager</a></li>
+            <li><a href="latest-news-preview.html">Gallery</a></li>
+            <li><a href="trivia-preview.html">Trivia</a></li>
+            <li><a href="login-preview.html">Sign Up</a></li>
+        </ul>
+    </nav>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="gallery-header">
+            <h1>Israel's Eurovision Gallery</h1>
+            <p>Explore iconic moments, stunning performances, and unforgettable memories from Israel's Eurovision journey</p>
         </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterGallery('all')">All</button>
+            <button class="filter-btn" onclick="filterGallery('winners')">Top Placements</button>
+            <button class="filter-btn" onclick="filterGallery('fashion')">Fashion</button>
+            <button class="filter-btn" onclick="filterGallery('performances')">Performances</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Gallery items will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">×</span>
+        <div class="lightbox-content" id="lightboxContent"></div>
+    </div>
+
+    <script>
+        // Gallery Data - All Eurovision images from folder (Complete Refresh - Feb 14, 2026)
+        const galleryData = [
+            { year: 1973, title: "1973 - 4th Place - Ilanit - Ey-Sham", image: "1973.png", category: "performances" },
+            { year: 1973, title: "1973 Fashion - Ilanit", image: "1973_FSH.png", category: "fashion" },
+            { year: 1974, title: "1974 - 7th Place - Poogy - Natati La Khayay", image: "1974.png", category: "performances" },
+            { year: 1975, title: "1975 - 11th Place - Shlomo Artzi - At Va'Ani", image: "1975.png", category: "performances" },
+            { year: 1976, title: "1976 - 6th Place - Chocolate, Menta, Mastik - Emor Shalom", image: "1976.png", category: "performances" },
+            { year: 1977, title: "1977 - 11th Place - Ilanit - Ahava Hi Shir Lishnaim", image: "1977.png", category: "performances" },
+            { year: 1978, title: "1978 - 🥇 1st Place - Winner - Izhar Cohen - A-Ba-Ni-Bi", image: "1978.png", category: "winners" },
+            { year: 1978, title: "1978 Fashion - Izhar Cohen", image: "1978_FSH.jpg", category: "fashion" },
+            { year: 1979, title: "1979 - 🥇 1st Place - Winner - Gali Atari - Hallelujah", image: "1979.png", category: "winners" },
+            { year: 1979, title: "1979 Fashion - Gali Atari & Milk and Honey", image: "1979_FSH.png", category: "fashion" },
+            { year: 1981, title: "1981 - 7th Place - Hava Alberstein - Halayla", image: "1981.png", category: "performances" },
+            { year: 1982, title: "1982 - 2nd Place - Avi Toledano - Hora", image: "1982.png", category: "performances" },
+            { year: 1983, title: "1983 - 🥈 2nd Place - Ofra Haza - Hi", image: "1983.png", category: "winners" },
+            { year: 1983, title: "1983 Fashion - Ofra Haza", image: "1983_FSH.png", category: "fashion" },
+            { year: 1985, title: "1985 - 5th Place - Izhar Cohen - Olé, Olé", image: "1985.png", category: "performances" },
+            { year: 1985, title: "1985 Fashion - Izhar Cohen", image: "1985_FSH.png", category: "fashion" },
+            { year: 1986, title: "1986 - 19th Place - Moti Giladi - Yavo Yom", image: "1986.png", category: "performances" },
+            { year: 1987, title: "1987 - 8th Place - Lazy Bums - Shir Habatlanim", image: "1987.png", category: "performances" },
+            { year: 1988, title: "1988 - 7th Place - Yardena Arazi - Ben Adam", image: "1988.jpeg", category: "performances" },
+            { year: 1989, title: "1989 - 12th Place - Gili & Galit - Derekh Hamelekh", image: "1989.jpg", category: "performances" },
+            { year: 1990, title: "1990 - 18th Place - Rita - Shara Brakefet", image: "1990.png", category: "performances" },
+            { year: 1991, title: "1991 - 3rd Place - Duo Datz - Kan", image: "1991.png", category: "performances" },
+            { year: 1992, title: "1992 - 6th Place - Dafna Dekel - Ze Rak Sport", image: "1992.jpg", category: "performances" },
+            { year: 1993, title: "1993 - 24th Place - Lahakat Shiru - Shiru", image: "1993.jpg", category: "performances" },
+            { year: 1995, title: "1995 - 8th Place - Liora - Amen", image: "1995.jpg", category: "performances" },
+            { year: 1996, title: "1996 - 12th Place - Galit Bell - Shalom Olam", image: "1996.jpg", category: "performances" },
+            { year: 1998, title: "1998 - Dana International - Diva (webp)", image: "1998.webp", category: "performances" },
+            { year: 1998, title: "1998 - 🥇 1st Place - Winner - Dana International - Diva", image: "1998.png", category: "winners" },
+            { year: 1998, title: "1998 Fashion - Dana International", image: "1998_FSH.png", category: "fashion" },
+            { year: 1999, title: "1999 - 5th Place - Eden - Yom Huledet", image: "1999.png", category: "performances" },
+            { year: 2000, title: "2000 - 5th Place - Ping Pong - Sameakh", image: "2000.png", category: "performances" },
+            { year: 2001, title: "2001 - 16th Place - Tal Sondak - En Davar", image: "2001.png", category: "performances" },
+            { year: 2001, title: "2001 Fashion - Tal Sondak", image: "2001_FSH.png", category: "fashion" },
+            { year: 2002, title: "2002 - 12th Place - Sarit Hadad - Light a Candle", image: "2002.jpg", category: "performances" },
+            { year: 2003, title: "2003 - 29th Place - Lior Narkis - Words for Love", image: "2003.jpg", category: "performances" },
+            { year: 2004, title: "2004 - 11th Place - David D'Or - Leha'amin", image: "2004.JPG", category: "performances" },
+            { year: 2005, title: "2005 - 4th Place - Shiri Maimon - Hasheket Shenish'ar", image: "2005.jpg", category: "performances" },
+            { year: 2006, title: "2006 - 23rd Place - Eddie Butler - Together We Are One", image: "2006.jpg", category: "performances" },
+            { year: 2007, title: "2007 - 9th Place - Teapacks - Push the Button", image: "2007.jpg", category: "performances" },
+            { year: 2008, title: "2008 - 9th Place - Boaz Ma'uda - The Fire in Your Eyes", image: "2008.jpg", category: "performances" },
+            { year: 2009, title: "2009 - 16th Place - Noa & Mira Awad - There Must Be Another Way", image: "2009.jpg", category: "performances" },
+            { year: 2010, title: "2010 - 14th Place - Harel Skaat - Milim", image: "2010.jpg", category: "performances" },
+            { year: 2011, title: "2011 - 15th Place - Dana International - Ding Dong", image: "2011.jpg", category: "performances" },
+            { year: 2012, title: "2012 - 22nd Place - Izabo - Time", image: "2012.jpg", category: "performances" },
+            { year: 2013, title: "2013 - 22nd Place - Moran Mazor - Rak Bishvilo", image: "2013.jpg", category: "performances" },
+            { year: 2014, title: "2014 - 10th Place - Mei Feingold - Same Heart", image: "2014.jpg", category: "performances" },
+            { year: 2015, title: "2015 - 9th Place - Nadav Guedj - Golden Boy", image: "2015.jpg", category: "performances" },
+            { year: 2015, title: "2015 Fashion - Nadav Guedj", image: "2015_FSH.png", category: "fashion" },
+            { year: 2016, title: "2016 - 14th Place - Hovi Star - Made of Stars", image: "2016.png", category: "performances" },
+            { year: 2016, title: "2016 Fashion - Hovi Star", image: "2016_FSH.png", category: "fashion" },
+            { year: 2017, title: "2017 - 23rd Place - IMRI - I Feel Alive", image: "2017.webp", category: "performances" },
+            { year: 2018, title: "2018 - 🥇 1st Place - Winner - Netta - Toy", image: "2018.avif", category: "winners" },
+            { year: 2018, title: "2018 Fashion - Netta", image: "2018_FSH.png", category: "fashion" },
+            { year: 2019, title: "2019 - 23rd Place - Kobi Marimi - Home", image: "2019.jpg", category: "performances" },
+            { year: 2020, title: "2020 - Cancelled - Eden Alene - Feker Libi", image: "2020.jpg", category: "performances" },
+            { year: 2020, title: "2020 Fashion - Eden Alene", image: "2020_FSH.png", category: "fashion" },
+            { year: 2021, title: "2021 - 17th Place - Eden Alene - Set Me Free", image: "2021.jpeg", category: "performances" },
+            { year: 2022, title: "2022 - 23rd Place - Michael Ben David - I.M", image: "2022.webp", category: "performances" },
+            { year: 2023, title: "2023 - 🥉 3rd Place - Noa Kirel - Unicorn", image: "2023.jpg", category: "winners" },
+            { year: 2023, title: "2023 Fashion - Noa Kirel", image: "2023_FSH.png", category: "fashion" },
+            { year: 2024, title: "2024 - 5th Place - Eden Golan - Hurricane", image: "2024.jpg", category: "performances" },
+            { year: 2024, title: "2024 Fashion - Eden Golan", image: "2024_FSH.png", category: "fashion" },
+            { year: 2025, title: "2025 - Yuval Raphael - Older", image: "2025.webp", category: "performances" },
+            { year: 2026, title: "2026 - Noam Batan - TBA", image: "2026.webp", category: "performances" }
+        ];
+
+        let currentFilter = 'all';
+
+        // Populate gallery on page load
+        function populateGallery(filter = 'all') {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+
+            const filteredData = filter === 'all' 
+                ? galleryData 
+                : galleryData.filter(item => item.category === filter);
+
+            filteredData.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.onclick = () => openLightbox(item);
+
+                const ext = item.image.split('.').pop().toLowerCase();
+                const isVideo = ext === 'mov' || ext === 'mp4';
+
+                galleryItem.innerHTML = `
+                    ${isVideo ? `<video src="images/eurovision/${item.image}"></video>` : `<img src="images/eurovision/${item.image}" alt="${item.title}">`}
+                    ${isVideo ? '<div class="play-icon">▶</div>' : ''}
+                    <div class="gallery-overlay">
+                        <h3>${item.year}</h3>
+                        <p>${item.title}</p>
+                    </div>
+                `;
+
+                grid.appendChild(galleryItem);
+            });
+        }
+
+        // Filter gallery
+        function filterGallery(category) {
+            currentFilter = category;
+            
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Repopulate gallery
+            populateGallery(category);
+        }
+
+        // Lightbox functions
+        function openLightbox(item) {
+            const lightbox = document.getElementById('lightbox');
+            const content = document.getElementById('lightboxContent');
+            
+            const ext = item.image.split('.').pop().toLowerCase();
+            const isVideo = ext === 'mov' || ext === 'mp4';
+
+            if (isVideo) {
+                content.innerHTML = `
+                    <video controls autoplay style="max-width: 100%; max-height: 90vh;">
+                        <source src="images/eurovision/${item.image}" type="video/${ext === 'mov' ? 'quicktime' : 'mp4'}">
+                    </video>
+                `;
+            } else {
+                content.innerHTML = `<img src="images/eurovision/${item.image}" alt="${item.title}">`;
+            }
+
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const content = document.getElementById('lightboxContent');
+            lightbox.classList.remove('active');
+            content.innerHTML = '';
+        }
+
+        // Close lightbox on click outside
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Initialize gallery
+        window.addEventListener('DOMContentLoaded', function() {
+            populateGallery();
+
+            // Display logged-in user
+            // Display logged-in user
+            const currentUser = JSON.parse(localStorage.getItem('euroUser') || 'null');
+            const userDisplay = document.getElementById('userDisplay');
+            
+            if (currentUser && userDisplay) {
+                userDisplay.innerHTML = `<span>Hello ${currentUser.name}!</span> | <a href="#" onclick="logout(); return false;">Logout</a>`;
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('euroUser');
+            alert('Successfully logged out');
+            window.location.reload();
+        }
+    </script>
+
     </form>
 </body>
 </html>

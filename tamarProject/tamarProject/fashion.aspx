@@ -1,7 +1,7 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="fashion.aspx.cs" Inherits="tamarProject.fashion" ContentType="text/html; charset=utf-8" %>
 
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta charset="UTF-8">
@@ -13,6 +13,7 @@
             --euro-pink: #ff0085;
             --euro-blue: #00b1ea;
             --euro-yellow: #fdf200;
+            --deep-navy: #050514;
             --gold: #ffd700;
             --black: #000000;
         }
@@ -25,45 +26,86 @@
 
         body {
             font-family: 'Segoe UI', 'Hebrew', Arial, sans-serif;
-            background: var(--black);
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--euro-purple) 100%);
+            background-attachment: fixed;
             color: white;
+            min-height: 100vh;
+            padding: 20px;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Navigation */
-        .nav-menu {
+        /* Floating Eurovision Heart/Circle Shapes */
+        .floating-shape {
             position: fixed;
-            top: 30px;
-            right: 30px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--euro-pink), var(--euro-blue));
+            top: 10%;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--euro-blue), var(--euro-purple));
+            top: 50%;
+            right: -150px;
+            animation-delay: 5s;
+        }
+
+        .shape3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, var(--euro-pink), rgba(255, 0, 133, 0.5));
+            bottom: 20%;
+            left: 10%;
+            animation-delay: 10s;
+        }
+
+        .shape4 {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, var(--euro-blue), var(--euro-yellow));
+            top: 30%;
+            right: 20%;
+            animation-delay: 7s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            25% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            50% {
+                transform: translate(-30px, -100px) scale(0.9);
+            }
+            75% {
+                transform: translate(30px, -50px) scale(1.05);
+            }
+        }
+
+        /* Eurovision 70 Logo */
+        .euro-logo {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 150px;
+            height: auto;
             z-index: 1000;
-            display: flex;
-            gap: 15px;
-        }
-
-        .nav-button {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--euro-pink);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-size: 1em;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-button:hover {
-            background: var(--euro-pink);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255,0,133,0.4);
-        }
-
-        .nav-button span {
-            font-size: 1.2em;
+            filter: drop-shadow(0 0 20px rgba(255, 0, 133, 0.3));
         }
 
         /* Hero Section */
@@ -81,6 +123,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            padding-top: 100px;
         }
 
         .hero::before {
@@ -318,6 +361,9 @@
 
         .card-front {
             background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -477,20 +523,121 @@
                 padding-right: 20px;
             }
         }
+
+        /* User Display */
+        .user-display {
+            position: fixed;
+            top: 115px;
+            right: 30px;
+            color: #fdf200;
+            font-weight: 600;
+            z-index: 1001;
+            font-size: 0.9rem;
+            background: rgba(20, 5, 45, 0.7);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(253, 242, 0, 0.3);
+        }
+
+        .user-display a {
+            color: #fdf200;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .user-display a:hover {
+            color: #fff;
+            text-shadow: 0 0 8px #fdf200;
+        }
+
+        /* Navigation Menu */
+        .top-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(20, 5, 45, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .top-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .top-nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .top-nav ul li a:hover {
+            color: #ff0085;
+            text-shadow: 0 0 8px #ff0085;
+        }
+
+        /* Israel Flag */
+        .carousel-winner-flag {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            animation: flagFloat 6s infinite ease-in-out;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        @keyframes flagFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
     </style>
 </head>
 <body>
-    <!-- Navigation Menu -->
-    <nav class="nav-menu">
-        <a href="homePage.aspx" class="nav-button">
-            <span>🏠</span>
-            Home
+    
+    <!-- Israel Flag -->
+    <img class="carousel-winner-flag" src="https://storage.googleapis.com/eurovision-com.appspot.com/public/core_data/flag_il.svg" alt="Israel flag in a eurovision heart" width="50">
+    
+    <!-- Floating Shapes -->
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+    <div class="floating-shape shape4"></div>
+    
+    <!-- User Display -->
+    <div class="user-display" id="userDisplay">
+        <a href="login.aspx">Sign Up / Login</a>
+    </div>
+            
+        <a href="homePage.aspx" style="text-decoration: none;">
+            <img src="images/eurovision/eurovision-70-logo.png" alt="Eurovision 70" class="euro-logo">
         </a>
-        <a href="timeline.aspx" class="nav-button" style="margin-right: 10px;">
-            <span>⏱️</span>
-            Timeline
-        </a>
-    </nav>
+        
+        <nav class="top-nav">
+            <ul>
+                <li><a href="homePage.aspx">Home</a></li>
+                <li><a href="timeline.aspx">Timeline</a></li>
+                <li><a href="fashion.aspx">Fashion</a></li>
+                <li><a href="data-manager.aspx">Data Manager</a></li>
+                <li><a href="latest-news.aspx">Gallery</a></li>
+                <li><a href="trivia.aspx">Trivia</a></li>
+                <li><a href="login.aspx">Sign Up</a></li>
+            </ul>
+        </nav>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -498,7 +645,7 @@
             <h1>THE LOOK OF ISRAEL</h1>
             <div class="subtitle">FROM MASKIT TO GAUTIER</div>
             <p class="description">
-                מהסנדלים והרקמה לאופנת העילית • איך האופנה הישראלית על במת האירוויזיון 
+                מהסנדלים והרקמה לאופנת העילית • איך הFashion הIsraelית על במת הEurovision 
                 שיקפה את השינוי בזהות הלאומית: מהצבר השורשי ועד לפופ-סטאר הבינלאומית.
             </p>
         </div>
@@ -517,8 +664,8 @@
                     <div class="era-years">1973-1983</div>
                     <h3 class="era-name">The Ethnic Roots</h3>
                     <p class="era-description">
-                        רקמות אתניות, גלביות, צהוב וכחול-לבן. ישראל מציגה את השורשים המזרח-תיכוניים 
-                        והזהות העברית המחודשת. מ"משכית" לתכשיטים תימניים.
+                        רקמות אתניות, גלביות, צהוב וכחול-לבן. Israel מציגה את השורשים המזרח-תיכוניים 
+                        והזהות הHebrew המחודשת. מ"משכית" לתכשיטים תימניים.
                     </p>
                 </div>
                 <div class="era-icon-item">
@@ -558,7 +705,7 @@
                     <h3 class="era-name">The Diva Revolution</h3>
                     <p class="era-description">
                         שמלות קוטור, נוצות, מראות, ומראה ה"גלאם" של הוליווד. דנה אינטרנשיונל פותחת 
-                        את השער למהפכת הדיווה - ישראל כמעצמת אופנה עולמית.
+                        את השער למהפכת הדיווה - Israel כמעצמת Fashion עולמית.
                     </p>
                 </div>
                 <div class="era-icon-item">
@@ -578,7 +725,7 @@
                     <h3 class="era-name">The Modern Icon</h3>
                     <p class="era-description">
                         סטריט-וור, בגדי גוף ביוניים, מראה עתידני ולוחמני. מנדב גדג' לנועה קירל - 
-                        ישראל כחלק מהפופ-קאלצ'ר העולמי, עם גישה אוונגרדית ונועזת.
+                        Israel כחלק מהפופ-קאלצ'ר העולמי, עם גישה אוונגרדית ונועזת.
                     </p>
                 </div>
                 <div class="era-icon-item">
@@ -610,7 +757,7 @@
                     <div class="timeline-decade">שנות ה-70</div>
                     <div class="timeline-influence">
                         <strong>היפים וילדי הפרחים:</strong> השפעת התנועה הבוהמית האירופית על הבדים 
-                        הנושמים והצבעים הטבעיים של ישראל. שמלות מקסי, רקמות ידניות, ושילוב של אלמנטים אתניים.
+                        הנושמים והצבעים הטבעיים של Israel. שמלות מקסי, רקמות ידניות, ושילוב של אלמנטים אתניים.
                     </div>
                 </div>
             </div>
@@ -629,8 +776,8 @@
                 <div class="timeline-content">
                     <div class="timeline-decade">שנות ה-90</div>
                     <div class="timeline-influence">
-                        <strong>מהפכת הסופר-מודלס:</strong> עידן הדיווה בעולם משפיע על ישראל. 
-                        מעצבים אירופאים נכנסים לתמונה, ואופנת הקוטור מגיעה לאירוויזיון.
+                        <strong>מהפכת הסופר-מודלס:</strong> עידן הדיווה בעולם משפיע על Israel. 
+                        מעצבים אירופאים נכנסים לתמונה, ואופנת הקוטור מגיעה לEurovision.
                     </div>
                 </div>
             </div>
@@ -649,11 +796,768 @@
 
     <script>
         // Load Eurovision data and generate gallery
-        const eurovisionData = <%= GetEurovisionDataJson() %>;
+        const eurovisionData = [
+  {
+    "Year": 1973,
+    "Artist": "אילנית",
+    "ArtistEnglish": "Ilanit",
+    "Song": "איי שם",
+    "SongEnglish": "Ey Sham",
+    "Rank": 4,
+    "Sound": "בלדה עממית רכה עם עיבוד תזמורתי, המשקפת את סגנון הEurovision של תחילת שנות ה-70",
+    "Fashion": "שמלה ארוכה אלגנטית עם שרוולים זורמים - שיק בוהמייני",
+    "Language": "Hebrew - מילים מסורתיות ופואטיות",
+    "Choreography": "תנועה מינימלית, דגש על ביצוע ווקאלי - אופייני לEurovision המוקדם",
+    "Tags": ["Folk", "Orchestra", "Classic"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1974,
+    "Artist": "כוורת",
+    "ArtistEnglish": "Kaveret",
+    "Song": "נתתי לה חיי",
+    "SongEnglish": "Natati La Chayay",
+    "Rank": 7,
+    "Sound": "פופ-רוק Israelי עם אנרגיה של להקה צעירה",
+    "Fashion": "מראה הלהקה: חולצות מכופתרות וג'ינס (יומיומי)",
+    "Language": "Hebrew - טקסט רומנטי ויSong",
+    "Choreography": "הופעה דינמית של להקת רוק עם תנועה טבעית",
+    "Tags": ["Rock", "Youth", "Band"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1975,
+    "Artist": "שלמה ארצי",
+    "ArtistEnglish": "Shlomo Artzi",
+    "Song": "את ותו לא",
+    "SongEnglish": "At Ve'oto Lo",
+    "Rank": 11,
+    "Sound": "פופ קלאסי עם גישה צעירה - אחד מהSongים המוקדמים של ארצי",
+    "Fashion": "חליפת ספארי בהירה, מראה ה'צבר' האירופאי",
+    "Language": "Hebrew - טקסט יSong ורגשי",
+    "Choreography": "אנרגיה רוקנרולית על הבמה - תנועה חופשית",
+    "Tags": ["Pop", "Israeli", "Debut"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1976,
+    "Artist": "שוקולד מנטה מסטיק",
+    "ArtistEnglish": "Chocolate Menta Mastik",
+    "Song": "אמור Hello",
+    "SongEnglish": "Emor Shalom",
+    "Rank": 6,
+    "Sound": "פופ הרמוני (בנות) עם מנגינה מדבקת",
+    "Fashion": "שמלות תואמות בגזרת A, מראה ה'דיילות'",
+    "Language": "Hebrew - מסר של Hello ואופטימיות",
+    "Choreography": "Choreography מסונכרנת של שלוש - הרמוניות מושלמות",
+    "Tags": ["Harmony", "GirlGroup", "Peace"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1977,
+    "Artist": "אילנית",
+    "ArtistEnglish": "Ilanit",
+    "Song": "אהבה היא Song לשניים",
+    "SongEnglish": "Ahava Hi Shir Lishnayim",
+    "Rank": 11,
+    "Sound": "בלדה אירופאית עם עיבוד אורקסטרלי עSong",
+    "Fashion": "שמלת קטיפה כהה ואלגנטית",
+    "Language": "Hebrew - Song אהבה פואטי",
+    "Choreography": "ביצוע סטטי ממוקד - דגש על ווקאל",
+    "Tags": ["Ballad", "Classic", "Romantic"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1978,
+    "Artist": "יזהר כהן והאלפבית",
+    "ArtistEnglish": "Izhar Cohen & Alphabeta",
+    "Song": "א-בה-ני-בי",
+    "SongEnglish": "A-Ba-Ni-Bi",
+    "Rank": 1,
+    "Sound": "פופ-דיסקו קצבי עם הברות עבריות שהפכו לאייקוניות בעולם",
+    "Fashion": "חולצות צבעוניות ומכנסיים מתרחבים - סגנון דיסקו קלאסי של שנות ה-70 המאוחרות",
+    "Language": "Hebrew - Song משחק ילדים שובב שכבש את אירופה",
+    "Choreography": "תנועות קבוצתיות פשוטות ושמחות עם מחיאות כפיים - נגיש ומהנה",
+    "Tags": ["Winner", "Disco", "Iconic", "Aftershock"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1979,
+    "Artist": "גלי עטרי, חלב ודבש",
+    "ArtistEnglish": "Gali Atari & Milk and Honey",
+    "Song": "הללויה",
+    "SongEnglish": "Hallelujah",
+    "Rank": 1,
+    "Sound": "פולק-פופ הרמוני עם גוון רוחני - מרומם ובלתי נשכח",
+    "Fashion": "תלבושות לבנות זורמות וטבעיות המסמלות Hello ואחדות",
+    "Language": "Hebrew - מסר אוניברסלי של חגיגה ושבח",
+    "Choreography": "תנועות נדנוד עדינות ודינמיקה קבוצתית הרמונית - דגש על מיזוג ווקאלי",
+    "Tags": ["Winner", "Harmony", "Spiritual", "Iconic"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1980,
+    "Artist": "-",
+    "ArtistEnglish": "Did Not Participate",
+    "Song": "-",
+    "SongEnglish": "Did Not Participate",
+    "Rank": null,
+    "Sound": "Israel לא השתתפה - אירחה את התחרות בירושלים אחרי הזכייה ב-1979",
+    "Fashion": "-",
+    "Language": "-",
+    "Choreography": "-",
+    "Tags": ["DidNotParticipate", "HostCountry"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1981,
+    "Artist": "הכל עובר חביבי",
+    "ArtistEnglish": "Hakol Over Habibi",
+    "Song": "הלילה",
+    "SongEnglish": "Halayla",
+    "Rank": 7,
+    "Sound": "פופ-ג'אז קברטי עם אווירה לילית",
+    "Fashion": "שמלות נצנצים וחליפות טוקסידו - מראה קברט אלגנטי",
+    "Language": "Hebrew - אווירה רומנטית ולילית",
+    "Choreography": "תנועות קברטיות עם רקדנים",
+    "Tags": ["Cabaret", "Jazz", "Night"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1982,
+    "Artist": "אבי טולדנו",
+    "ArtistEnglish": "Avi Toledano",
+    "Song": "הורה",
+    "SongEnglish": "Hora",
+    "Rank": 2,
+    "Sound": "פופ-פולק (הורה) עם מקצבים מסורתיים",
+    "Fashion": "לבן עם עיטורי כסף, מראה חגיגי",
+    "Language": "Hebrew - חגיגית וקצבית",
+    "Choreography": "ריקוד הורה ותנועות עממיות - חגיגי ואנרגטי",
+    "Tags": ["Folk", "Dance", "Traditional"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1983,
+    "Artist": "עפרה חזה",
+    "ArtistEnglish": "Ofra Haza",
+    "Song": "חי",
+    "SongEnglish": "Chai",
+    "Rank": 2,
+    "Sound": "פופ-פולק Israelי עם ווקאל תימני עוצמתי",
+    "Fashion": "צהוב בוהק עם תכשיטים תימניים מסורתיים",
+    "Language": "Hebrew - סגנון ביצוע דרמטי ותיאטרלי",
+    "Choreography": "אלמנטים של ריקוד עממי מסורתי משולבים עם במה עכשווית",
+    "Tags": ["Ethnic", "Yemenite", "Icon", "PowerVocal"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1984,
+    "Artist": "בני שני",
+    "ArtistEnglish": "Beney Shney",
+    "Song": "זמר נוגה",
+    "SongEnglish": "Zemer Nogah",
+    "Rank": 19,
+    "Sound": "בלדה פואטית עם עיבוד קלאסי",
+    "Fashion": "חליפה קלאסית בסגנון שנות ה-80",
+    "Language": "Hebrew - מילים פואטיות",
+    "Choreography": "ביצוע סטטי ממוקד",
+    "Tags": ["Ballad", "Poetic"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1985,
+    "Artist": "יזהר כהן",
+    "ArtistEnglish": "Izhar Cohen",
+    "Song": "עולה עולה",
+    "SongEnglish": "Olé Olé",
+    "Rank": 5,
+    "Sound": "פופ קצבי עם מנגינה אופטימית - Song המנון",
+    "Fashion": "מראה ה'גל החדש': כריות כתפיים וצבעי פסטל",
+    "Language": "Hebrew - מסר של תקווה ואחדות",
+    "Choreography": "תנועות דינמיות עם אנרגיה חיובית",
+    "Tags": ["80sPop", "Optimistic", "Anthem"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1986,
+    "Artist": "מוטי גלעדי ושרי צוריאל",
+    "ArtistEnglish": "Moti Giladi & Sarai Tzuriel",
+    "Song": "יבוא יום",
+    "SongEnglish": "Yavo Yom",
+    "Rank": 19,
+    "Sound": "דואט פופ עם מסר של תקווה",
+    "Fashion": "חליפות צבעוניות בסגנון שנות ה-80 המוקדמות",
+    "Language": "Hebrew - Song על עתיד טוב יותר",
+    "Choreography": "דואט עם תנועות מסונכרנות",
+    "Tags": ["Duet", "Hope", "80s"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1987,
+    "Artist": "דטנר וקושניר (להקת הפרחים)",
+    "ArtistEnglish": "Datner & Kushnir",
+    "Song": "Song הCancelנים",
+    "SongEnglish": "Shir Habatlanim",
+    "Rank": 8,
+    "Sound": "פופ-קומי עם הומור Israelי ייחודי",
+    "Fashion": "חליפות 'האחים בלוז' (שחור-לבן, כובע ומשקפיים)",
+    "Language": "Hebrew - טקסט הומוריסטי",
+    "Choreography": "תנועות קומיות בסגנון קברט",
+    "Tags": ["Comedy", "Cabaret", "Unique"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1988,
+    "Artist": "ירדנה ארזי",
+    "ArtistEnglish": "Yardena Arazi",
+    "Song": "בן אדם",
+    "SongEnglish": "Ben Adam",
+    "Rank": 7,
+    "Sound": "פופ-צועני עם אלמנטים דרמטיים",
+    "Fashion": "שמלת צוענייה עSongה בשכבות וצבעים",
+    "Language": "Hebrew - מילים משמעותיות על אנושיות",
+    "Choreography": "ביצוע רגשי ותיאטרלי",
+    "Tags": ["Dramatic", "Gypsy", "Theatrical"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1989,
+    "Artist": "גילי וגלית",
+    "ArtistEnglish": "Gili & Galit",
+    "Song": "דרך המלך",
+    "SongEnglish": "Derekh Hamelekh",
+    "Rank": 12,
+    "Sound": "בלדת פופ עם ווקאל ילדים",
+    "Fashion": "בגדי ילדים חגיגיים (וסט ועניבת פרפר)",
+    "Language": "Hebrew - פואטי ומהורהר",
+    "Choreography": "דואט ילדים רגיש עם תנועה מינימלית",
+    "Tags": ["Children", "Innocent", "Poetic"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1990,
+    "Artist": "ריטה",
+    "ArtistEnglish": "Rita",
+    "Song": "שרה בלילה",
+    "SongEnglish": "Shara Balayla",
+    "Rank": 18,
+    "Sound": "בלדת פופ עם השפעות מזרח תיכוניות",
+    "Fashion": "שמלת ערב אלגנטית",
+    "Language": "Hebrew - רומנטי ולילי",
+    "Choreography": "ביצוע רגשי עם תנועה מינימלית",
+    "Tags": ["Ballad", "MiddleEastern", "Night"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1991,
+    "Artist": "דוד ד'אור",
+    "ArtistEnglish": "Duo Datz",
+    "Song": "כאן",
+    "SongEnglish": "Kan",
+    "Rank": 3,
+    "Sound": "בלדת כוח עם קליימקס דרמטי - ווקאל מרשים",
+    "Fashion": "חליפה שחורה אלגנטית",
+    "Language": "Hebrew - מסר של נוכחות ומחויבות",
+    "Choreography": "ביצוע סטטי עם דרמה ווקאלית",
+    "Tags": ["PowerBallad", "Dramatic", "Top3"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1992,
+    "Artist": "דפנה דיאל",
+    "ArtistEnglish": "Dafna Dekel",
+    "Song": "זה הזמן",
+    "SongEnglish": "Ze Hazman",
+    "Rank": 6,
+    "Sound": "פופ אופטימי עם אנרגיה חיובית",
+    "Fashion": "שמלה צבעונית ומודרנית",
+    "Language": "Hebrew - מסר של מימוש חלומות",
+    "Choreography": "תנועות אנרגטיות וחיוביות",
+    "Tags": ["Pop", "Optimistic", "Upbeat"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1993,
+    "Artist": "להקת הSound הרך",
+    "ArtistEnglish": "Lehakat HaTzlil HaRach",
+    "Song": "Song לHello",
+    "SongEnglish": "Shir LaShalom",
+    "Rank": 24,
+    "Sound": "בלדת Hello מסורתית - Song המחאה המפורסם",
+    "Fashion": "תלבושות פשוטות בלבן",
+    "Language": "Hebrew - מסר של Hello ותקווה",
+    "Choreography": "ביצוע פשוט וכן - דגש על המסר",
+    "Tags": ["Peace", "Protest", "Historical"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1994,
+    "Artist": "כרמל",
+    "ArtistEnglish": "Carmel",
+    "Song": "צא לך",
+    "SongEnglish": "Amen",
+    "Rank": 15,
+    "Sound": "פופ מזרח תיכוני עם אלמנטים אתניים",
+    "Fashion": "שמלה מסורתית עם תכשיטים",
+    "Language": "Hebrew - מסר של מסע ותקווה",
+    "Choreography": "תנועות מסורתיות עם אנרגיה",
+    "Tags": ["MiddleEastern", "Ethnic", "Journey"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1995,
+    "Artist": "ליאורה",
+    "ArtistEnglish": "Liora",
+    "Song": "לו יהיה לי",
+    "SongEnglish": "Amen",
+    "Rank": 8,
+    "Sound": "בלדה רגשית עם ווקאל עוצמתי",
+    "Fashion": "שמלת ערב אדומה מרשימה",
+    "Language": "Hebrew - מילים רגשיות ואישיות",
+    "Choreography": "ביצוע ממוקד עם רגש עמוק",
+    "Tags": ["Ballad", "Emotional", "PowerVocal"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1996,
+    "Artist": "גלעד סגב",
+    "ArtistEnglish": "Galit",
+    "Song": "פתח לי את הלב",
+    "SongEnglish": "Shalom Olam",
+    "Rank": 17,
+    "Sound": "בלדה אקוסטית עם מסר Hello",
+    "Fashion": "תלבושת פשוטה וצנועה",
+    "Language": "Hebrew - מסר אוניברסלי",
+    "Choreography": "ביצוע אינטימי ופשוט",
+    "Tags": ["Acoustic", "Peace", "Simple"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1997,
+    "Artist": "אופרה חזה",
+    "ArtistEnglish": "Ofra Haza",
+    "Song": "שמע Israel",
+    "SongEnglish": "Shma Yisrael",
+    "Rank": 12,
+    "Sound": "פיוז'ן אתני-מודרני עם עוצמה ווקאלית",
+    "Fashion": "תלבושת מסורתית עם נגיעות מודרניות",
+    "Language": "Hebrew - תפילה מסורתית בעיבוד מודרני",
+    "Choreography": "תנועות מסורתיות עם אנרגיה עכשווית",
+    "Tags": ["Ethnic", "Fusion", "Prayer", "Icon"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1998,
+    "Artist": "דנה אינטרנשיונל",
+    "ArtistEnglish": "Dana International",
+    "Song": "דיווה",
+    "SongEnglish": "Diva",
+    "Rank": 1,
+    "Sound": "טכנו-פופ אנרגטי עם השפעות מזרח תיכוניות - פורץ דרך ונועז",
+    "Fashion": "שמלת ערב נוצצת - אנרגיה וביטחון של דיווה אמיתית",
+    "Language": "Hebrew עם המילה הEnglish 'דיווה' - מגשרת על תרבויות ושוברת גבולות",
+    "Choreography": "Choreography פופ מודרנית עם תנועות בטוחות ומעצימות - רגע AFTERSHOCK",
+    "Tags": ["Winner", "Techno", "Groundbreaking", "Aftershock", "LGBTQ"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 1999,
+    "Artist": "עדן",
+    "ArtistEnglish": "Eden",
+    "Song": "כולנו רוצים אהבה",
+    "SongEnglish": "Yom Huledet (Happy Birthday)",
+    "Rank": 5,
+    "Sound": "פופ צעיר ואנרגטי - Song יום הולדת חגיגי",
+    "Fashion": "תלבושות צעירות וצבעוניות",
+    "Language": "Hebrew - מסר שמח וחגיגי",
+    "Choreography": "Choreography אנרגטית עם רקדנים",
+    "Tags": ["Pop", "Youth", "Celebration"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2000,
+    "Artist": "פינגווין",
+    "ArtistEnglish": "Ping Pong",
+    "Song": "שאלתי את הלב",
+    "SongEnglish": "Sameach",
+    "Rank": 22,
+    "Sound": "פופ קליל עם מנגינה פשוטה",
+    "Fashion": "תלבושות קז'ואל צעירות",
+    "Language": "Hebrew - Song על שמחה",
+    "Choreography": "תנועות פשוטות וידידותיות",
+    "Tags": ["Pop", "Simple", "Happy"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2001,
+    "Artist": "טל ספקטור",
+    "ArtistEnglish": "Tal Sondak",
+    "Song": "כאילו בחלום",
+    "SongEnglish": "En Davar",
+    "Rank": 16,
+    "Sound": "פופ קליל עם גישה אופטימית",
+    "Fashion": "תלבושת צעירה ועכשווית",
+    "Language": "Hebrew - מסר חיובי",
+    "Choreography": "תנועות פשוטות ושמחות",
+    "Tags": ["Pop", "Optimistic", "Light"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2002,
+    "Artist": "שרית חדד",
+    "ArtistEnglish": "Sarit Hadad",
+    "Song": "Light a Candle",
+    "SongEnglish": "Light a Candle",
+    "Rank": 12,
+    "Sound": "בלדת פופ עם מסר של Hello",
+    "Fashion": "שמלת ערב לבנה אלגנטית",
+    "Language": "English - מסר אוניברסלי של תקווה",
+    "Choreography": "ביצוע רגשי עם אנרגיה",
+    "Tags": ["Ballad", "Peace", "Hope"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2003,
+    "Artist": "לירן דמארי (Lhasa)",
+    "ArtistEnglish": "Lhasa",
+    "Song": "חזור רעותי",
+    "SongEnglish": "Words for Love",
+    "Rank": 29,
+    "Sound": "פופ-רוק עם אנרגיה מודרנית",
+    "Fashion": "סגנון רוק צעיר עם עור",
+    "Language": "Hebrew + English - רוק אנרגטי",
+    "Choreography": "אנרגיה רוק עם רקדנים",
+    "Tags": ["Rock", "Modern", "Edgy"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2004,
+    "Artist": "דיויד ד'אור",
+    "ArtistEnglish": "David D'Or",
+    "Song": "לאהוב אותך",
+    "SongEnglish": "Leha'amin",
+    "Rank": 11,
+    "Sound": "בלדה רגשית עם ווקאל עוצמתי",
+    "Fashion": "חליפה שחורה קלאסית",
+    "Language": "Hebrew - מסר של אמונה",
+    "Choreography": "ביצוע דרמטי ממוקד",
+    "Tags": ["Ballad", "PowerVocal", "Belief"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2005,
+    "Artist": "Songי מימון",
+    "ArtistEnglish": "Shiri Maimon",
+    "Song": "השקט שנשאר",
+    "SongEnglish": "HaSheket SheNishar",
+    "Rank": 4,
+    "Sound": "בלדה רגשית עם עיבוד דרמטי - ביצוע ווקאלי עוצמתי",
+    "Fashion": "שמלת ערב אדומה אלגנטית - מתוחכמת ומודרנית",
+    "Language": "Hebrew - מילים רגשיות ואינטרוספקטיביות עמוקות",
+    "Choreography": "תנועה מינימלית עם דגש על חיבור רגשי וביצוע ווקאלי",
+    "Tags": ["Ballad", "PowerVocal", "Emotional", "Top5"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2006,
+    "Artist": "אדי Cancelר",
+    "ArtistEnglish": "Eddie Butler",
+    "Song": "Together We Are One",
+    "SongEnglish": "Together We Are One",
+    "Rank": 23,
+    "Sound": "בלדת פופ עם מסר של אחדות",
+    "Fashion": "חליפה אלגנטית קלאסית",
+    "Language": "English - מסר אוניברסלי",
+    "Choreography": "ביצוע פשוט ורגשי",
+    "Tags": ["Ballad", "Unity", "Simple"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2007,
+    "Artist": "טרף",
+    "ArtistEnglish": "Teapacks",
+    "Song": "Push The Button",
+    "SongEnglish": "Push The Button",
+    "Rank": 25,
+    "Sound": "אלקטרו-פופ עם מסר פוליטי",
+    "Fashion": "תלבושות אלקטרוניות עתידניות",
+    "Language": "English - מסר נגד מלחמה",
+    "Choreography": "Choreography מודרנית עם אפקטים",
+    "Tags": ["Electro", "Political", "AntiWar"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2008,
+    "Artist": "בועז מעודה",
+    "ArtistEnglish": "Boaz Mauda",
+    "Song": "כאילו",
+    "SongEnglish": "The Fire in Your Eyes",
+    "Rank": 9,
+    "Sound": "בלדה דרמטית עם ווקאל עוצמתי",
+    "Fashion": "חליפה שחורה אלגנטית",
+    "Language": "English - רגשי ועוצמתי",
+    "Choreography": "ביצוע דרמטי עם נוכחות במה",
+    "Tags": ["Ballad", "Dramatic", "PowerVocal"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2009,
+    "Artist": "נועה",
+    "ArtistEnglish": "Noa & Mira Awad",
+    "Song": "היא באה מהבלוג",
+    "SongEnglish": "There Must Be Another Way",
+    "Rank": 16,
+    "Sound": "פופ-רוק עם מסר של דו-קיום - דואט עברי-ערבי",
+    "Fashion": "תלבושות מודרניות בשחור-לבן",
+    "Language": "Hebrew וערבית - מסר של Hello",
+    "Choreography": "Choreography משותפת המסמלת אחדות",
+    "Tags": ["Duet", "Peace", "Coexistence", "Political"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2010,
+    "Artist": "חראל סקעת",
+    "ArtistEnglish": "Harel Skaat",
+    "Song": "מילים",
+    "SongEnglish": "Milim",
+    "Rank": 14,
+    "Sound": "פופ-רוק אנרגטי עם גיטרות חשמליות",
+    "Fashion": "סגנון רוקר עם עור וג'ינס",
+    "Language": "Hebrew - טקסט על כוח המילים",
+    "Choreography": "אנרגיה רוק עם תנועה דינמית",
+    "Tags": ["Rock", "Pop", "Words"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2011,
+    "Artist": "דנה אינטרנשיונל",
+    "ArtistEnglish": "Dana International",
+    "Song": "דינג דונג",
+    "SongEnglish": "Ding Dong",
+    "Rank": 15,
+    "Sound": "פופ אנרגטי עם מנגינה מדבקת",
+    "Fashion": "תלבושות צבעוניות וקצביות",
+    "Language": "English - Song שמח ומרגיע",
+    "Choreography": "Choreography אנרגטית עם רקדנים",
+    "Tags": ["Pop", "Catchy", "Energetic"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2012,
+    "Artist": "איציק כהן",
+    "ArtistEnglish": "Izabo",
+    "Song": "אניני",
+    "SongEnglish": "Time",
+    "Rank": 23,
+    "Sound": "בלדה רגשית עם ווקאל עמוק",
+    "Fashion": "חליפה קלאסית שחורה",
+    "Language": "English - רפלקטיבי ורגשי",
+    "Choreography": "ביצוע סטטי עם עומק רגשי",
+    "Tags": ["Ballad", "Reflective", "Deep"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2013,
+    "Artist": "מורן מזור",
+    "ArtistEnglish": "Moran Mazor",
+    "Song": "Rak bishvilo",
+    "SongEnglish": "רק בשבילו",
+    "Rank": 22,
+    "Sound": "בלדה רגשית עם נוכחות ווקאלית",
+    "Fashion": "שמלה פשוטה ואלגנטית",
+    "Language": "Hebrew - אישי ורגשי",
+    "Choreography": "ביצוע אינטימי ופשוט",
+    "Tags": ["Ballad", "Intimate", "Personal"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2014,
+    "Artist": "מיי פיינגולד",
+    "ArtistEnglish": "Mei Finegold",
+    "Song": "Same Heart",
+    "SongEnglish": "Same Heart",
+    "Rank": null,
+    "Sound": "פופ עדין עם מסר של אחדות - לא עבר חצי גמר",
+    "Fashion": "תלבושת פשוטה ומודרנית",
+    "Language": "English - מסר של חיבור",
+    "Choreography": "ביצוע פשוט ורגשי",
+    "Tags": ["Pop", "Unity", "DidNotQualify"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2015,
+    "Artist": "נדב גדג'",
+    "ArtistEnglish": "Nadav Guedj",
+    "Song": "גולדן בוי",
+    "SongEnglish": "Golden Boy",
+    "Rank": 9,
+    "Sound": "פופ קצבי עם אווירה ים-תיכונית - המנון קיץ מרגיש טוב",
+    "Fashion": "לוק טרנדי קז'ואל עם ג'קט ג'ינס - צעיר ורענן",
+    "Language": "English - מכוון לקהל אירופי רחב יותר",
+    "Choreography": "תנועות פופ מודרניות אנרגטיות עם רקדני רקע - סגנון Eurovision עכשווי",
+    "Tags": ["Pop", "Summer", "Mediterranean", "FeelGood"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2016,
+    "Artist": "הוי",
+    "ArtistEnglish": "Hovi Star",
+    "Song": "Made of Stars",
+    "SongEnglish": "Made of Stars",
+    "Rank": 14,
+    "Sound": "פופ אלקטרוני עם אנרגיה גבוהה",
+    "Fashion": "תלבושות נוצצות בסגנון פופ",
+    "Language": "English - Song על חלומות",
+    "Choreography": "Choreography מודרנית עם אפקטי במה",
+    "Tags": ["Electro", "Pop", "Dreams"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2017,
+    "Artist": "עמרי ועידן רייכל",
+    "ArtistEnglish": "IMRI",
+    "Song": "I Feel Alive",
+    "SongEnglish": "I Feel Alive",
+    "Rank": 23,
+    "Sound": "בלדה עדינה עם אלמנטים אלקטרוניים",
+    "Fashion": "תלבושות מינימליסטיות בלבן",
+    "Language": "English - מסר של תקווה",
+    "Choreography": "ביצוע עדין ואינטימי",
+    "Tags": ["Ballad", "Electronic", "Hope"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2018,
+    "Artist": "נטע ברזילי",
+    "ArtistEnglish": "Netta Barzilai",
+    "Song": "טוי",
+    "SongEnglish": "Toy",
+    "Rank": 1,
+    "Sound": "אלקטרו-פופ מוזר עם קולות תרנגולת ולופינג - ויראלי ובלתי נשכח",
+    "Fashion": "קימונו צבעוני נועז עם אביזרים בולטים - אכזרי וייחודי",
+    "Language": "English - המנון העצמה עם גישה שובבה",
+    "Choreography": "תנועות 'ריקוד התרנגולת' המיתולוגיות שהפכו ויראליות בעולם - AFTERSHOCK טהור",
+    "Tags": ["Winner", "Electro", "Viral", "Aftershock", "Empowerment", "Iconic"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2019,
+    "Artist": "כוכב נולד",
+    "ArtistEnglish": "Kobi Marimi",
+    "Song": "בית הספר לניצוחים",
+    "SongEnglish": "Home",
+    "Rank": null,
+    "Sound": "בלדת פופ רגשית - לא עבר את חצי הגמר",
+    "Fashion": "תלבושת פשוטה ואלגנטית",
+    "Language": "English - Song על השתייכות",
+    "Choreography": "ביצוע עדין ורגשי",
+    "Tags": ["Ballad", "DidNotQualify", "Emotional"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2020,
+    "Artist": "עדן אלנה",
+    "ArtistEnglish": "Eden Alene",
+    "Song": "Feker Libi",
+    "SongEnglish": "Feker Libi",
+    "Rank": null,
+    "Sound": "פיוז'ן אתני-אלקטרוני עם השפעות אתיופיות - הEurovision בוטל בגלל קורונה",
+    "Fashion": "תלבושות אתניות מודרניות עם צבעוניות",
+    "Language": "אמהרית + Hebrew - חגיגה תרבותית ייחודית",
+    "Choreography": "Choreography משלבת ריקוד אתיופי עם פופ מודרני - לא הוצגה",
+    "Tags": ["Ethnic", "Fusion", "Ethiopian", "COVID", "Cancelled"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2021,
+    "Artist": "עדן אלנה",
+    "ArtistEnglish": "Eden Alene",
+    "Song": "Set Me Free",
+    "SongEnglish": "Set Me Free",
+    "Rank": 17,
+    "Sound": "פופ אלקטרוני עם אנרגיה גבוהה",
+    "Fashion": "תלבושות עתידניות נוצצות",
+    "Language": "English - Song על חופש",
+    "Choreography": "Choreography מודרנית עם רקדנים",
+    "Tags": ["Pop", "Electronic", "Freedom"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2022,
+    "Artist": "מיכאל בן דוד",
+    "ArtistEnglish": "Michael Ben David",
+    "Song": "I.M",
+    "SongEnglish": "I.M",
+    "Rank": 17,
+    "Sound": "פופ-רוק עם אנרגיה חיובית",
+    "Fashion": "תלבושת צבעונית ואנרגטית",
+    "Language": "English - Song על ביטחון עצמי",
+    "Choreography": "Choreography אנרגטית עם רקדנים",
+    "Tags": ["Pop", "Rock", "Confidence"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2023,
+    "Artist": "נועה קירל",
+    "ArtistEnglish": "Noa Kirel",
+    "Song": "Unicorn",
+    "SongEnglish": "Unicorn",
+    "Rank": 3,
+    "Sound": "פופ אלקטרוני עוצמתי עם אנרגיה גבוהה",
+    "Fashion": "תלבושות עתידניות נוצצות בוורוד וסגול",
+    "Language": "English - Song על ייחודיות",
+    "Choreography": "Choreography מורכבת עם רקדנים ואפקטים ויזואליים",
+    "Tags": ["Pop", "Electronic", "Top3", "Spectacle"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2024,
+    "Artist": "עדן גולן",
+    "ArtistEnglish": "Eden Golan",
+    "Song": "הוריקן",
+    "SongEnglish": "Hurricane",
+    "Rank": 5,
+    "Sound": "בלדת כוח דרמטית עם אלמנטים אלקטרוניים - רגשית ואינטנסיבית",
+    "Fashion": "שמלה אלגנטית מודרנית עם אלמנטים זורמים - במה מתוחכמת",
+    "Language": "English - ביצוע ווקאלי עוצמתי עם מסירה דרמטית",
+    "Choreography": "מחול עכשווי עם דימויים סמליים - משלב רגש עם דיוק טכני",
+    "Tags": ["PowerBallad", "Dramatic", "Contemporary", "Top5"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2025,
+    "Artist": "יובל רפאל",
+    "ArtistEnglish": "Yuval Raphael",
+    "Song": "New Day Will Rise",
+    "SongEnglish": "New Day Will Rise",
+    "Rank": null,
+    "Sound": "בלדת פופ עוצמתית - Eurovision 2025 עדיין לא התקיים",
+    "Fashion": "שמלה שחורה ודרמטית",
+    "Language": "English - מסר של תקווה",
+    "Choreography": "טרם הוצג",
+    "Tags": ["Pop", "Ballad", "Future", "2025"],
+    "ImageUrl": ""
+  },
+  {
+    "Year": 2026,
+    "Artist": "נועם בתן",
+    "ArtistEnglish": "Noam Batan",
+    "Song": "-",
+    "SongEnglish": "-",
+    "Rank": null,
+    "Sound": "הSong טרם נבחר - נועם בתן נבחר כArtist ב-2026",
+    "Fashion": "טרם נקבע",
+    "Language": "טרם נקבע",
+    "Choreography": "טרם נקבע",
+    "Tags": ["Future", "2026", "Selected"],
+    "ImageUrl": ""
+  }
+];
 
         // Filter to iconic fashion moments
         const fashionHighlights = [
-            1973, 1978, 1979, 1983, 1985, 1998, 2015, 2018, 2023, 2024
+            1973, 1978, 1979, 1983, 1985, 1998, 2015, 2016, 2018, 2020, 2023, 2024
         ];
 
         const galleryGrid = document.getElementById('galleryGrid');
@@ -662,11 +1566,15 @@
             const entry = eurovisionData.find(e => e.Year === year);
             if (!entry) return;
 
+            // Determine image extension (most are .png, except 1978 which is .jpg)
+            const imageExt = year === 1978 ? 'jpg' : 'png';
+            const imagePath = `images/eurovision/${year}_FSH.${imageExt}`;
+
             const card = document.createElement('div');
             card.className = 'fashion-card';
             card.innerHTML = `
                 <div class="card-inner">
-                    <div class="card-front">
+                    <div class="card-front" style="background-image: url('${imagePath}');">
                         <div class="card-content">
                             <div class="card-year">${entry.Year}</div>
                             <div class="card-artist">${entry.Artist}</div>
@@ -685,7 +1593,7 @@
                         </div>
                         <div class="xray-item">
                             <div class="xray-label">דירוג:</div>
-                            <div class="xray-value">מקום ${entry.Rank || 'N/A'}</div>
+                            <div class="xray-value">Place ${entry.Rank || 'N/A'}</div>
                         </div>
                     </div>
                 </div>
@@ -693,5 +1601,24 @@
             galleryGrid.appendChild(card);
         });
     </script>
+
+    <script>
+        // Display logged-in user
+        window.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('euroUser') || 'null');
+            const userDisplay = document.getElementById('userDisplay');
+            
+            if (currentUser && userDisplay) {
+                userDisplay.innerHTML = `<span>Hello ${currentUser.name}!</span> | <a href="#" onclick="logout(); return false;">Logout</a>`;
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('euroUser');
+            alert('Logoutת בהצלחה / Successfully logged out');
+            window.location.reload();
+        }
+    </script>
+
 </body>
 </html>

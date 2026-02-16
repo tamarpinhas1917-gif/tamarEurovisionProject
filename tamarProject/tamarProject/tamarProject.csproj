@@ -78,6 +78,8 @@
     <Content Include="timeline.aspx" />
     <Content Include="data-manager.aspx" />
     <Content Include="fashion.aspx" />
+    <Content Include="trivia.aspx" />
+    <Content Include="latest-news.aspx" />
     <Content Include="App_Data\eurovision-data.json" />
     <Content Include="StyleMenu.css" />
     <Content Include="Web.config" />
@@ -158,6 +160,20 @@
     </Compile>
     <Compile Include="fashion.aspx.designer.cs">
       <DependentUpon>fashion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="trivia.aspx.cs">
+      <DependentUpon>trivia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="trivia.aspx.designer.cs">
+      <DependentUpon>trivia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="latest-news.aspx.cs">
+      <DependentUpon>latest-news.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="latest-news.aspx.designer.cs">
+      <DependentUpon>latest-news.aspx</DependentUpon>
     </Compile>
     <Compile Include="EurovisionYear.cs" />
   </ItemGroup>
