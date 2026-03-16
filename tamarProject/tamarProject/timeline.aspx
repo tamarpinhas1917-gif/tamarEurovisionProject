@@ -825,7 +825,7 @@
     "Language": "Hebrew - מילים מסורתיות ופואטיות",
     "Choreography": "תנועה מינימלית, דגש על ביצוע ווקאלי - אופייני לEurovision המוקדם",
     "Tags": ["Folk", "Orchestra", "Classic"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1973.png"
   },
   {
     "Year": 1974,
@@ -839,7 +839,7 @@
     "Language": "Hebrew - טקסט רומנטי ויSong",
     "Choreography": "הופעה דינמית של להקת רוק עם תנועה טבעית",
     "Tags": ["Rock", "Youth", "Band"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1974.png"
   },
   {
     "Year": 1975,
@@ -853,7 +853,7 @@
     "Language": "Hebrew - טקסט יSong ורגשי",
     "Choreography": "אנרגיה רוקנרולית על הבמה - תנועה חופשית",
     "Tags": ["Pop", "Israeli", "Debut"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1975.png"
   },
   {
     "Year": 1976,
@@ -867,7 +867,7 @@
     "Language": "Hebrew - מסר של Hello ואופטימיות",
     "Choreography": "Choreography מסונכרנת של שלוש - הרמוניות מושלמות",
     "Tags": ["Harmony", "GirlGroup", "Peace"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1976.png"
   },
   {
     "Year": 1977,
@@ -881,7 +881,7 @@
     "Language": "Hebrew - Song אהבה פואטי",
     "Choreography": "ביצוע סטטי ממוקד - דגש על ווקאל",
     "Tags": ["Ballad", "Classic", "Romantic"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1977.png"
   },
   {
     "Year": 1978,
@@ -895,7 +895,7 @@
     "Language": "Hebrew - Song משחק ילדים שובב שכבש את אירופה",
     "Choreography": "תנועות קבוצתיות פשוטות ושמחות עם מחיאות כפיים - נגיש ומהנה",
     "Tags": ["Winner", "Disco", "Iconic", "Aftershock"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1978.png"
   },
   {
     "Year": 1979,
@@ -909,7 +909,7 @@
     "Language": "Hebrew - מסר אוניברסלי של חגיגה ושבח",
     "Choreography": "תנועות נדנוד עדינות ודינמיקה קבוצתית הרמונית - דגש על מיזוג ווקאלי",
     "Tags": ["Winner", "Harmony", "Spiritual", "Iconic"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1979.png"
   },
   {
     "Year": 1980,
@@ -923,7 +923,7 @@
     "Language": "-",
     "Choreography": "-",
     "Tags": ["DidNotParticipate", "HostCountry"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/Not Participated.png"
   },
   {
     "Year": 1981,
@@ -937,7 +937,7 @@
     "Language": "Hebrew - אווירה רומנטית ולילית",
     "Choreography": "תנועות קברטיות עם רקדנים",
     "Tags": ["Cabaret", "Jazz", "Night"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1981.png"
   },
   {
     "Year": 1982,
@@ -951,7 +951,7 @@
     "Language": "Hebrew - חגיגית וקצבית",
     "Choreography": "ריקוד הורה ותנועות עממיות - חגיגי ואנרגטי",
     "Tags": ["Folk", "Dance", "Traditional"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1982.png"
   },
   {
     "Year": 1983,
@@ -965,7 +965,7 @@
     "Language": "Hebrew - סגנון ביצוע דרמטי ותיאטרלי",
     "Choreography": "אלמנטים של ריקוד עממי מסורתי משולבים עם במה עכשווית",
     "Tags": ["Ethnic", "Yemenite", "Icon", "PowerVocal"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1983.png"
   },
   {
     "Year": 1984,
@@ -979,7 +979,7 @@
     "Language": "Hebrew - מילים פואטיות",
     "Choreography": "ביצוע סטטי ממוקד",
     "Tags": ["Ballad", "Poetic"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/Not Participated.png"
   },
   {
     "Year": 1985,
@@ -993,7 +993,7 @@
     "Language": "Hebrew - מסר של תקווה ואחדות",
     "Choreography": "תנועות דינמיות עם אנרגיה חיובית",
     "Tags": ["80sPop", "Optimistic", "Anthem"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1985.png"
   },
   {
     "Year": 1986,
@@ -1007,7 +1007,7 @@
     "Language": "Hebrew - Song על עתיד טוב יותר",
     "Choreography": "דואט עם תנועות מסונכרנות",
     "Tags": ["Duet", "Hope", "80s"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1986.png"
   },
   {
     "Year": 1987,
@@ -1021,7 +1021,7 @@
     "Language": "Hebrew - טקסט הומוריסטי",
     "Choreography": "תנועות קומיות בסגנון קברט",
     "Tags": ["Comedy", "Cabaret", "Unique"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1987.png"
   },
   {
     "Year": 1988,
@@ -1035,7 +1035,7 @@
     "Language": "Hebrew - מילים משמעותיות על אנושיות",
     "Choreography": "ביצוע רגשי ותיאטרלי",
     "Tags": ["Dramatic", "Gypsy", "Theatrical"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1988.jpeg"
   },
   {
     "Year": 1989,
@@ -1049,7 +1049,7 @@
     "Language": "Hebrew - פואטי ומהורהר",
     "Choreography": "דואט ילדים רגיש עם תנועה מינימלית",
     "Tags": ["Children", "Innocent", "Poetic"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1989.jpg"
   },
   {
     "Year": 1990,
@@ -1063,7 +1063,7 @@
     "Language": "Hebrew - רומנטי ולילי",
     "Choreography": "ביצוע רגשי עם תנועה מינימלית",
     "Tags": ["Ballad", "MiddleEastern", "Night"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1990.png"
   },
   {
     "Year": 1991,
@@ -1077,7 +1077,7 @@
     "Language": "Hebrew - מסר של נוכחות ומחויבות",
     "Choreography": "ביצוע סטטי עם דרמה ווקאלית",
     "Tags": ["PowerBallad", "Dramatic", "Top3"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1991.png"
   },
   {
     "Year": 1992,
@@ -1091,7 +1091,7 @@
     "Language": "Hebrew - מסר של מימוש חלומות",
     "Choreography": "תנועות אנרגטיות וחיוביות",
     "Tags": ["Pop", "Optimistic", "Upbeat"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1992.jpg"
   },
   {
     "Year": 1993,
@@ -1105,7 +1105,7 @@
     "Language": "Hebrew - מסר של Hello ותקווה",
     "Choreography": "ביצוע פשוט וכן - דגש על המסר",
     "Tags": ["Peace", "Protest", "Historical"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1993.jpg"
   },
   {
     "Year": 1994,
@@ -1119,7 +1119,7 @@
     "Language": "Hebrew - מסר של מסע ותקווה",
     "Choreography": "תנועות מסורתיות עם אנרגיה",
     "Tags": ["MiddleEastern", "Ethnic", "Journey"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/Not Participated.png"
   },
   {
     "Year": 1995,
@@ -1133,7 +1133,7 @@
     "Language": "Hebrew - מילים רגשיות ואישיות",
     "Choreography": "ביצוע ממוקד עם רגש עמוק",
     "Tags": ["Ballad", "Emotional", "PowerVocal"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1995.jpg"
   },
   {
     "Year": 1996,
@@ -1147,7 +1147,7 @@
     "Language": "Hebrew - מסר אוניברסלי",
     "Choreography": "ביצוע אינטימי ופשוט",
     "Tags": ["Acoustic", "Peace", "Simple"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1996.jpg"
   },
   {
     "Year": 1997,
@@ -1161,7 +1161,7 @@
     "Language": "Hebrew - תפילה מסורתית בעיבוד מודרני",
     "Choreography": "תנועות מסורתיות עם אנרגיה עכשווית",
     "Tags": ["Ethnic", "Fusion", "Prayer", "Icon"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/Not Participated.png"
   },
   {
     "Year": 1998,
@@ -1175,7 +1175,7 @@
     "Language": "Hebrew עם המילה הEnglish 'דיווה' - מגשרת על תרבויות ושוברת גבולות",
     "Choreography": "Choreography פופ מודרנית עם תנועות בטוחות ומעצימות - רגע AFTERSHOCK",
     "Tags": ["Winner", "Techno", "Groundbreaking", "Aftershock", "LGBTQ"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1998.png"
   },
   {
     "Year": 1999,
@@ -1189,7 +1189,7 @@
     "Language": "Hebrew - מסר שמח וחגיגי",
     "Choreography": "Choreography אנרגטית עם רקדנים",
     "Tags": ["Pop", "Youth", "Celebration"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/1999.png"
   },
   {
     "Year": 2000,
@@ -1203,7 +1203,7 @@
     "Language": "Hebrew - Song על שמחה",
     "Choreography": "תנועות פשוטות וידידותיות",
     "Tags": ["Pop", "Simple", "Happy"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2000.png"
   },
   {
     "Year": 2001,
@@ -1217,7 +1217,7 @@
     "Language": "Hebrew - מסר חיובי",
     "Choreography": "תנועות פשוטות ושמחות",
     "Tags": ["Pop", "Optimistic", "Light"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2001.png"
   },
   {
     "Year": 2002,
@@ -1231,7 +1231,7 @@
     "Language": "English - מסר אוניברסלי של תקווה",
     "Choreography": "ביצוע רגשי עם אנרגיה",
     "Tags": ["Ballad", "Peace", "Hope"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2002.jpg"
   },
   {
     "Year": 2003,
@@ -1245,7 +1245,7 @@
     "Language": "Hebrew + English - רוק אנרגטי",
     "Choreography": "אנרגיה רוק עם רקדנים",
     "Tags": ["Rock", "Modern", "Edgy"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2003.jpg"
   },
   {
     "Year": 2004,
@@ -1259,7 +1259,7 @@
     "Language": "Hebrew - מסר של אמונה",
     "Choreography": "ביצוע דרמטי ממוקד",
     "Tags": ["Ballad", "PowerVocal", "Belief"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2004.JPG"
   },
   {
     "Year": 2005,
@@ -1273,7 +1273,7 @@
     "Language": "Hebrew - מילים רגשיות ואינטרוספקטיביות עמוקות",
     "Choreography": "תנועה מינימלית עם דגש על חיבור רגשי וביצוע ווקאלי",
     "Tags": ["Ballad", "PowerVocal", "Emotional", "Top5"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2005.jpg"
   },
   {
     "Year": 2006,
@@ -1287,7 +1287,7 @@
     "Language": "English - מסר אוניברסלי",
     "Choreography": "ביצוע פשוט ורגשי",
     "Tags": ["Ballad", "Unity", "Simple"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2006.jpg"
   },
   {
     "Year": 2007,
@@ -1301,7 +1301,7 @@
     "Language": "English - מסר נגד מלחמה",
     "Choreography": "Choreography מודרנית עם אפקטים",
     "Tags": ["Electro", "Political", "AntiWar"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2007.jpg"
   },
   {
     "Year": 2008,
@@ -1315,7 +1315,7 @@
     "Language": "English - רגשי ועוצמתי",
     "Choreography": "ביצוע דרמטי עם נוכחות במה",
     "Tags": ["Ballad", "Dramatic", "PowerVocal"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2008.jpg"
   },
   {
     "Year": 2009,
@@ -1329,7 +1329,7 @@
     "Language": "Hebrew וערבית - מסר של Hello",
     "Choreography": "Choreography משותפת המסמלת אחדות",
     "Tags": ["Duet", "Peace", "Coexistence", "Political"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2009.jpg"
   },
   {
     "Year": 2010,
@@ -1343,7 +1343,7 @@
     "Language": "Hebrew - טקסט על כוח המילים",
     "Choreography": "אנרגיה רוק עם תנועה דינמית",
     "Tags": ["Rock", "Pop", "Words"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2010.jpg"
   },
   {
     "Year": 2011,
@@ -1357,7 +1357,7 @@
     "Language": "English - Song שמח ומרגיע",
     "Choreography": "Choreography אנרגטית עם רקדנים",
     "Tags": ["Pop", "Catchy", "Energetic"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2011.jpg"
   },
   {
     "Year": 2012,
@@ -1371,7 +1371,7 @@
     "Language": "English - רפלקטיבי ורגשי",
     "Choreography": "ביצוע סטטי עם עומק רגשי",
     "Tags": ["Ballad", "Reflective", "Deep"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2012.jpg"
   },
   {
     "Year": 2013,
@@ -1385,7 +1385,7 @@
     "Language": "Hebrew - אישי ורגשי",
     "Choreography": "ביצוע אינטימי ופשוט",
     "Tags": ["Ballad", "Intimate", "Personal"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2013.jpg"
   },
   {
     "Year": 2014,
@@ -1399,7 +1399,7 @@
     "Language": "English - מסר של חיבור",
     "Choreography": "ביצוע פשוט ורגשי",
     "Tags": ["Pop", "Unity", "DidNotQualify"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2014.jpg"
   },
   {
     "Year": 2015,
@@ -1413,7 +1413,7 @@
     "Language": "English - מכוון לקהל אירופי רחב יותר",
     "Choreography": "תנועות פופ מודרניות אנרגטיות עם רקדני רקע - סגנון Eurovision עכשווי",
     "Tags": ["Pop", "Summer", "Mediterranean", "FeelGood"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2015.jpg"
   },
   {
     "Year": 2016,
@@ -1427,7 +1427,7 @@
     "Language": "English - Song על חלומות",
     "Choreography": "Choreography מודרנית עם אפקטי במה",
     "Tags": ["Electro", "Pop", "Dreams"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2016.png"
   },
   {
     "Year": 2017,
@@ -1441,7 +1441,7 @@
     "Language": "English - מסר של תקווה",
     "Choreography": "ביצוע עדין ואינטימי",
     "Tags": ["Ballad", "Electronic", "Hope"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2017.png"
   },
   {
     "Year": 2018,
@@ -1455,7 +1455,7 @@
     "Language": "English - המנון העצמה עם גישה שובבה",
     "Choreography": "תנועות 'ריקוד התרנגולת' המיתולוגיות שהפכו ויראליות בעולם - AFTERSHOCK טהור",
     "Tags": ["Winner", "Electro", "Viral", "Aftershock", "Empowerment", "Iconic"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2018.png"
   },
   {
     "Year": 2019,
@@ -1469,7 +1469,7 @@
     "Language": "English - Song על השתייכות",
     "Choreography": "ביצוע עדין ורגשי",
     "Tags": ["Ballad", "DidNotQualify", "Emotional"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2019.jpg"
   },
   {
     "Year": 2020,
@@ -1483,7 +1483,7 @@
     "Language": "אמהרית + Hebrew - חגיגה תרבותית ייחודית",
     "Choreography": "Choreography משלבת ריקוד אתיופי עם פופ מודרני - לא הוצגה",
     "Tags": ["Ethnic", "Fusion", "Ethiopian", "COVID", "Cancelled"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2020.jpg"
   },
   {
     "Year": 2021,
@@ -1497,7 +1497,7 @@
     "Language": "English - Song על חופש",
     "Choreography": "Choreography מודרנית עם רקדנים",
     "Tags": ["Pop", "Electronic", "Freedom"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2021.jpeg"
   },
   {
     "Year": 2022,
@@ -1511,7 +1511,7 @@
     "Language": "English - Song על ביטחון עצמי",
     "Choreography": "Choreography אנרגטית עם רקדנים",
     "Tags": ["Pop", "Rock", "Confidence"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2022.png"
   },
   {
     "Year": 2023,
@@ -1525,7 +1525,7 @@
     "Language": "English - Song על ייחודיות",
     "Choreography": "Choreography מורכבת עם רקדנים ואפקטים ויזואליים",
     "Tags": ["Pop", "Electronic", "Top3", "Spectacle"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2023.jpg"
   },
   {
     "Year": 2024,
@@ -1539,7 +1539,7 @@
     "Language": "English - ביצוע ווקאלי עוצמתי עם מסירה דרמטית",
     "Choreography": "מחול עכשווי עם דימויים סמליים - משלב רגש עם דיוק טכני",
     "Tags": ["PowerBallad", "Dramatic", "Contemporary", "Top5"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2024.jpg"
   },
   {
     "Year": 2025,
@@ -1553,7 +1553,7 @@
     "Language": "English - מסר של תקווה",
     "Choreography": "טרם הוצג",
     "Tags": ["Pop", "Ballad", "Future", "2025"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2025.png"
   },
   {
     "Year": 2026,
@@ -1567,7 +1567,7 @@
     "Language": "טרם נקבע",
     "Choreography": "טרם נקבע",
     "Tags": ["Future", "2026", "Selected"],
-    "ImageUrl": ""
+    "ImageUrl": "images/eurovision/2026.png"
   }
 ];
 

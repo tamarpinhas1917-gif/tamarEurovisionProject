@@ -490,7 +490,7 @@
         const galleryData = [
             { year: 1973, title: "1973 - 4th Place - Ilanit - Ey-Sham", image: "1973.png", category: "performances" },
             { year: 1973, title: "1973 Fashion - Ilanit", image: "1973_FSH.png", category: "fashion" },
-            { year: 1974, title: "1974 - 7th Place - Poogy - Natati La Khayay", image: "1974.png", category: "performances" },
+            { year: 1974, title: "1974 - 7th Place - Kaveret - Natati La Khayay", image: "1974.png", category: "performances" },
             { year: 1975, title: "1975 - 11th Place - Shlomo Artzi - At Va'Ani", image: "1975.png", category: "performances" },
             { year: 1976, title: "1976 - 6th Place - Chocolate, Menta, Mastik - Emor Shalom", image: "1976.png", category: "performances" },
             { year: 1977, title: "1977 - 11th Place - Ilanit - Ahava Hi Shir Lishnaim", image: "1977.png", category: "performances" },
@@ -514,7 +514,6 @@
             { year: 1993, title: "1993 - 24th Place - Lahakat Shiru - Shiru", image: "1993.jpg", category: "performances" },
             { year: 1995, title: "1995 - 8th Place - Liora - Amen", image: "1995.jpg", category: "performances" },
             { year: 1996, title: "1996 - 12th Place - Galit Bell - Shalom Olam", image: "1996.jpg", category: "performances" },
-            { year: 1998, title: "1998 - Dana International - Diva (webp)", image: "1998.webp", category: "performances" },
             { year: 1998, title: "1998 - 🥇 1st Place - Winner - Dana International - Diva", image: "1998.png", category: "winners" },
             { year: 1998, title: "1998 Fashion - Dana International", image: "1998_FSH.png", category: "fashion" },
             { year: 1999, title: "1999 - 5th Place - Eden - Yom Huledet", image: "1999.png", category: "performances" },
@@ -538,20 +537,21 @@
             { year: 2015, title: "2015 Fashion - Nadav Guedj", image: "2015_FSH.png", category: "fashion" },
             { year: 2016, title: "2016 - 14th Place - Hovi Star - Made of Stars", image: "2016.png", category: "performances" },
             { year: 2016, title: "2016 Fashion - Hovi Star", image: "2016_FSH.png", category: "fashion" },
-            { year: 2017, title: "2017 - 23rd Place - IMRI - I Feel Alive", image: "2017.webp", category: "performances" },
-            { year: 2018, title: "2018 - 🥇 1st Place - Winner - Netta - Toy", image: "2018.avif", category: "winners" },
+            { year: 2017, title: "2017 - 23rd Place - IMRI - I Feel Alive", image: "2017.png", category: "performances" },
+            { year: 2018, title: "2018 - 🥇 1st Place - Winner - Netta - Toy", image: "2018.png", category: "winners" },
             { year: 2018, title: "2018 Fashion - Netta", image: "2018_FSH.png", category: "fashion" },
             { year: 2019, title: "2019 - 23rd Place - Kobi Marimi - Home", image: "2019.jpg", category: "performances" },
             { year: 2020, title: "2020 - Cancelled - Eden Alene - Feker Libi", image: "2020.jpg", category: "performances" },
             { year: 2020, title: "2020 Fashion - Eden Alene", image: "2020_FSH.png", category: "fashion" },
             { year: 2021, title: "2021 - 17th Place - Eden Alene - Set Me Free", image: "2021.jpeg", category: "performances" },
-            { year: 2022, title: "2022 - 23rd Place - Michael Ben David - I.M", image: "2022.webp", category: "performances" },
+            { year: 2022, title: "2022 - 23rd Place - Michael Ben David - I.M", image: "2022.png", category: "performances" },
             { year: 2023, title: "2023 - 🥉 3rd Place - Noa Kirel - Unicorn", image: "2023.jpg", category: "winners" },
             { year: 2023, title: "2023 Fashion - Noa Kirel", image: "2023_FSH.png", category: "fashion" },
             { year: 2024, title: "2024 - 5th Place - Eden Golan - Hurricane", image: "2024.jpg", category: "performances" },
             { year: 2024, title: "2024 Fashion - Eden Golan", image: "2024_FSH.png", category: "fashion" },
-            { year: 2025, title: "2025 - Yuval Raphael - Older", image: "2025.webp", category: "performances" },
-            { year: 2026, title: "2026 - Noam Batan - TBA", image: "2026.webp", category: "performances" }
+            { year: 2025, title: "2025 - Yuval Raphael - New Day Will Rise", image: "2025.png", category: "performances" },
+            { year: 2026, title: "2026 - Noam Batan - TBA", image: "2026.png", category: "performances" },
+            { year: 2026, title: "2026 Fashion - Noam Batan", image: "2026_FSH.png", category: "fashion" }
         ];
 
         let currentFilter = 'all';
