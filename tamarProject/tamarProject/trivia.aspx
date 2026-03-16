@@ -571,6 +571,53 @@
             <p>Test Your Knowledge of Israel's Eurovision Journey</p>
         </div>
 
+        <!-- Sign-In Gate (shown when not logged in) -->
+        <div id="signInGate" style="display:none; text-align:center; padding: 80px 20px;">
+            <div style="
+                background: rgba(20, 5, 45, 0.8);
+                backdrop-filter: blur(20px);
+                border: 2px solid var(--euro-pink);
+                border-radius: 30px;
+                padding: 60px 40px;
+                max-width: 500px;
+                margin: 0 auto;
+                box-shadow: 0 20px 60px rgba(255, 0, 133, 0.3);
+            ">
+                <div style="font-size: 4rem; margin-bottom: 20px;">🎤</div>
+                <h2 style="font-size: 2rem; color: var(--euro-pink); margin-bottom: 15px;">Hold on!</h2>
+                <p style="font-size: 1.2rem; color: white; margin-bottom: 10px; line-height: 1.6;">
+                    You have to <strong style="color: var(--euro-yellow);">sign in</strong> in order to play.
+                </p>
+                <p style="font-size: 1rem; color: rgba(255,255,255,0.6); margin-bottom: 35px;">
+                    Sign in to track your score and appear on the leaderboard!
+                </p>
+                <a href="login.aspx" style="
+                    display: inline-block;
+                    background: linear-gradient(135deg, var(--euro-pink), var(--euro-blue));
+                    color: white;
+                    text-decoration: none;
+                    padding: 18px 50px;
+                    border-radius: 50px;
+                    font-size: 1.1rem;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    transition: all 0.3s;
+                    box-shadow: 0 10px 30px rgba(255,0,133,0.4);
+                ">Sign In / Sign Up 🎵</a>
+                <br>
+                <a href="homePage.aspx" style="
+                    display: inline-block;
+                    margin-top: 20px;
+                    color: var(--euro-yellow);
+                    text-decoration: none;
+                    font-size: 0.9rem;
+                ">← Back to Home</a>
+            </div>
+        </div>
+
+        <!-- Trivia Game (shown when logged in) -->
+        <div id="triviaGame" style="display:none;">
         <div class="trivia-layout">
             <!-- Trivia Section -->
             <div class="trivia-section">
@@ -600,6 +647,7 @@
                     <!-- Leaderboard items will be inserted here -->
                 </div>
             </div>
+        </div>
         </div>
     </div>
 
@@ -698,13 +746,21 @@
             currentUser = JSON.parse(localStorage.getItem('euroUser') || 'null');
             
             if (currentUser) {
+                // User is signed in - show the game
                 document.getElementById('userDisplay').innerHTML =
                     '<span>Welcome, ' + currentUser.name + '!</span>' +
                     '<a href="#" onclick="logout()" style="margin-left: 10px;">Logout</a>';
+                document.getElementById('signInGate').style.display = 'none';
+                document.getElementById('triviaGame').style.display = 'block';
+                loadQuestion();
+                updateLeaderboard();
+            } else {
+                // User is NOT signed in - show the gate, hide the game
+                document.getElementById('signInGate').style.display = 'block';
+                document.getElementById('triviaGame').style.display = 'none';
+                // Still show leaderboard below the gate
+                updateLeaderboard();
             }
-
-            loadQuestion();
-            updateLeaderboard();
         });
 
         function loadQuestion() {
