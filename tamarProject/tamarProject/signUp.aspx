@@ -13,12 +13,12 @@
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="homePage.aspx">Home Page</a>
   <a href="timeline.aspx">Timeline</a>
-  <a href="about.aspx">About</a>
-  <a href="page1.aspx">Page 1</a>
- <a href="page2.aspx">Page 2</a>
- <a href="page3.aspx">Page 3</a>
- <a href="signUp.aspx">Sign Up</a>
- <a href="logIn.aspx">Log In</a>
+  <a href="fashion.aspx">Fashion</a>
+  <a href="data-manager.aspx">Data Manager</a>
+  <a href="gallery.aspx">Gallery</a>
+  <a href="trivia.aspx">Trivia</a>
+  <a href="signUp.aspx">Sign Up</a>
+  <a href="login.aspx">Log In</a>
 </div>
 
 

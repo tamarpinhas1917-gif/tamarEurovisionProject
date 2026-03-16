@@ -437,24 +437,24 @@
 
     <!-- User Display -->
     <div class="user-display" id="userDisplay">
-        <a href="login-preview.html">Sign Up / Login</a>
+        <a href="login.aspx">Sign Up / Login</a>
     </div>
 
     <!-- Eurovision 70 Logo - RIGHT SIDE -->
-    <a href="home-preview.html" style="text-decoration: none;">
+    <a href="homePage.aspx" style="text-decoration: none;">
         <img src="images/eurovision/eurovision-70-logo.png" alt="Eurovision 70" class="euro-logo">
     </a>
 
     <!-- Navigation Menu - LEFT SIDE -->
     <nav class="top-nav">
         <ul>
-            <li><a href="home-preview.html">Home</a></li>
-            <li><a href="timeline-preview.html">Timeline</a></li>
-            <li><a href="fashion-preview.html">Fashion</a></li>
-            <li><a href="data-manager-preview.html">Data Manager</a></li>
-            <li><a href="latest-news-preview.html">Gallery</a></li>
-            <li><a href="trivia-preview.html">Trivia</a></li>
-            <li><a href="login-preview.html">Sign Up</a></li>
+            <li><a href="homePage.aspx">Home</a></li>
+            <li><a href="timeline.aspx">Timeline</a></li>
+            <li><a href="fashion.aspx">Fashion</a></li>
+            <li><a href="data-manager.aspx">Data Manager</a></li>
+            <li><a href="gallery.aspx">Gallery</a></li>
+            <li><a href="trivia.aspx">Trivia</a></li>
+            <li><a href="login.aspx">Sign Up</a></li>
         </ul>
     </nav>
 
