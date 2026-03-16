@@ -607,10 +607,11 @@
     <div class="results-modal" id="resultsModal">
         <div class="results-content">
             <h2>🎉 Quiz Complete! 🎉</h2>
+            <p id="resultPlayerName" style="font-size: 1.1rem; color: var(--euro-yellow); margin-bottom: 5px;"></p>
             <p style="font-size: 1.2rem; margin-bottom: 10px;">Your Final Score:</p>
             <div class="final-score" id="finalScore">0/10</div>
             <p id="resultMessage" style="font-size: 1.1rem; margin: 20px 0;"></p>
-            <button class="restart-btn" onclick="restartTrivia()">Play Again</button>
+            <button class="restart-btn" onclick="restartTrivia()">Play Again 🎵</button>
         </div>
     </div>
 
@@ -674,61 +675,67 @@
         let score = 0;
         let userAnswers = [];
         let currentUser = null;
+        let answerLocked = false; // Prevent double-clicking during auto-advance
 
-        // Leaderboard Data (simulated - would be from database in production)
-        let leaderboard = [
-            { name: "Sarah Cohen", score: 10, time: "2 mins ago" },
-            { name: "David Levi", score: 9, time: "5 mins ago" },
-            { name: "Maya Goldstein", score: 9, time: "8 mins ago" },
-            { name: "Yoni Shapira", score: 8, time: "12 mins ago" },
-            { name: "Tamar Pinhas", score: 8, time: "15 mins ago" },
-            { name: "Avi Mizrahi", score: 7, time: "20 mins ago" },
-            { name: "Noa Bar", score: 7, time: "25 mins ago" },
-            { name: "Ron Katz", score: 6, time: "30 mins ago" }
-        ];
+        // Load leaderboard from localStorage, seeded with defaults if empty
+        function getLeaderboard() {
+            var stored = localStorage.getItem('euroTriviaLeaderboard');
+            if (stored) return JSON.parse(stored);
+            // Default seed entries
+            return [
+                { name: "Sarah Cohen", score: 10, time: "2 mins ago" },
+                { name: "David Levi", score: 9, time: "5 mins ago" },
+                { name: "Maya Goldstein", score: 9, time: "8 mins ago" },
+                { name: "Yoni Shapira", score: 8, time: "12 mins ago" },
+                { name: "Avi Mizrahi", score: 7, time: "20 mins ago" }
+            ];
+        }
+
+        let leaderboard = getLeaderboard();
 
         // Initialize
         window.addEventListener('DOMContentLoaded', function() {
             currentUser = JSON.parse(localStorage.getItem('euroUser') || 'null');
             
             if (currentUser) {
-                document.getElementById('userDisplay').innerHTML = `
-                    <span>Welcome, ${currentUser.name}!</span>
-                    <a href="#" onclick="logout()" style="margin-left: 10px;">Logout</a>
-                `;
+                document.getElementById('userDisplay').innerHTML =
+                    '<span>Welcome, ' + currentUser.name + '!</span>' +
+                    '<a href="#" onclick="logout()" style="margin-left: 10px;">Logout</a>';
             }
 
             loadQuestion();
             updateLeaderboard();
-            
-            // Update leaderboard every 10 seconds (reduced frequency to prevent glitching)
-            setInterval(() => {
-                // Only update time stamps, not full re-render
-                updateLeaderboardTimes();
-            }, 10000);
         });
 
         function loadQuestion() {
+            answerLocked = false;
             const question = triviaQuestions[currentQuestion];
             const container = document.getElementById('questionContainer');
             
-            container.innerHTML = `
-                <div class="question-number">Question ${currentQuestion + 1} of ${triviaQuestions.length}</div>
-                <div class="question-text">${question.question}</div>
-                <div class="answers">
-                    ${question.answers.map((answer, index) => `
-                        <button class="answer-btn" onclick="selectAnswer(${index})" id="answer${index}">
-                            ${String.fromCharCode(65 + index)}. ${answer}
-                        </button>
-                    `).join('')}
-                </div>
-            `;
+            container.innerHTML =
+                '<div class="question-number">Question ' + (currentQuestion + 1) + ' of ' + triviaQuestions.length + '</div>' +
+                '<div class="question-text">' + question.question + '</div>' +
+                '<div class="answers">' +
+                question.answers.map(function(answer, index) {
+                    return '<button class="answer-btn" onclick="selectAnswer(' + index + ')" id="answer' + index + '">' +
+                        String.fromCharCode(65 + index) + '. ' + answer +
+                        '</button>';
+                }).join('') +
+                '</div>';
 
-            // Restore previous answer if exists
+            // Restore previous answer visually if already answered (locked)
             if (userAnswers[currentQuestion] !== undefined) {
-                const answerBtn = document.getElementById(`answer${userAnswers[currentQuestion]}`);
-                if (answerBtn) {
-                    answerBtn.classList.add('selected');
+                answerLocked = true;
+                var prevIndex = userAnswers[currentQuestion];
+                var correctIndex = question.correct;
+                for (var i = 0; i < question.answers.length; i++) {
+                    document.getElementById('answer' + i).disabled = true;
+                }
+                if (prevIndex === correctIndex) {
+                    document.getElementById('answer' + prevIndex).classList.add('correct');
+                } else {
+                    document.getElementById('answer' + prevIndex).classList.add('incorrect');
+                    document.getElementById('answer' + correctIndex).classList.add('correct');
                 }
             }
 
@@ -736,38 +743,36 @@
         }
 
         function selectAnswer(answerIndex) {
+            // Prevent answering if already answered or locked
+            if (answerLocked) return;
+            answerLocked = true;
+
             const question = triviaQuestions[currentQuestion];
-            
-            // Remove previous selection
-            for (let i = 0; i < question.answers.length; i++) {
-                const btn = document.getElementById(`answer${i}`);
-                btn.classList.remove('selected', 'correct', 'incorrect');
+
+            // Disable all buttons immediately
+            for (var i = 0; i < question.answers.length; i++) {
+                document.getElementById('answer' + i).disabled = true;
             }
 
-            // Mark current selection
-            const selectedBtn = document.getElementById(`answer${answerIndex}`);
-            selectedBtn.classList.add('selected');
-
-            // Check if answer is correct
-            if (answerIndex === question.correct) {
-                selectedBtn.classList.add('correct');
-                if (userAnswers[currentQuestion] === undefined) {
-                    score++;
-                    updateScore();
-                }
-            } else {
-                selectedBtn.classList.add('incorrect');
-                // Show correct answer
-                const correctBtn = document.getElementById(`answer${question.correct}`);
-                correctBtn.classList.add('correct');
-            }
-
+            // Record the answer
             userAnswers[currentQuestion] = answerIndex;
 
-            // Auto-advance after delay
-            setTimeout(() => {
+            // Show correct/incorrect
+            if (answerIndex === question.correct) {
+                document.getElementById('answer' + answerIndex).classList.add('correct');
+                // Only add to score if first time answering this question
+                score++;
+                updateScore();
+            } else {
+                document.getElementById('answer' + answerIndex).classList.add('incorrect');
+                document.getElementById('answer' + question.correct).classList.add('correct');
+            }
+
+            // Auto-advance after 1.5 seconds
+            setTimeout(function() {
                 if (currentQuestion < triviaQuestions.length - 1) {
-                    nextQuestion();
+                    currentQuestion++;
+                    loadQuestion();
                 } else {
                     finishTrivia();
                 }
@@ -801,8 +806,17 @@
 
         function finishTrivia() {
             const modal = document.getElementById('resultsModal');
-            document.getElementById('finalScore').textContent = `${score}/${triviaQuestions.length}`;
+            document.getElementById('finalScore').textContent = score + '/' + triviaQuestions.length;
             
+            // Show player name in modal
+            var playerNameEl = document.getElementById('resultPlayerName');
+            if (currentUser) {
+                playerNameEl.textContent = '🌟 ' + currentUser.name + ' 🌟';
+            } else {
+                playerNameEl.textContent = 'Sign in to save your score!';
+                playerNameEl.style.color = 'rgba(255,255,255,0.6)';
+            }
+
             let message = '';
             const percentage = (score / triviaQuestions.length) * 100;
             
@@ -819,18 +833,25 @@
             }
             
             document.getElementById('resultMessage').textContent = message;
-            modal.classList.add('active');
 
-            // Add to leaderboard if user is logged in
+            // Save score under the logged-in user's name
             if (currentUser) {
                 addToLeaderboard(currentUser.name, score);
+                currentUser.triviaScore = score;
+                currentUser.triviaDate = new Date().toLocaleDateString();
+                localStorage.setItem('euroUser', JSON.stringify(currentUser));
+            } else {
+                addToLeaderboard('Guest', score);
             }
+
+            modal.classList.add('active');
         }
 
         function restartTrivia() {
             currentQuestion = 0;
             score = 0;
             userAnswers = [];
+            answerLocked = false;
             document.getElementById('resultsModal').classList.remove('active');
             updateScore();
             loadQuestion();
@@ -839,72 +860,49 @@
         function updateLeaderboard() {
             const container = document.getElementById('leaderboardContainer');
             
-            // Sort by score (descending)
-            leaderboard.sort((a, b) => b.score - a.score);
+            // Sort by score descending
+            leaderboard.sort(function(a, b) { return b.score - a.score; });
             
-            container.innerHTML = leaderboard.map((player, index) => {
+            container.innerHTML = leaderboard.map(function(player, index) {
                 let rankClass = '';
                 let rankIcon = index + 1;
                 
-                if (index === 0) {
-                    rankClass = 'gold';
-                    rankIcon = '🥇';
-                } else if (index === 1) {
-                    rankClass = 'silver';
-                    rankIcon = '🥈';
-                } else if (index === 2) {
-                    rankClass = 'bronze';
-                    rankIcon = '🥉';
-                }
+                if (index === 0) { rankClass = 'gold'; rankIcon = '🥇'; }
+                else if (index === 1) { rankClass = 'silver'; rankIcon = '🥈'; }
+                else if (index === 2) { rankClass = 'bronze'; rankIcon = '🥉'; }
                 
-                return `
-                    <div class="leaderboard-item">
-                        <div class="rank ${rankClass}">${rankIcon}</div>
-                        <div class="player-info">
-                            <div class="player-name">${player.name}</div>
-                            <div class="player-time" data-player="${player.name}">${player.time}</div>
-                        </div>
-                        <div class="player-score">${player.score}/10</div>
-                    </div>
-                `;
+                // Highlight current user
+                var nameStyle = (currentUser && player.name === currentUser.name)
+                    ? ' style="color: var(--euro-yellow);"' : '';
+
+                return '<div class="leaderboard-item">' +
+                    '<div class="rank ' + rankClass + '">' + rankIcon + '</div>' +
+                    '<div class="player-info">' +
+                        '<div class="player-name"' + nameStyle + '>' + player.name + (currentUser && player.name === currentUser.name ? ' ⭐' : '') + '</div>' +
+                        '<div class="player-time">' + player.time + '</div>' +
+                    '</div>' +
+                    '<div class="player-score">' + player.score + '/10</div>' +
+                '</div>';
             }).join('');
         }
 
-        function updateLeaderboardTimes() {
-            // Update only time stamps without full re-render to prevent glitching
-            leaderboard.forEach(player => {
-                const timeElement = document.querySelector(`[data-player="${player.name}"]`);
-                if (timeElement && player.time !== 'Just now') {
-                    // Increment time slightly (simplified simulation)
-                    const match = player.time.match(/(\d+) mins? ago/);
-                    if (match) {
-                        const mins = parseInt(match[1]) + 1;
-                        player.time = `${mins} min${mins > 1 ? 's' : ''} ago`;
-                        timeElement.textContent = player.time;
-                    }
-                }
-            });
-        }
-
         function addToLeaderboard(playerName, playerScore) {
-            // Check if player already exists
-            const existingPlayerIndex = leaderboard.findIndex(p => p.name === playerName);
+            const existingIndex = leaderboard.findIndex(function(p) { return p.name === playerName; });
             
-            if (existingPlayerIndex !== -1) {
-                // Update existing score if better
-                if (playerScore > leaderboard[existingPlayerIndex].score) {
-                    leaderboard[existingPlayerIndex].score = playerScore;
-                    leaderboard[existingPlayerIndex].time = 'Just now';
+            if (existingIndex !== -1) {
+                // Only update if new score is better
+                if (playerScore > leaderboard[existingIndex].score) {
+                    leaderboard[existingIndex].score = playerScore;
+                    leaderboard[existingIndex].time = 'Just now';
+                } else {
+                    leaderboard[existingIndex].time = 'Just now';
                 }
             } else {
-                // Add new player
-                leaderboard.push({
-                    name: playerName,
-                    score: playerScore,
-                    time: 'Just now'
-                });
+                leaderboard.push({ name: playerName, score: playerScore, time: 'Just now' });
             }
-            
+
+            // Save updated leaderboard to localStorage
+            localStorage.setItem('euroTriviaLeaderboard', JSON.stringify(leaderboard));
             updateLeaderboard();
         }
 
