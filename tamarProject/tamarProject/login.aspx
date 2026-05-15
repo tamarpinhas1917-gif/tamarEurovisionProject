@@ -338,50 +338,41 @@
         <div class="auth-box" id="authBox">
             <!-- Tab Buttons -->
             <div class="auth-tabs">
-                <button type="button" class="tab-button active" onclick="switchTab('signup', this)">Sign Up</button>
-                <button type="button" class="tab-button" onclick="switchTab('signin', this)">Login</button>
+                <button type="button" class="tab-button active" onclick="switchTab('signin', this)">Login</button>
+                <button type="button" class="tab-button" onclick="window.location.href='signUp.aspx'">Sign Up</button>
             </div>
 
-            <!-- Sign Up Tab -->
-            <div class="tab-content active" id="signupTab">
-                <h2>Join the Celebration</h2>
-                <p class="subtitle">UNITED BY MUSIC</p>
-
-                <div class="input-group">
-                    <label>FULL NAME</label>
-                    <input type="text" id="signupName" placeholder="Enter your name">
-                </div>
-
-                <div class="input-group">
-                    <label>EMAIL</label>
-                    <input type="email" id="signupEmail" placeholder="example@eurovision.com">
-                </div>
-
-                <div class="input-group">
-                    <label>PASSWORD</label>
-                    <input type="password" id="signupPassword" placeholder="********">
-                </div>
-
-                <button type="button" class="btn" onclick="handleSignup()">JOIN THE PARTY</button>
-                <a href="homePage.aspx" class="back-link">Back to Home</a>
+            <!-- Error Message -->
+            <% if (!string.IsNullOrEmpty(errors)) { %>
+            <div style="color:#ff0085; background:rgba(255,0,133,0.1); border:1px solid #ff0085; padding:10px; border-radius:8px; margin-bottom:15px; text-align:center;">
+                <%= errors %>
             </div>
+            <% } %>
+
+            <!-- Success Message from Sign Up -->
+            <% if (Request.QueryString["status"] != null) { %>
+            <div style="color:#00ff88; background:rgba(0,255,136,0.1); border:1px solid #00ff88; padding:10px; border-radius:8px; margin-bottom:15px; text-align:center;">
+                <%= Request.QueryString["status"] %>
+            </div>
+            <% } %>
 
             <!-- Sign In Tab -->
-            <div class="tab-content" id="signinTab">
+            <div class="tab-content active" id="signinTab">
                 <h2>Welcome Back</h2>
-                <p class="subtitle">WELCOME BACK</p>
+                <p class="subtitle">LOGIN TO YOUR ACCOUNT</p>
 
                 <div class="input-group">
-                    <label>EMAIL</label>
-                    <input type="email" id="signinEmail" placeholder="example@eurovision.com">
+                    <label>ID NUMBER (ת.ז)</label>
+                    <input type="text" name="idnum" placeholder="Enter your ID number" class="auth-input">
                 </div>
 
                 <div class="input-group">
                     <label>PASSWORD</label>
-                    <input type="password" id="signinPassword" placeholder="********">
+                    <input type="password" name="pass" placeholder="********" class="auth-input">
                 </div>
 
-                <button type="button" class="btn" onclick="handleSignin()">LOGIN</button>
+                <button type="submit" name="submit" value="login" class="btn">LOGIN</button>
+                <a href="signUp.aspx" class="back-link">Don't have an account? Sign Up</a>
                 <a href="homePage.aspx" class="back-link">Back to Home</a>
             </div>
         </div>
@@ -390,86 +381,9 @@
     </form>
 
     <script>
-        window.addEventListener('DOMContentLoaded', function () {
-            try {
-                var currentUser = JSON.parse(localStorage.getItem('euroUser') || 'null');
-                var userDisplay = document.getElementById('userDisplay');
-
-                if (currentUser) {
-                    userDisplay.innerHTML = '<span>Hello ' + currentUser.name + '!</span> | <a href="#" onclick="logout()">Logout</a>';
-                    document.getElementById('authBox').innerHTML =
-                        '<div class="already-signed-in">' +
-                        '<h3>✨ Already Signed In ✨</h3>' +
-                        '<p>Hello ' + currentUser.name + '!</p>' +
-                        '<p>You\'re already part of the Eurovision family!</p>' +
-                        '<button class="btn" onclick="window.location.href=\'homePage.aspx\'">Back to Home</button>' +
-                        '<button class="btn btn-secondary" onclick="logout()" style="margin-top:15px;">Logout</button>' +
-                        '</div>';
-                }
-            } catch (e) { }
-        });
-
         function switchTab(tab, btn) {
             document.querySelectorAll('.tab-button').forEach(function (b) { b.classList.remove('active'); });
             btn.classList.add('active');
-            document.getElementById('signupTab').classList.remove('active');
-            document.getElementById('signinTab').classList.remove('active');
-            document.getElementById(tab + 'Tab').classList.add('active');
-        }
-
-        function handleSignup() {
-            var name = document.getElementById('signupName').value;
-            var email = document.getElementById('signupEmail').value;
-            var password = document.getElementById('signupPassword').value;
-
-            if (!name || !email || !password) {
-                alert('Please fill all fields');
-                return;
-            }
-
-            var existingUsers = JSON.parse(localStorage.getItem('euroUsers') || '[]');
-            var userExists = existingUsers.find(function (u) { return u.email === email; });
-
-            if (userExists) {
-                alert('User already registered! Please sign in.');
-                return;
-            }
-
-            var newUser = { name: name, email: email, password: password };
-            existingUsers.push(newUser);
-            localStorage.setItem('euroUsers', JSON.stringify(existingUsers));
-            localStorage.setItem('euroUser', JSON.stringify(newUser));
-
-            alert('Welcome ' + name + '! Welcome to Eurovision!');
-            window.location.href = 'homePage.aspx';
-        }
-
-        function handleSignin() {
-            var email = document.getElementById('signinEmail').value;
-            var password = document.getElementById('signinPassword').value;
-
-            if (!email || !password) {
-                alert('Please fill all fields');
-                return;
-            }
-
-            var existingUsers = JSON.parse(localStorage.getItem('euroUsers') || '[]');
-            var user = existingUsers.find(function (u) { return u.email === email && u.password === password; });
-
-            if (!user) {
-                alert('Invalid email or password');
-                return;
-            }
-
-            localStorage.setItem('euroUser', JSON.stringify(user));
-            alert('Welcome back ' + user.name + '!');
-            window.location.href = 'homePage.aspx';
-        }
-
-        function logout() {
-            localStorage.removeItem('euroUser');
-            alert('Successfully logged out');
-            window.location.reload();
         }
     </script>
 </body>
