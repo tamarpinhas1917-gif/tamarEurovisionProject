@@ -317,14 +317,19 @@
     <div class="floating-shape shape3"></div>
     <div class="floating-shape shape4"></div>
 
-    <!-- User Display - Dynamic based on Session -->
+    <!-- User Display - Dynamic from C# code-behind -->
     <div class="user-display" id="userDisplay">
         <% if (Session["user"] != null) { %>
-            <span style="color:#fdf200;">👤 <%= Session["user"] %></span>
+            <span style="color:#fdf200;">👤 <%= userMsg %></span>
             &nbsp;|&nbsp;<a href="logout.aspx">Logout</a>
         <% } else { %>
             <a href="login.aspx">Sign Up / Login</a>
         <% } %>
+    </div>
+
+    <!-- Visitor Counter -->
+    <div style="position:fixed; top:75px; right:20px; z-index:999; color:rgba(255,255,255,0.6); font-size:0.75rem; background:rgba(20,5,45,0.7); padding:5px 12px; border-radius:20px; border:1px solid rgba(255,255,255,0.1);">
+        🎵 <%= userCounter %>
     </div>
 
     <!-- Eurovision 70 Logo - RIGHT SIDE -->
