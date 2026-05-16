@@ -437,7 +437,12 @@
 
     <!-- User Display -->
     <div class="user-display" id="userDisplay">
-        <a href="login.aspx">Sign Up / Login</a>
+        <% if (Session["user"] != null) { %>
+            <span style="color:#fdf200;">👤 <%= Session["user"] %></span>
+            &nbsp;|&nbsp;<a href="logout.aspx">Logout</a>
+        <% } else { %>
+            <a href="login.aspx">Sign Up / Login</a>
+        <% } %>
     </div>
 
     <!-- Eurovision 70 Logo - RIGHT SIDE -->
@@ -454,7 +459,7 @@
             <li><a href="data-manager.aspx">Data Manager</a></li>
             <li><a href="gallery.aspx">Gallery</a></li>
             <li><a href="trivia.aspx">Trivia</a></li>
-            <li><a href="login.aspx">Sign Up</a></li>
+            <% if (Session["user"] != null) { %><li><a href="update.aspx">My Profile</a></li><li><a href="logout.aspx">Logout</a></li><% if (Session["isAdmin"] != null) { %><li><a href="admin.aspx" style="color:#fdf200;">Admin</a></li><% } %><% } else { %><li><a href="signUp.aspx">Sign Up</a></li><li><a href="login.aspx">Login</a></li><% } %>
         </ul>
     </nav>
 
