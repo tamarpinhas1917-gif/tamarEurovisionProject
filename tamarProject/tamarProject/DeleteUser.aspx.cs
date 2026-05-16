@@ -1,5 +1,6 @@
 using System;
-using System.Web;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Web.UI;
 
 namespace tamarProject
@@ -10,12 +11,20 @@ namespace tamarProject
         {
             if (Session["isAdmin"] != null)
             {
-                string fileName = "db.mdf";
                 if (Request.QueryString["idnum"] != null)
                 {
                     string idnum = Request.QueryString["idnum"];
-                    string sql = "DELETE FROM personalData WHERE idnum='" + idnum + "'";
-                    MyAdoHelper.DoQuery(fileName, sql);
+                    string connectionString = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+                    using (SqlConnection conn = new SqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        string sql = "DELETE FROM personalData WHERE idnum=@idnum";
+                        using (SqlCommand cmd = new SqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@idnum", idnum);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
                 }
                 Response.Redirect("admin.aspx");
             }

@@ -1,8 +1,8 @@
 using System;
+using System.Configuration;
 using System.Data;
-using System.Web;
+using System.Data.SqlClient;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace tamarProject
 {
@@ -17,69 +17,71 @@ namespace tamarProject
             {
                 Response.Write("<body dir='rtl'><strong>אין גישה - יש להתחבר תחילה</strong></body>");
                 Response.End();
+                return;
             }
-            else
+
+            string connectionString = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+            string idnum = (string)Session["idnum"];
+
+            if (Request.Form["submit"] != null)
             {
-                string fileName = "db.mdf";
-                string idnum    = (string)Session["idnum"];
+                string fname = Request.Form["fname"];
+                string lname = Request.Form["lname"];
+                string pass  = Request.Form["pass"];
+                string area  = Request.Form["area"];
 
-                if (Request.Form["submit"] != null)
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string fname = Request.Form["fname"];
-                    string lname = Request.Form["lname"];
-                    string pass  = Request.Form["pass"];
-                    string area  = Request.Form["area"];
-
-                    string sql = "UPDATE personalData SET fname=N'" + fname + "',lname=N'" + lname +
-                                 "',pass=N'" + pass + "',area=N'" + area +
-                                 "' WHERE idnum='" + idnum + "'";
-                    MyAdoHelper.DoQuery(fileName, sql);
-
-                    // Update session name
-                    Session["user"] = fname + " " + lname;
-                    msg = "פרטים עודכנו בהצלחה ✓";
-                }
-
-                // Always show current data from DB
-                string selectQuery = "SELECT * FROM personalData WHERE idnum='" + idnum + "'";
-                DataTable table = MyAdoHelper.ExecuteDataTable(fileName, selectQuery);
-
-                if (table.Rows.Count > 0)
-                {
-                    editUser += "<form action='' id='edit' method='post'>";
-                    editUser += "<table border='1' style='border-color:rgba(255,255,255,0.2)'>";
-
-                    editUser += "<tr><td>ת.ז</td><td>";
-                    editUser += "<input type='text' name='idnum' readonly value='" + (string)table.Rows[0]["idnum"] + "'/>";
-                    editUser += "</td></tr>";
-
-                    editUser += "<tr><td>שם פרטי</td><td>";
-                    editUser += "<input type='text' name='fname' value='" + (string)table.Rows[0]["fname"] + "'/>";
-                    editUser += "</td></tr>";
-
-                    editUser += "<tr><td>שם משפחה</td><td>";
-                    editUser += "<input type='text' name='lname' value='" + (string)table.Rows[0]["lname"] + "'/>";
-                    editUser += "</td></tr>";
-
-                    editUser += "<tr><td>סיסמה</td><td>";
-                    editUser += "<input type='text' name='pass' value='" + (string)table.Rows[0]["pass"] + "'/>";
-                    editUser += "</td></tr>";
-
-                    editUser += "<tr><td>אזור מגורים</td><td><select name='area'>";
-                    string[] areas = { "מרכז", "צפון", "דרום", "ירושלים", "שרון" };
-                    string currentArea = table.Rows[0]["area"].ToString().Trim();
-                    // Show current area first
-                    editUser += "<option value='" + currentArea + "'>" + currentArea + "</option>";
-                    foreach (string a in areas)
+                    conn.Open();
+                    string sql = "UPDATE personalData SET fname=@fname,lname=@lname,pass=@pass,area=@area WHERE idnum=@idnum";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        if (a != currentArea)
-                            editUser += "<option value='" + a + "'>" + a + "</option>";
+                        cmd.Parameters.AddWithValue("@fname", fname);
+                        cmd.Parameters.AddWithValue("@lname", lname);
+                        cmd.Parameters.AddWithValue("@pass",  pass);
+                        cmd.Parameters.AddWithValue("@area",  area);
+                        cmd.Parameters.AddWithValue("@idnum", idnum);
+                        cmd.ExecuteNonQuery();
                     }
-                    editUser += "</select></td></tr>";
+                }
+                Session["user"] = fname + " " + lname;
+                msg = "פרטים עודכנו בהצלחה ✓";
+            }
 
-                    editUser += "</table><br/>";
-                    editUser += "<input type='submit' name='submit' value='עדכן'/>";
-                    editUser += "</form>";
+            // Always reload current data from DB
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string selectQuery = "SELECT * FROM personalData WHERE idnum=@idnum";
+                using (SqlCommand cmd = new SqlCommand(selectQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@idnum", idnum);
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        DataTable table = new DataTable();
+                        adapter.Fill(table);
+
+                        if (table.Rows.Count > 0)
+                        {
+                            editUser += "<form action='' id='edit' method='post'>";
+                            editUser += "<table border='1' style='border-color:rgba(255,255,255,0.2)'>";
+                            editUser += "<tr><td>ת.ז</td><td><input type='text' name='idnum' readonly value='" + table.Rows[0]["idnum"] + "'/></td></tr>";
+                            editUser += "<tr><td>שם פרטי</td><td><input type='text' name='fname' value='" + table.Rows[0]["fname"] + "'/></td></tr>";
+                            editUser += "<tr><td>שם משפחה</td><td><input type='text' name='lname' value='" + table.Rows[0]["lname"] + "'/></td></tr>";
+                            editUser += "<tr><td>סיסמה</td><td><input type='text' name='pass' value='" + table.Rows[0]["pass"] + "'/></td></tr>";
+                            editUser += "<tr><td>אזור מגורים</td><td><select name='area'>";
+                            string[] areas = { "מרכז", "צפון", "דרום", "ירושלים", "שרון" };
+                            string currentArea = table.Rows[0]["area"].ToString().Trim();
+                            editUser += "<option value='" + currentArea + "'>" + currentArea + "</option>";
+                            foreach (string a in areas)
+                                if (a != currentArea)
+                                    editUser += "<option value='" + a + "'>" + a + "</option>";
+                            editUser += "</select></td></tr>";
+                            editUser += "</table><br/>";
+                            editUser += "<input type='submit' name='submit' value='עדכן'/>";
+                            editUser += "</form>";
+                        }
+                    }
                 }
             }
         }

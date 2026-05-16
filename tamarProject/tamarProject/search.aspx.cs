@@ -1,8 +1,8 @@
 using System;
+using System.Configuration;
 using System.Data;
-using System.Web;
+using System.Data.SqlClient;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace tamarProject
 {
@@ -16,49 +16,62 @@ namespace tamarProject
             {
                 Response.Write("<body dir='rtl'><strong>הכניסה למנהל בלבד</strong></body>");
                 Response.End();
+                return;
             }
-            else
+
+            string connectionString = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+            string selectQuery = "";
+            string paramName   = "";
+            string paramValue  = "";
+
+            if (Request.Form["printAll"] != null)
+                selectQuery = "SELECT * FROM personalData";
+            else if (Request.Form["submit_fname"] != null)
             {
-                string fileName    = "db.mdf";
-                string tableName   = "personalData";
-                string selectQuery = "";
+                selectQuery = "SELECT * FROM personalData WHERE fname=@param";
+                paramName   = "@param";
+                paramValue  = Request.Form["fname"];
+            }
+            else if (Request.Form["submit_area"] != null)
+            {
+                selectQuery = "SELECT * FROM personalData WHERE area=@param";
+                paramName   = "@param";
+                paramValue  = Request.Form["area"];
+            }
 
-                if (Request.Form["printAll"] != null)
+            if (!string.IsNullOrEmpty(selectQuery))
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    selectQuery = "SELECT * FROM " + tableName;
-                }
-                else if (Request.Form["submit_fname"] != null)
-                {
-                    selectQuery = "SELECT * FROM " + tableName + " WHERE fname=N'" + Request.Form["fname"] + "'";
-                }
-                else if (Request.Form["submit_area"] != null)
-                {
-                    selectQuery = "SELECT * FROM " + tableName + " WHERE area=N'" + Request.Form["area"] + "'";
-                }
-
-                if (!string.IsNullOrEmpty(selectQuery))
-                {
-                    DataTable table = MyAdoHelper.ExecuteDataTable(fileName, selectQuery);
-                    int length = table.Rows.Count;
-
-                    if (length > 0)
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, conn))
                     {
-                        usersList += "<table border=5>";
-                        usersList += "<tr><th>תעודת זהות</th><th>שם פרטי</th><th>שם משפחה</th><th>אזור מגורים</th></tr>";
-                        for (int i = 0; i < length; i++)
+                        if (!string.IsNullOrEmpty(paramName))
+                            cmd.Parameters.AddWithValue(paramName, paramValue);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
-                            usersList += "<tr>";
-                            usersList += "<td>" + table.Rows[i]["idnum"] + "</td>";
-                            usersList += "<td>" + table.Rows[i]["fname"] + "</td>";
-                            usersList += "<td>" + table.Rows[i]["lname"] + "</td>";
-                            usersList += "<td>" + table.Rows[i]["area"]  + "</td>";
-                            usersList += "</tr>";
+                            DataTable table = new DataTable();
+                            adapter.Fill(table);
+
+                            if (table.Rows.Count > 0)
+                            {
+                                usersList += "<table border=5>";
+                                usersList += "<tr><th>תעודת זהות</th><th>שם פרטי</th><th>שם משפחה</th><th>אזור מגורים</th></tr>";
+                                for (int i = 0; i < table.Rows.Count; i++)
+                                {
+                                    usersList += "<tr>";
+                                    usersList += "<td>" + table.Rows[i]["idnum"] + "</td>";
+                                    usersList += "<td>" + table.Rows[i]["fname"] + "</td>";
+                                    usersList += "<td>" + table.Rows[i]["lname"] + "</td>";
+                                    usersList += "<td>" + table.Rows[i]["area"]  + "</td>";
+                                    usersList += "</tr>";
+                                }
+                                usersList += "</table>";
+                            }
+                            else
+                                usersList = "<p>לא נמצאו תוצאות</p>";
                         }
-                        usersList += "</table>";
-                    }
-                    else
-                    {
-                        usersList = "<p>לא נמצאו תוצאות</p>";
                     }
                 }
             }
