@@ -327,15 +327,15 @@
         <% } %>
     </div>
 
-    <!-- Visitor Counter -->
-    <div style="position:fixed; top:75px; right:20px; z-index:999; color:rgba(255,255,255,0.6); font-size:0.75rem; background:rgba(20,5,45,0.7); padding:5px 12px; border-radius:20px; border:1px solid rgba(255,255,255,0.1);">
-        🎵 <%= userCounter %>
-    </div>
-
     <!-- Eurovision 70 Logo - RIGHT SIDE -->
     <a href="homePage.aspx" style="text-decoration: none;">
         <img src="images/eurovision/eurovision-70-logo.png" alt="Eurovision 70" class="euro-logo">
     </a>
+
+    <!-- Visitor Counter - placed below logo -->
+    <div style="position:fixed; top:175px; right:20px; z-index:999; color:rgba(255,255,255,0.7); font-size:0.8rem; background:rgba(20,5,45,0.8); padding:5px 14px; border-radius:20px; border:1px solid rgba(255,255,255,0.15); text-align:center;">
+        🎵 <%= userCounter %>
+    </div>
 
     <!-- Navigation Menu - LEFT SIDE -->
     <nav class="top-nav">
