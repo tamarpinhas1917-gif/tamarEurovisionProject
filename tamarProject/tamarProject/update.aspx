@@ -24,7 +24,7 @@
             <a href="homePage.aspx">🏠 Home</a>
             <a href="logout.aspx">🚪 Logout</a>
         </div>
-        <h1>✏️ Update Profile - עדכון פרטים</h1>
+        <h1>✏️ Update Profile</h1>
         <% if (!string.IsNullOrEmpty(msg)) { %>
         <div class="msg-success"><%= msg %></div>
         <% } %>

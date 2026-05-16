@@ -26,7 +26,7 @@
             <a href="search.aspx">🔍 Search Users</a>
             <a href="logout.aspx">🚪 Logout</a>
         </div>
-        <h1>🛡️ Admin Panel - ניהול משתמשים</h1>
+        <h1>🛡️ Admin Panel</h1>
         <%= st %>
     </form>
 </body>

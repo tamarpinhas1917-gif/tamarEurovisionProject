@@ -27,7 +27,7 @@ namespace tamarProject
                 if (string.IsNullOrEmpty(idnum) || string.IsNullOrEmpty(fname) ||
                     string.IsNullOrEmpty(lname) || string.IsNullOrEmpty(pass))
                 {
-                    RegStatus = "לא מולאו נתונים כנדרש";
+                    RegStatus = "Please fill in all required fields";
                 }
                 else
                 {
@@ -47,7 +47,7 @@ namespace tamarProject
                                 {
                                     if (reader.HasRows)
                                     {
-                                        RegStatus = "מספר תעודת הזהות קיים";
+                                        RegStatus = "ID number already exists";
                                         return;
                                     }
                                 }
@@ -66,7 +66,7 @@ namespace tamarProject
                                 insertCmd.Parameters.AddWithValue("@isAdmin", isAdmin);
 
                                 insertCmd.ExecuteNonQuery();
-                                RegStatus = "ההרשמה בוצעה בהצלחה נא להתחבר";
+                                RegStatus = "Registration successful! Please login";
                                 Response.Redirect("login.aspx?status=" + RegStatus);
                             }
                         }

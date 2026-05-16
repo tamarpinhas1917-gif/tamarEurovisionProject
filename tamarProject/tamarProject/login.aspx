@@ -362,7 +362,7 @@
                 <p class="subtitle">LOGIN TO YOUR ACCOUNT</p>
 
                 <div class="input-group">
-                    <label>ID NUMBER (ת.ז)</label>
+                    <label>ID NUMBER (ID Number)</label>
                     <input type="text" name="idnum" placeholder="Enter your ID number" class="auth-input">
                 </div>
 

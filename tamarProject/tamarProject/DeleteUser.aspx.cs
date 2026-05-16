@@ -30,7 +30,7 @@ namespace tamarProject
             }
             else
             {
-                Response.Write("<body dir='rtl'><strong>הכניסה למנהל בלבד</strong></body>");
+                Response.Write("<body dir='rtl'><strong>Admin access only</strong></body>");
                 Response.End();
             }
         }

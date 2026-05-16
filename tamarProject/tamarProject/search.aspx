@@ -28,25 +28,25 @@
             <a href="admin.aspx">🛡️ Admin Panel</a>
             <a href="logout.aspx">🚪 Logout</a>
         </div>
-        <h1>🔍 Search Users - חיפוש משתמשים</h1>
+        <h1>🔍 Search Users</h1>
 
         <div class="search-forms">
             <!-- Form 1: Show All -->
             <div class="search-box">
-                <h3>הצג הכל</h3>
-                <input type="submit" name="printAll" value="הצג כל המשתמשים" />
+                <h3>Show All</h3>
+                <input type="submit" name="printAll" value="Show All Users" />
             </div>
 
             <!-- Form 2: Search by First Name -->
             <div class="search-box">
-                <h3>חפש לפי שם פרטי</h3>
-                <input type="text" name="fname" placeholder="שם פרטי" />
-                <input type="submit" name="submit_fname" value="חפש" />
+                <h3>Search by First Name</h3>
+                <input type="text" name="fname" placeholder="First Name" />
+                <input type="submit" name="submit_fname" value="Search" />
             </div>
 
             <!-- Form 3: Search by Area -->
             <div class="search-box">
-                <h3>חפש לפי אזור</h3>
+                <h3>Search by Area</h3>
                 <select name="area">
                     <option value="מרכז">מרכז</option>
                     <option value="צפון">צפון</option>
@@ -54,7 +54,7 @@
                     <option value="ירושלים">ירושלים</option>
                     <option value="שרון">שרון</option>
                 </select>
-                <input type="submit" name="submit_area" value="חפש" />
+                <input type="submit" name="submit_area" value="Search" />
             </div>
         </div>
 

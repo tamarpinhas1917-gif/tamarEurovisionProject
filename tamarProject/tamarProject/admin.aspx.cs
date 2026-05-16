@@ -14,7 +14,7 @@ namespace tamarProject
         {
             if (Session["isAdmin"] == null)
             {
-                st = "<div style='color:#ff0085;font-size:1.4rem;text-align:center;margin-top:80px;'>אין גישה לדף זה</div>";
+                st = "<div style='color:#ff0085;font-size:1.4rem;text-align:center;margin-top:80px;'>Access Denied</div>";
             }
             else
             {
@@ -33,7 +33,7 @@ namespace tamarProject
                         if (length > 0)
                         {
                             st += "<table border=5>";
-                            st += "<tr><th>תעודת זהות</th><th>שם פרטי</th><th>שם משפחה</th><th>אזור מגורים</th><th>מנהל?</th><th>עדכן</th><th>מחק</th></tr>";
+                            st += "<tr><th>ID Number</th><th>First Name</th><th>Last Name</th><th>Area</th><th>Admin?</th><th>Update</th><th>Delete</th></tr>";
                             for (int i = 0; i < length; i++)
                             {
                                 st += "<tr>";
@@ -47,14 +47,14 @@ namespace tamarProject
                                     st += "<td><input type='checkbox' name='isAdmin' value='true' checked/></td>";
                                 else
                                     st += "<td><input type='checkbox' name='isAdmin' value='true'/></td>";
-                                st += "<td><input type='submit' name='submit' value='עדכן'/></td>";
-                                st += "<td><input type='button' onclick='window.location.href=\"DeleteUser.aspx?idnum=" + table.Rows[i]["idnum"] + "\"' value='מחק'/></td>";
+                                st += "<td><input type='submit' name='submit' value='Update'/></td>";
+                                st += "<td><input type='button' onclick='window.location.href=\"DeleteUser.aspx?idnum=" + table.Rows[i]["idnum"] + "\"' value='Delete'/></td>";
                                 st += "</form></tr>";
                             }
                             st += "</table>";
                         }
                         else
-                            st = "<p>אין משתמשים רשומים במערכת</p>";
+                            st = "<p>No users registered in the system</p>";
                     }
                 }
             }

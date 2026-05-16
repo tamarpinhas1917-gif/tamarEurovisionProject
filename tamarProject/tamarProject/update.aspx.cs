@@ -15,7 +15,7 @@ namespace tamarProject
         {
             if (Session["user"] == null)
             {
-                Response.Write("<body dir='rtl'><strong>אין גישה - יש להתחבר תחילה</strong></body>");
+                Response.Write("<body dir='rtl'><strong>Access Denied - Please login first</strong></body>");
                 Response.End();
                 return;
             }
@@ -45,7 +45,7 @@ namespace tamarProject
                     }
                 }
                 Session["user"] = fname + " " + lname;
-                msg = "פרטים עודכנו בהצלחה ✓";
+                msg = "Details updated successfully ✓";
             }
 
             // Always reload current data from DB
@@ -65,11 +65,11 @@ namespace tamarProject
                         {
                             editUser += "<form action='' id='edit' method='post'>";
                             editUser += "<table border='1' style='border-color:rgba(255,255,255,0.2)'>";
-                            editUser += "<tr><td>ת.ז</td><td><input type='text' name='idnum' readonly value='" + table.Rows[0]["idnum"] + "'/></td></tr>";
-                            editUser += "<tr><td>שם פרטי</td><td><input type='text' name='fname' value='" + table.Rows[0]["fname"] + "'/></td></tr>";
-                            editUser += "<tr><td>שם משפחה</td><td><input type='text' name='lname' value='" + table.Rows[0]["lname"] + "'/></td></tr>";
-                            editUser += "<tr><td>סיסמה</td><td><input type='text' name='pass' value='" + table.Rows[0]["pass"] + "'/></td></tr>";
-                            editUser += "<tr><td>אזור מגורים</td><td><select name='area'>";
+                            editUser += "<tr><td>ID Number</td><td><input type='text' name='idnum' readonly value='" + table.Rows[0]["idnum"] + "'/></td></tr>";
+                            editUser += "<tr><td>First Name</td><td><input type='text' name='fname' value='" + table.Rows[0]["fname"] + "'/></td></tr>";
+                            editUser += "<tr><td>Last Name</td><td><input type='text' name='lname' value='" + table.Rows[0]["lname"] + "'/></td></tr>";
+                            editUser += "<tr><td>Password</td><td><input type='text' name='pass' value='" + table.Rows[0]["pass"] + "'/></td></tr>";
+                            editUser += "<tr><td>Area</td><td><select name='area'>";
                             string[] areas = { "מרכז", "צפון", "דרום", "ירושלים", "שרון" };
                             string currentArea = table.Rows[0]["area"].ToString().Trim();
                             editUser += "<option value='" + currentArea + "'>" + currentArea + "</option>";
@@ -78,7 +78,7 @@ namespace tamarProject
                                     editUser += "<option value='" + a + "'>" + a + "</option>";
                             editUser += "</select></td></tr>";
                             editUser += "</table><br/>";
-                            editUser += "<input type='submit' name='submit' value='עדכן'/>";
+                            editUser += "<input type='submit' name='submit' value='Update'/>";
                             editUser += "</form>";
                         }
                     }

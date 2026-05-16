@@ -14,7 +14,7 @@ namespace tamarProject
         {
             if (Session["isAdmin"] == null)
             {
-                Response.Write("<body dir='rtl'><strong>הכניסה למנהל בלבד</strong></body>");
+                Response.Write("<body dir='rtl'><strong>Admin access only</strong></body>");
                 Response.End();
                 return;
             }
@@ -57,7 +57,7 @@ namespace tamarProject
                             if (table.Rows.Count > 0)
                             {
                                 usersList += "<table border=5>";
-                                usersList += "<tr><th>תעודת זהות</th><th>שם פרטי</th><th>שם משפחה</th><th>אזור מגורים</th></tr>";
+                                usersList += "<tr><th>ID Number</th><th>First Name</th><th>Last Name</th><th>Area</th></tr>";
                                 for (int i = 0; i < table.Rows.Count; i++)
                                 {
                                     usersList += "<tr>";

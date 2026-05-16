@@ -364,30 +364,18 @@
         <p style="font-size: 1.5rem; font-style: italic; color: #fdf200;">The Eurovision Journey</p>
         <p>Israel 2026</p>
         
-        <a href="login.aspx" class="btn-main" id="ctaButton">Join the Celebration</a>
+        <% if (Session["user"] != null) { %>
+            <a href="timeline.aspx" class="btn-main" id="ctaButton">👋 Hello, <%= Session["user"] %>!</a>
+        <% } else { %>
+            <a href="signUp.aspx" class="btn-main" id="ctaButton">Join the Celebration</a>
+        <% } %>
 
         <div class="neon-line"></div>
     </section>
     
     <script>
-        // Display logged-in user and update CTA
-        window.addEventListener('DOMContentLoaded', function() {
-            const currentUser = JSON.parse(localStorage.getItem('euroUser') || 'null');
-            const ctaButton = document.getElementById('ctaButton');
-            
-            if (currentUser) {
-                // Change CTA button for signed-in users
-                if (ctaButton) {
-                    ctaButton.href = 'timeline.aspx';
-                    ctaButton.textContent = `Welcome ${currentUser.name}! Discover Our Journey`;
-                }
-            }
-        });
-
         function logout() {
-            localStorage.removeItem('euroUser');
-            alert('Logoutת בהצלחה / Successfully logged out');
-            window.location.reload();
+            window.location.href = 'logout.aspx';
         }
     </script>
 </body>

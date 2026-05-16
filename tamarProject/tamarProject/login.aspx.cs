@@ -49,7 +49,7 @@ namespace tamarProject
                                 }
                                 else
                                 {
-                                    errors = "ת.ז או סיסמה לא קיימים במערכת";
+                                    errors = "ID Number או Password לא קיימים במערכת";
                                 }
                             }
                         }

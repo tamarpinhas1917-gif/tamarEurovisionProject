@@ -81,25 +81,25 @@
                 <% } %>
 
                 <div class="input-group">
-                    <label>ID NUMBER (ת.ז)</label>
+                    <label>ID NUMBER (ID Number)</label>
                     <input type="text" name="idnum" placeholder="e.g. 123456789" class="auth-input" maxlength="20" required>
                 </div>
                 <div class="input-group">
-                    <label>FIRST NAME (שם פרטי)</label>
-                    <input type="text" name="fname" placeholder="שם פרטי" class="auth-input" maxlength="50" required>
+                    <label>FIRST NAME (First Name)</label>
+                    <input type="text" name="fname" placeholder="First Name" class="auth-input" maxlength="50" required>
                 </div>
                 <div class="input-group">
-                    <label>LAST NAME (שם משפחה)</label>
-                    <input type="text" name="lname" placeholder="שם משפחה" class="auth-input" maxlength="50" required>
+                    <label>LAST NAME (Last Name)</label>
+                    <input type="text" name="lname" placeholder="Last Name" class="auth-input" maxlength="50" required>
                 </div>
                 <div class="input-group">
-                    <label>PASSWORD (סיסמה)</label>
+                    <label>PASSWORD (Password)</label>
                     <input type="password" name="pass" placeholder="********" class="auth-input" maxlength="50" required>
                 </div>
                 <div class="input-group">
-                    <label>AREA (אזור)</label>
+                    <label>AREA</label>
                     <select name="area" class="auth-input">
-                        <option value="">-- בחר אזור --</option>
+                        <option value="">-- Select Area --</option>
                         <option value="מרכז">מרכז</option>
                         <option value="צפון">צפון</option>
                         <option value="דרום">דרום</option>
