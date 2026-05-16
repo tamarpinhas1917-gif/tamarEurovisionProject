@@ -70,6 +70,12 @@
     <Content Include="login.aspx" />
     <Content Include="homePage.aspx" />
     <Content Include="signUp.aspx" />
+    <Content Include="logout.aspx" />
+    <Content Include="admin.aspx" />
+    <Content Include="adminEditUser.aspx" />
+    <Content Include="DeleteUser.aspx" />
+    <Content Include="update.aspx" />
+    <Content Include="search.aspx" />
     <Content Include="timeline.aspx" />
     <Content Include="data-manager.aspx" />
     <Content Include="fashion.aspx" />
@@ -96,6 +102,49 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EurovisionYear.cs" />
+    <Compile Include="MyAdoHelper.cs" />
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin.aspx.cs">
+      <DependentUpon>admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin.aspx.designer.cs">
+      <DependentUpon>admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="adminEditUser.aspx.cs">
+      <DependentUpon>adminEditUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="adminEditUser.aspx.designer.cs">
+      <DependentUpon>adminEditUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteUser.aspx.cs">
+      <DependentUpon>DeleteUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DeleteUser.aspx.designer.cs">
+      <DependentUpon>DeleteUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="update.aspx.cs">
+      <DependentUpon>update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="update.aspx.designer.cs">
+      <DependentUpon>update.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="search.aspx.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="search.aspx.designer.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+    </Compile>
     <Compile Include="signUp.aspx.cs">
       <DependentUpon>signUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
