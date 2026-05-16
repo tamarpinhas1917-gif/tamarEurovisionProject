@@ -1672,7 +1672,7 @@
                 // NEW: Mood/National Spirit
                 const moodElement = document.getElementById('moodInfo');
                 if (moodElement) {
-                    moodElement.textContent = yearData.Mood || yearData.HalachRuach || 'מידע לא זמין';
+                    moodElement.textContent = yearData.Mood || yearData.HalachRuach || 'Information not available';
                 }
                 
                 // Update image overlay text
@@ -1745,7 +1745,7 @@
             } else {
                 // No data for this year
                 document.getElementById('sidebarYear').textContent = year;
-                document.getElementById('sidebarArtist').textContent = 'לא השתתף';
+                document.getElementById('sidebarArtist').textContent = 'Did not participate';
                 document.getElementById('sidebarSong').textContent = 'N/A';
                 document.getElementById('sidebarSongEnglish').textContent = 'N/A';
                 rankBadge.textContent = 'N/A';
@@ -1784,7 +1784,7 @@
 
         function logout() {
             localStorage.removeItem('euroUser');
-            alert('Logoutת בהצלחה / Successfully logged out');
+            alert('Successfully logged out');
             window.location.reload();
         }
     </script>

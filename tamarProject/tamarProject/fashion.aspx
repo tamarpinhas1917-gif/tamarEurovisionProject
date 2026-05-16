@@ -1589,15 +1589,15 @@
                     <div class="card-back">
                         <div class="xray-title">🔍 X-RAY ANALYSIS</div>
                         <div class="xray-item">
-                            <div class="xray-label">הלבוש:</div>
+                            <div class="xray-label">Outfit:</div>
                             <div class="xray-value">${entry.Fashion}</div>
                         </div>
                         <div class="xray-item">
-                            <div class="xray-label">הסגנון:</div>
+                            <div class="xray-label">Style:</div>
                             <div class="xray-value">${entry.Sound}</div>
                         </div>
                         <div class="xray-item">
-                            <div class="xray-label">דירוג:</div>
+                            <div class="xray-label">Rank:</div>
                             <div class="xray-value">Place ${entry.Rank || 'N/A'}</div>
                         </div>
                     </div>
@@ -1620,7 +1620,7 @@
 
         function logout() {
             localStorage.removeItem('euroUser');
-            alert('Logoutת בהצלחה / Successfully logged out');
+            alert('Successfully logged out');
             window.location.reload();
         }
     </script>

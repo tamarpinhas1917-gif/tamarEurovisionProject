@@ -49,7 +49,7 @@ namespace tamarProject
                                 }
                                 else
                                 {
-                                    errors = "ID Number או Password לא קיימים במערכת";
+                                    errors = "ID Number or Password not found in the system";
                                 }
                             }
                         }
@@ -57,7 +57,7 @@ namespace tamarProject
                 }
                 catch (Exception ex)
                 {
-                    errors = "שגיאה בעת ההתחברות: " + ex.Message;
+                    errors = "Login error: " + ex.Message;
                 }
             }
         }

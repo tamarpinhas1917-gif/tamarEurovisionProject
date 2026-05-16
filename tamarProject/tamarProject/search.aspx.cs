@@ -70,7 +70,7 @@ namespace tamarProject
                                 usersList += "</table>";
                             }
                             else
-                                usersList = "<p>לא נמצאו תוצאות</p>";
+                                usersList = "<p>No results found</p>";
                         }
                     }
                 }

@@ -73,7 +73,7 @@ namespace tamarProject
                     }
                     catch (Exception ex)
                     {
-                        RegStatus = "שגיאה בעת ההרשמה: " + ex.Message;
+                        RegStatus = "Registration error: " + ex.Message;
                     }
                 }
             }

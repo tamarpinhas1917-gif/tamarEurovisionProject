@@ -1408,29 +1408,29 @@
             
             // Show feedback
             const labels = {
-                'all': 'כל השנים',
-                'winner': 'ניצחונות בלבד',
-                'second': 'מקום שני בלבד',
-                'third': 'מקום שלישי בלבד',
-                'top10': 'Top 10 בלבד'
+                'all': 'All Years',
+                'winner': 'Winners Only',
+                'second': '2nd Place Only',
+                'third': '3rd Place Only',
+                'top10': 'Top 10 Only'
             };
             
-            console.log(`סינון: ${labels[category]} - ${filtered.length} תוצאות`);
+            console.log(`Filter: ${labels[category]} - ${filtered.length} results`);
         }
 
         function editEntry(year) {
-            alert('עריכת רשומה לשנת ' + year + '\n\nלעריכה, פתחי את הקובץ:\nApp_Data/eurovision-data.json\n\nבעורך טקסט או Visual Studio');
+            alert('Edit entry for year ' + year + '\n\nTo edit, open the file:\nApp_Data/eurovision-data.json\n\nin a text editor or Visual Studio');
         }
 
         function deleteEntry(year) {
-            if (confirm('האם את בטוחה שאת רוצה למחוק את הרשומה לשנת ' + year + '?')) {
-                alert('למחיקה, ערכי את הקובץ:\nApp_Data/eurovision-data.json');
+            if (confirm('Are you sure you want to delete the entry for year ' + year + '?')) {
+                alert('To delete, edit the file:\nApp_Data/eurovision-data.json');
             }
         }
 
         function exportToExcel() {
             // Simple CSV export
-            let csv = 'Year,אמן,Song,דירוג,סאונד,Fashion\n';
+            let csv = 'Year,Artist,Song,Rank,Sound,Fashion\n';
             
             allData.forEach(entry => {
                 csv += `${entry.Year},"${entry.Artist}","${entry.Song}",${entry.Rank || 'N/A'},"${entry.Sound}","${entry.Fashion}"\n`;
@@ -1457,7 +1457,7 @@
 
         function logout() {
             localStorage.removeItem('euroUser');
-            alert('Logoutת בהצלחה / Successfully logged out');
+            alert('Successfully logged out');
             window.location.reload();
         }
     </script>

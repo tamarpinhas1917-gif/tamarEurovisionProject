@@ -73,7 +73,7 @@
                 <p class="subtitle">UNITED BY MUSIC</p>
 
                 <% if (!string.IsNullOrEmpty(RegStatus)) { %>
-                    <% if (RegStatus.Contains("בהצלחה")) { %>
+                    <% if (RegStatus.Contains("בהצלחה") || RegStatus.Contains("successful")) { %>
                     <div class="msg-success"><%= RegStatus %></div>
                     <% } else { %>
                     <div class="msg-error"><%= RegStatus %></div>
