@@ -1,4 +1,7 @@
 using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -28,21 +31,49 @@ namespace tamarProject
                 }
                 else
                 {
-                    string fileName  = "db.mdf";
-                    string selectSql = "SELECT * FROM personalData WHERE idnum='" + idnum + "'";
+                    try
+                    {
+                        string connectionString = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
+                        using (SqlConnection conn = new SqlConnection(connectionString))
+                        {
+                            conn.Open();
 
-                    if (MyAdoHelper.IsExist(fileName, selectSql))
-                    {
-                        RegStatus = "מספר תעודת הזהות קיים";
+                            // Check if user already exists
+                            string selectSql = "SELECT * FROM personalData WHERE idnum=@idnum";
+                            using (SqlCommand checkCmd = new SqlCommand(selectSql, conn))
+                            {
+                                checkCmd.Parameters.AddWithValue("@idnum", idnum);
+                                using (SqlDataReader reader = checkCmd.ExecuteReader())
+                                {
+                                    if (reader.HasRows)
+                                    {
+                                        RegStatus = "מספר תעודת הזהות קיים";
+                                        return;
+                                    }
+                                }
+                            }
+
+                            // Insert new user
+                            string insertSql = "INSERT INTO personalData(idnum,fname,lname,pass,area,isAdmin) " +
+                                             "VALUES(@idnum,@fname,@lname,@pass,@area,@isAdmin)";
+                            using (SqlCommand insertCmd = new SqlCommand(insertSql, conn))
+                            {
+                                insertCmd.Parameters.AddWithValue("@idnum", idnum);
+                                insertCmd.Parameters.AddWithValue("@fname", fname);
+                                insertCmd.Parameters.AddWithValue("@lname", lname);
+                                insertCmd.Parameters.AddWithValue("@pass", pass);
+                                insertCmd.Parameters.AddWithValue("@area", area);
+                                insertCmd.Parameters.AddWithValue("@isAdmin", isAdmin);
+
+                                insertCmd.ExecuteNonQuery();
+                                RegStatus = "ההרשמה בוצעה בהצלחה נא להתחבר";
+                                Response.Redirect("login.aspx?status=" + RegStatus);
+                            }
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        string sql = "INSERT INTO personalData(idnum,fname,lname,pass,area,isAdmin) " +
-                                     "VALUES('" + idnum + "',N'" + fname + "',N'" + lname + "',N'" +
-                                     pass + "',N'" + area + "','" + isAdmin + "')";
-                        MyAdoHelper.DoQuery(fileName, sql);
-                        RegStatus = "ההרשמה בוצעה בהצלחה נא להתחבר";
-                        Response.Redirect("login.aspx?status=" + RegStatus);
+                        RegStatus = "שגיאה בעת ההרשמה: " + ex.Message;
                     }
                 }
             }
