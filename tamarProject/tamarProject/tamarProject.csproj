@@ -187,7 +187,6 @@
     <Compile Include="gallery.aspx.designer.cs">
       <DependentUpon>gallery.aspx</DependentUpon>
     </Compile>
-    <Compile Include="EurovisionYear.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

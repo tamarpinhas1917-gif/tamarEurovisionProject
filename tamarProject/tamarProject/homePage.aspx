@@ -76,6 +76,7 @@
             animation-delay: 7s;
         }
 
+        <%-- CSS keyframes --%>
         @keyframes float {
             0%, 100% {
                 transform: translate(0, 0) scale(1);
@@ -365,9 +366,9 @@
         <p>Israel 2026</p>
         
         <% if (Session["user"] != null) { %>
-            <a href="timeline.aspx" class="btn-main" id="ctaButton">👋 Hello, <%= Session["user"] %>!</a>
+            <a href="timeline.aspx" class="btn-main" id="ctaButtonLoggedIn">👋 Hello, <%= Session["user"] %>!</a>
         <% } else { %>
-            <a href="signUp.aspx" class="btn-main" id="ctaButton">Join the Celebration</a>
+            <a href="signUp.aspx" class="btn-main" id="ctaButtonGuest">Join the Celebration</a>
         <% } %>
 
         <div class="neon-line"></div>
