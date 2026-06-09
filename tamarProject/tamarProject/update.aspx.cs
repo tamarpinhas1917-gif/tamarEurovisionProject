@@ -15,7 +15,7 @@ namespace tamarProject
         {
             if (Session["user"] == null)
             {
-                Response.Write("<body dir='rtl'><strong>Access Denied - Please login first</strong></body>");
+                Response.Write("<body><strong>Access Denied - Please login first</strong></body>");
                 Response.End();
                 return;
             }
@@ -70,7 +70,7 @@ namespace tamarProject
                             editUser += "<tr><td>Last Name</td><td><input type='text' name='lname' value='" + table.Rows[0]["lname"] + "'/></td></tr>";
                             editUser += "<tr><td>Password</td><td><input type='text' name='pass' value='" + table.Rows[0]["pass"] + "'/></td></tr>";
                             editUser += "<tr><td>Area</td><td><select name='area'>";
-                            string[] areas = { "מרכז", "צפון", "דרום", "ירושלים", "שרון" };
+                            string[] areas = { "Center", "North", "South", "Jerusalem", "Sharon" };
                             string currentArea = table.Rows[0]["area"].ToString().Trim();
                             editUser += "<option value='" + currentArea + "'>" + currentArea + "</option>";
                             foreach (string a in areas)

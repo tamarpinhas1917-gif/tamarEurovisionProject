@@ -1,6 +1,6 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="signUp.aspx.cs" Inherits="tamarProject.signUp" ContentType="text/html; charset=utf-8" %>
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head runat="server">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,7 +73,7 @@
                 <p class="subtitle">UNITED BY MUSIC</p>
 
                 <% if (!string.IsNullOrEmpty(RegStatus)) { %>
-                    <% if (RegStatus.Contains("בהצלחה") || RegStatus.Contains("successful")) { %>
+                    <% if (RegStatus.Contains("successful")) { %>
                     <div class="msg-success"><%= RegStatus %></div>
                     <% } else { %>
                     <div class="msg-error"><%= RegStatus %></div>
@@ -81,30 +81,30 @@
                 <% } %>
 
                 <div class="input-group">
-                    <label>ID NUMBER (ID Number)</label>
+                    <label>ID NUMBER</label>
                     <input type="text" name="idnum" placeholder="e.g. 123456789" class="auth-input" maxlength="20" required>
                 </div>
                 <div class="input-group">
-                    <label>FIRST NAME (First Name)</label>
+                    <label>FIRST NAME</label>
                     <input type="text" name="fname" placeholder="First Name" class="auth-input" maxlength="50" required>
                 </div>
                 <div class="input-group">
-                    <label>LAST NAME (Last Name)</label>
+                    <label>LAST NAME</label>
                     <input type="text" name="lname" placeholder="Last Name" class="auth-input" maxlength="50" required>
                 </div>
                 <div class="input-group">
-                    <label>PASSWORD (Password)</label>
+                    <label>PASSWORD</label>
                     <input type="password" name="pass" placeholder="********" class="auth-input" maxlength="50" required>
                 </div>
                 <div class="input-group">
                     <label>AREA</label>
                     <select name="area" class="auth-input">
                         <option value="">-- Select Area --</option>
-                        <option value="מרכז">מרכז</option>
-                        <option value="צפון">צפון</option>
-                        <option value="דרום">דרום</option>
-                        <option value="ירושלים">ירושלים</option>
-                        <option value="שרון">שרון</option>
+                        <option value="Center">Center</option>
+                        <option value="North">North</option>
+                        <option value="South">South</option>
+                        <option value="Jerusalem">Jerusalem</option>
+                        <option value="Sharon">Sharon</option>
                     </select>
                 </div>
 

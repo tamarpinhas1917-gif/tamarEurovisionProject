@@ -1,6 +1,6 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="update.aspx.cs" Inherits="tamarProject.update" ContentType="text/html; charset=utf-8" %>
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head runat="server">
     <meta charset="UTF-8">
     <title>Eurovision | Update Profile</title>
