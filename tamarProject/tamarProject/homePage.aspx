@@ -1,4 +1,4 @@
-﻿sqlcmd -S "(localdb)\mssqllocaldb" -Q "CREATE DATABASE [db.mfg];"<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="homePage.aspx.cs" Inherits="tamarProject.homePage" ContentType="text/html; charset=utf-8" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="homePage.aspx.cs" Inherits="tamarProject.homePage" ContentType="text/html; charset=utf-8" %>
 
 ﻿<!DOCTYPE html>
 <html lang="en" dir="ltr">
