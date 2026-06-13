@@ -748,13 +748,15 @@
 
         // Initialize
         window.addEventListener('DOMContentLoaded', function() {
-            currentUser = JSON.parse(localStorage.getItem('euroUser') || 'null');
+            // Check if user is logged in (server-side Session variable)
+            var isLoggedIn = '<%= Session["user"] != null ? "true" : "false" %>' === 'true';
+            var userName = '<%= Session["user"] != null ? Session["user"].ToString() : "" %>';
             
-            if (currentUser) {
+            if (isLoggedIn) {
                 // User is signed in - show the game
+                currentUser = { name: userName };
                 document.getElementById('userDisplay').innerHTML =
-                    '<span>Welcome, ' + currentUser.name + '!</span>' +
-                    '<a href="#" onclick="logout()" style="margin-left: 10px;">Logout</a>';
+                    '<span>Welcome, ' + userName + '!</span>';
                 document.getElementById('signInGate').style.display = 'none';
                 document.getElementById('triviaGame').style.display = 'block';
                 loadQuestion();
