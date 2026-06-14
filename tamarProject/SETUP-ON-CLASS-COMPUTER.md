@@ -106,6 +106,11 @@ Check that these folders/files exist on the external drive:
 2. Browser will open automatically
 3. You should see the Eurovision home page!
 
+**✨ Note:** The database and admin account are created **automatically** on first run:
+- Database: `db.mfg` (created in App_Data)
+- Admin account: ID `111111111` / Password `admin123`
+- You can login immediately - no additional setup needed!
+
 ---
 
 ## Part 3: Navigating the Project
@@ -256,6 +261,7 @@ Before class presentation:
 - [ ] Project builds with 0 errors
 - [ ] Browser opens when pressing F5
 - [ ] Home page displays correctly
+- [ ] **Admin login works: ID=111111111, Pass=admin123**
 - [ ] Timeline page loads with images
 - [ ] Fashion page loads with animations
 - [ ] Hebrew text displays properly (not garbled)
