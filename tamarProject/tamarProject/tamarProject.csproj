@@ -81,6 +81,7 @@
     <Content Include="fashion.aspx" />
     <Content Include="trivia.aspx" />
     <Content Include="gallery.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="App_Data\eurovision-data.json" />
     <Content Include="StyleMenu.css" />
     <Content Include="Web.config" />
@@ -103,6 +104,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EurovisionYear.cs" />
     <Compile Include="MyAdoHelper.cs" />
+    <Compile Include="DatabaseInitializer.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="logout.aspx.cs">
       <DependentUpon>logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
